@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsExpenseList" targetNamespace="http://tempuri.org/dsExpenseList.xsd" xmlns:mstns="http://tempuri.org/dsExpenseList.xsd" xmlns="http://tempuri.org/dsExpenseList.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsExpenseList" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsExpenseList" msprop:Generator_UserDSName="dsExpenseList">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ExpenseList" msprop:Generator_TableClassName="ExpenseListDataTable" msprop:Generator_TableVarName="tableExpenseList" msprop:Generator_TablePropName="ExpenseList" msprop:Generator_RowDeletingName="ExpenseListRowDeleting" msprop:Generator_RowChangingName="ExpenseListRowChanging" msprop:Generator_RowEvHandlerName="ExpenseListRowChangeEventHandler" msprop:Generator_RowDeletedName="ExpenseListRowDeleted" msprop:Generator_UserTableName="ExpenseList" msprop:Generator_RowChangedName="ExpenseListRowChanged" msprop:Generator_RowEvArgName="ExpenseListRowChangeEvent" msprop:Generator_RowClassName="ExpenseListRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="PayTo" msprop:Generator_ColumnVarNameInTable="columnPayTo" msprop:Generator_ColumnPropNameInRow="PayTo" msprop:Generator_ColumnPropNameInTable="PayToColumn" msprop:Generator_UserColumnName="PayTo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ExpenseList" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

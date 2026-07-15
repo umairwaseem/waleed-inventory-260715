@@ -1,0 +1,2777 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Alias="Self" Namespace="InventoryModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012">
+        <EntityType Name="AISYS">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Nullable="false" Precision="10" Scale="0" StoreGeneratedPattern="Identity" Type="numeric" />
+          <Property Name="UserLoginId" MaxLength="50" Type="nvarchar" />
+          <Property Name="UserName" MaxLength="50" Type="nvarchar" />
+          <Property Name="UserPassword" MaxLength="50" Type="nvarchar" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="DefaultEntry" Type="bit" />
+          <Property Name="Group_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Clients">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="ClientId" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Name" MaxLength="50" Type="nvarchar" />
+          <Property Name="PhoneNo" MaxLength="50" Type="nvarchar" />
+          <Property Name="Email" MaxLength="50" Type="nvarchar" />
+          <Property Name="Address" MaxLength="250" Type="nvarchar" />
+          <Property Name="DefaultEntry" Type="bit" />
+        </EntityType>
+        <EntityType Name="Expense">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Expense" MaxLength="50" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="ExpenseVoucher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Expense_Id" Type="int" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Description" MaxLength="250" Type="nvarchar" />
+          <Property Name="Amount" Precision="18" Scale="2" Type="numeric" />
+        </EntityType>
+        <EntityType Name="InternalStock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="CompanyName" MaxLength="50" Type="nvarchar" />
+          <Property Name="ItemId" Type="int" />
+          <Property Name="StockDate" Type="datetime" />
+          <Property Name="Qty" Type="int" />
+          <Property Name="Type" Type="bit" />
+        </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Title" MaxLength="500" Type="nvarchar" />
+          <Property Name="Decription" MaxLength="50" Type="nvarchar" />
+          <Property Name="Code" MaxLength="50" Type="nvarchar" />
+          <Property Name="PurchasePrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="SalePrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="VendorId" Type="int" />
+          <Property Name="OStock" Type="int" />
+        </EntityType>
+        <EntityType Name="ItemStock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="ItemId" Precision="18" Scale="0" Type="numeric" />
+          <Property Name="InvoiceId" Precision="18" Scale="0" Type="numeric" />
+          <Property Name="InvoiceType" MaxLength="50" Type="nvarchar" />
+          <Property Name="Qty" Precision="15" Scale="0" Type="numeric" />
+          <Property Name="Cost" Precision="15" Scale="2" Type="numeric" />
+          <Property Name="StockDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="OrderReceive">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Order_Id" Type="int" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="Description" MaxLength="150" Type="nvarchar" />
+          <Property Name="Amount" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="OType" MaxLength="5" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="OrderNo" Type="int" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="ClientId" Type="int" />
+          <Property Name="Description" MaxLength="250" Type="nvarchar" />
+          <Property Name="ExtraDetail" MaxLength="150" Type="nvarchar" />
+          <Property Name="ExtraAmount" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="FinalTotal" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Delivered" Type="bit" />
+          <Property Name="DeliveredDate" Type="datetime" />
+          <Property Name="Sale_Id" Type="int" />
+          <Property Name="SalePerson" MaxLength="50" Type="nvarchar" />
+          <Property Name="Discount" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Description2" MaxLength="250" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="OrdersDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Order_Id" Type="int" />
+          <Property Name="ItemId" Type="int" />
+          <Property Name="Description" MaxLength="50" Type="nvarchar" />
+          <Property Name="Qty" Type="int" />
+          <Property Name="UnitPrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="TotalPrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Cost" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="ItemReturn" Type="bit" />
+          <Property Name="Delivered" Type="bit" />
+          <Property Name="ItemCode" MaxLength="50" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="OwnerAccount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="PayBy" MaxLength="50" Type="nvarchar" />
+          <Property Name="ReceiveBy" MaxLength="50" Type="nvarchar" />
+          <Property Name="PaymentType" MaxLength="10" Type="nvarchar" />
+          <Property Name="BankName" MaxLength="50" Type="nvarchar" />
+          <Property Name="AccountNo" MaxLength="50" Type="nvarchar" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Detail" MaxLength="50" Type="nvarchar" />
+          <Property Name="Amount" Precision="18" Scale="2" Type="numeric" />
+        </EntityType>
+        <EntityType Name="PRInvoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="InvoviceNo" Type="int" />
+          <Property Name="Detail" MaxLength="250" Type="nvarchar" />
+          <Property Name="Cost" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="ExtraDetail" MaxLength="150" Type="nvarchar" />
+          <Property Name="Extra" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Price" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="TotalPrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="InvoiceDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="PurchaseNo" Type="int" />
+          <Property Name="PurchaseDate" Type="datetime" />
+          <Property Name="VendorId" Type="int" />
+          <Property Name="Description" MaxLength="250" Type="nvarchar" />
+          <Property Name="ExtraDetail" MaxLength="10" Type="nchar" />
+          <Property Name="ExtraAmount" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="FinalTotal" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="ChallanNo" Type="int" />
+        </EntityType>
+        <EntityType Name="PurchaseDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Purchase_Id" Type="int" />
+          <Property Name="ItemId" Type="int" />
+          <Property Name="Description" MaxLength="50" Type="nvarchar" />
+          <Property Name="Qty" Type="int" />
+          <Property Name="UnitPrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="TotalPrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="ItemReturn" Type="bit" />
+          <Property Name="ItemCode" MaxLength="50" Type="nvarchar" />
+        </EntityType>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="SaleNo" Type="int" />
+          <Property Name="SaleDate" Type="datetime" />
+          <Property Name="ClientId" Type="int" />
+          <Property Name="Description" MaxLength="250" Type="nvarchar" />
+          <Property Name="ExtraDetail" MaxLength="150" Type="nvarchar" />
+          <Property Name="ExtraAmount" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="FinalTotal" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Order_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="SaleDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Sale_Id" Type="int" />
+          <Property Name="ItemId" Type="int" />
+          <Property Name="Description" MaxLength="50" Type="nvarchar" />
+          <Property Name="Qty" Type="int" />
+          <Property Name="UnitPrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="TotalPrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Cost" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="ItemReturn" Type="bit" />
+          <Property Name="Delivered" Type="bit" />
+        </EntityType>
+        <EntityType Name="SaleReceive">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Sale_Id" Type="int" />
+          <Property Name="SaleDate" Type="datetime" />
+          <Property Name="Description" MaxLength="150" Type="nvarchar" />
+          <Property Name="Amount" Precision="18" Scale="2" Type="numeric" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Nullable="false" MaxLength="128" Type="nvarchar" />
+          <Property Name="principal_id" Nullable="false" Type="int" />
+          <Property Name="diagram_id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Inventory.dbo.temp' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="temp">
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Model" Type="nvarchar" MaxLength="50" />
+          <Property Name="qty" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="price" Type="numeric" Precision="18" Scale="2" />
+        </EntityType>-->
+        <EntityType Name="UserForms">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="int" />
+          <Property Name="FromName" MaxLength="50" Type="nvarchar" />
+          <Property Name="Report" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserGroupRight">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Group_Id" Type="int" />
+          <Property Name="Form_Id" Type="int" />
+          <Property Name="CanView" Type="bit" />
+          <Property Name="CanAdd" Type="bit" />
+          <Property Name="CanUpdate" Type="bit" />
+          <Property Name="CanDelete" Type="bit" />
+        </EntityType>
+        <EntityType Name="UserGroups">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="GroupName" MaxLength="50" Type="nvarchar" />
+          <Property Name="DefaultEntry" Type="bit" />
+        </EntityType>
+        <EntityType Name="Vendors">
+          <Key>
+            <PropertyRef Name="VendorId" />
+          </Key>
+          <Property Name="VendorId" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Name" MaxLength="50" Type="nvarchar" />
+          <Property Name="PhoneNo" MaxLength="50" Type="nvarchar" />
+          <Property Name="Email" MaxLength="50" Type="nvarchar" />
+          <Property Name="DefaultEntry" Type="bit" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Inventory.dbo.vClientSale' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vClientSale">
+          <Key>
+            <PropertyRef Name="ClientId" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="ClientId" Nullable="false" Type="int" />
+          <Property Name="Name" MaxLength="50" Type="nvarchar" />
+          <Property Name="PhoneNo" MaxLength="50" Type="nvarchar" />
+          <Property Name="Email" MaxLength="50" Type="nvarchar" />
+          <Property Name="Address" MaxLength="250" Type="nvarchar" />
+          <Property Name="DefaultEntry" Type="bit" />
+          <Property Name="Id" Nullable="false" Type="int" />
+          <Property Name="OrderNo" Type="int" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="Description" MaxLength="250" Type="nvarchar" />
+          <Property Name="ExtraDetail" MaxLength="150" Type="nvarchar" />
+          <Property Name="ExtraAmount" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="FinalTotal" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Delivered" Type="bit" />
+          <Property Name="DeliveredDate" Type="datetime" />
+          <Property Name="Sale_Id" Type="int" />
+          <Property Name="PaymentDate" Type="datetime" />
+          <Property Name="PaymentDetail" MaxLength="150" Type="nvarchar" />
+          <Property Name="Amount" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="OType" MaxLength="5" Type="nvarchar" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Inventory.dbo.vExpense' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vExpense">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="int" />
+          <Property Name="Expense_Id" Type="int" />
+          <Property Name="Expense" MaxLength="50" Type="nvarchar" />
+          <Property Name="Date" Type="datetime" />
+          <Property Name="Description" MaxLength="250" Type="nvarchar" />
+          <Property Name="Amount" Precision="18" Scale="2" Type="numeric" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Inventory.dbo.vInternalStock' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vInternalStock">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Stock" />
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="int" />
+          <Property Name="CompanyName" MaxLength="50" Type="nvarchar" />
+          <Property Name="Title" MaxLength="500" Type="nvarchar" />
+          <Property Name="Code" MaxLength="50" Type="nvarchar" />
+          <Property Name="StockDate" Type="datetime" />
+          <Property Name="Qty" Type="int" />
+          <Property Name="Type" Type="bit" />
+          <Property Name="Stock" Nullable="false" MaxLength="3" Type="varchar" />
+          <Property Name="ItemId" Nullable="false" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Inventory.dbo.vItems' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vItems">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Nullable="false" StoreGeneratedPattern="Identity" Type="int" />
+          <Property Name="Title" MaxLength="50" Type="nvarchar" />
+          <Property Name="Decription" MaxLength="50" Type="nvarchar" />
+          <Property Name="Code" MaxLength="50" Type="nvarchar" />
+          <Property Name="PurchasePrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="SalePrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Stock" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Inventory.dbo.vItemStock' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vItemStock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="int" />
+          <Property Name="ItemId" Precision="18" Scale="0" Type="numeric" />
+          <Property Name="Title" MaxLength="500" Type="nvarchar" />
+          <Property Name="Decription" MaxLength="50" Type="nvarchar" />
+          <Property Name="Code" MaxLength="50" Type="nvarchar" />
+          <Property Name="PurchasePrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="SalePrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="InvoiceId" Precision="18" Scale="0" Type="numeric" />
+          <Property Name="InvoiceType" MaxLength="50" Type="nvarchar" />
+          <Property Name="Qty" Precision="15" Scale="0" Type="numeric" />
+          <Property Name="Cost" Precision="15" Scale="2" Type="numeric" />
+          <Property Name="StockDate" Type="datetime" />
+          <Property Name="InvoiceNo" Type="int" />
+          <Property Name="CompanyName" MaxLength="50" Type="nvarchar" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Inventory.dbo.vOrder' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="int" />
+          <Property Name="OrderNo" Type="int" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="ClientId" Type="int" />
+          <Property Name="Name" MaxLength="50" Type="nvarchar" />
+          <Property Name="PhoneNo" MaxLength="50" Type="nvarchar" />
+          <Property Name="Email" MaxLength="50" Type="nvarchar" />
+          <Property Name="Description" MaxLength="250" Type="nvarchar" />
+          <Property Name="ExtraDetail" MaxLength="150" Type="nvarchar" />
+          <Property Name="ExtraAmount" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="FinalTotal" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Receive" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Balance" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="OrderPrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Cost" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Delivered" Type="bit" />
+          <Property Name="DeliveredDate" Type="datetime" />
+          <Property Name="Sale_Id" Type="int" />
+          <Property Name="SalePerson" MaxLength="50" Type="nvarchar" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Inventory.dbo.vOrderDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vOrderDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="int" />
+          <Property Name="OrderNo" Type="int" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="ClientId" Type="int" />
+          <Property Name="Sale_Id" Type="int" />
+          <Property Name="Name" MaxLength="50" Type="nvarchar" />
+          <Property Name="PhoneNo" MaxLength="50" Type="nvarchar" />
+          <Property Name="Email" MaxLength="50" Type="nvarchar" />
+          <Property Name="Address" MaxLength="250" Type="nvarchar" />
+          <Property Name="Description" MaxLength="250" Type="nvarchar" />
+          <Property Name="ExtraDetail" MaxLength="150" Type="nvarchar" />
+          <Property Name="ExtraAmount" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="FinalTotal" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Delivered" Type="bit" />
+          <Property Name="DeliveredDate" Type="datetime" />
+          <Property Name="ItemId" Type="int" />
+          <Property Name="Title" MaxLength="500" Type="nvarchar" />
+          <Property Name="Code" MaxLength="50" Type="nvarchar" />
+          <Property Name="Qty" Type="int" />
+          <Property Name="UnitPrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="TotalPrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Cost" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="ItemReturn" Type="bit" />
+          <Property Name="ItemDelivered" Type="bit" />
+          <Property Name="SalePerson" MaxLength="50" Type="nvarchar" />
+          <Property Name="Discount" Precision="18" Scale="2" Type="numeric" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Inventory.dbo.vOrderReceive' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vOrderReceive">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="int" />
+          <Property Name="OrderNo" Type="int" />
+          <Property Name="OrderDate" Type="datetime" />
+          <Property Name="ClientId" Type="int" />
+          <Property Name="Name" MaxLength="50" Type="nvarchar" />
+          <Property Name="PhoneNo" MaxLength="50" Type="nvarchar" />
+          <Property Name="Email" MaxLength="50" Type="nvarchar" />
+          <Property Name="Description" MaxLength="250" Type="nvarchar" />
+          <Property Name="ExtraDetail" MaxLength="150" Type="nvarchar" />
+          <Property Name="ExtraAmount" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="FinalTotal" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Receive" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Balance" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="ReceiveDate" Type="datetime" />
+          <Property Name="ReceiveDetail" MaxLength="150" Type="nvarchar" />
+          <Property Name="Amount" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Delivered" Type="bit" />
+          <Property Name="DeliveredDate" Type="datetime" />
+          <Property Name="Sale_Id" Type="int" />
+          <Property Name="OType" MaxLength="5" Type="nvarchar" />
+          <Property Name="SalePerson" MaxLength="50" Type="nvarchar" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Inventory.dbo.vPurchase' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vPurchase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="int" />
+          <Property Name="PurchaseNo" Type="int" />
+          <Property Name="PurchaseDate" Type="datetime" />
+          <Property Name="VendorId" Type="int" />
+          <Property Name="Name" MaxLength="50" Type="nvarchar" />
+          <Property Name="PhoneNo" MaxLength="50" Type="nvarchar" />
+          <Property Name="Email" MaxLength="50" Type="nvarchar" />
+          <Property Name="Description" MaxLength="250" Type="nvarchar" />
+          <Property Name="ExtraDetail" MaxLength="10" Type="nchar" />
+          <Property Name="ExtraAmount" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="FinalTotal" Precision="18" Scale="2" Type="numeric" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Inventory.dbo.vPurchaseDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vPurchaseDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="int" />
+          <Property Name="PurchaseNo" Type="int" />
+          <Property Name="PurchaseDate" Type="datetime" />
+          <Property Name="VendorId" Type="int" />
+          <Property Name="Name" MaxLength="50" Type="nvarchar" />
+          <Property Name="PhoneNo" MaxLength="50" Type="nvarchar" />
+          <Property Name="Email" MaxLength="50" Type="nvarchar" />
+          <Property Name="Description" MaxLength="250" Type="nvarchar" />
+          <Property Name="ExtraDetail" MaxLength="10" Type="nchar" />
+          <Property Name="ExtraAmount" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="FinalTotal" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="ItemId" Type="int" />
+          <Property Name="ItemDescription" MaxLength="50" Type="nvarchar" />
+          <Property Name="Qty" Type="int" />
+          <Property Name="UnitPrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="TotalPrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Title" MaxLength="500" Type="nvarchar" />
+          <Property Name="Code" MaxLength="50" Type="nvarchar" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Inventory.dbo.vSale' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vSale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="int" />
+          <Property Name="SaleNo" Type="int" />
+          <Property Name="SaleDate" Type="datetime" />
+          <Property Name="ClientId" Type="int" />
+          <Property Name="Name" MaxLength="50" Type="nvarchar" />
+          <Property Name="PhoneNo" MaxLength="50" Type="nvarchar" />
+          <Property Name="Email" MaxLength="50" Type="nvarchar" />
+          <Property Name="Description" MaxLength="250" Type="nvarchar" />
+          <Property Name="ExtraDetail" MaxLength="150" Type="nvarchar" />
+          <Property Name="ExtraAmount" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="FinalTotal" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Receive" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Balance" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="SalePrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Cost" Precision="18" Scale="2" Type="numeric" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Inventory.dbo.vSaleDetail' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vSaleDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="int" />
+          <Property Name="SaleNo" Type="int" />
+          <Property Name="SaleDate" Type="datetime" />
+          <Property Name="ClientId" Type="int" />
+          <Property Name="Name" MaxLength="50" Type="nvarchar" />
+          <Property Name="PhoneNo" MaxLength="50" Type="nvarchar" />
+          <Property Name="Email" MaxLength="50" Type="nvarchar" />
+          <Property Name="Description" MaxLength="250" Type="nvarchar" />
+          <Property Name="ExtraDetail" MaxLength="150" Type="nvarchar" />
+          <Property Name="ExtraAmount" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="FinalTotal" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Order_Id" Type="int" />
+          <Property Name="ItemId" Type="int" />
+          <Property Name="Title" MaxLength="50" Type="nvarchar" />
+          <Property Name="Decription" MaxLength="50" Type="nvarchar" />
+          <Property Name="Code" MaxLength="50" Type="nvarchar" />
+          <Property Name="Qty" Type="int" />
+          <Property Name="UnitPrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="TotalPrice" Precision="18" Scale="2" Type="numeric" />
+          <Property Name="Cost" Precision="18" Scale="2" Type="numeric" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Inventory.dbo.vUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Nullable="false" Precision="10" Scale="0" Type="numeric" />
+          <Property Name="UserLoginId" MaxLength="50" Type="nvarchar" />
+          <Property Name="UserName" MaxLength="50" Type="nvarchar" />
+          <Property Name="UserPassword" MaxLength="50" Type="nvarchar" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="DefaultEntry" Type="bit" />
+          <Property Name="Group_Id" Type="int" />
+          <Property Name="GroupName" MaxLength="50" Type="nvarchar" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'Inventory.dbo.vUserGroupRights' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="vUserGroupRights">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Nullable="false" Type="int" />
+          <Property Name="FromName" MaxLength="50" Type="nvarchar" />
+          <Property Name="Group_Id" Type="int" />
+          <Property Name="GroupName" MaxLength="50" Type="nvarchar" />
+          <Property Name="DefaultEntry" Type="bit" />
+          <Property Name="CanView" Type="bit" />
+          <Property Name="CanAdd" Type="bit" />
+          <Property Name="CanUpdate" Type="bit" />
+          <Property Name="CanDelete" Type="bit" />
+        </EntityType>
+        <Association Name="FK_AISYS_UserGroups">
+          <End Type="Self.UserGroups" Multiplicity="0..1" Role="UserGroups" />
+          <End Type="Self.AISYS" Multiplicity="*" Role="AISYS" />
+          <ReferentialConstraint>
+            <Principal Role="UserGroups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AISYS">
+              <PropertyRef Name="Group_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExpenseVoucher_Expense">
+          <End Type="Self.Expense" Multiplicity="0..1" Role="Expense" />
+          <End Type="Self.ExpenseVoucher" Multiplicity="*" Role="ExpenseVoucher" />
+          <ReferentialConstraint>
+            <Principal Role="Expense">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpenseVoucher">
+              <PropertyRef Name="Expense_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrdersDetail_Orders">
+          <End Type="Self.Orders" Multiplicity="0..1" Role="Orders">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Self.OrdersDetail" Multiplicity="*" Role="OrdersDetail" />
+          <ReferentialConstraint>
+            <Principal Role="Orders">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdersDetail">
+              <PropertyRef Name="Order_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDetail_Purchase">
+          <End Type="Self.Purchase" Multiplicity="0..1" Role="Purchase">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Self.PurchaseDetail" Multiplicity="*" Role="PurchaseDetail" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseDetail">
+              <PropertyRef Name="Purchase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleDetail_Sale">
+          <End Type="Self.Sale" Multiplicity="0..1" Role="Sale">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="Self.SaleDetail" Multiplicity="*" Role="SaleDetail" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleDetail">
+              <PropertyRef Name="Sale_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserGroupRight_Forms">
+          <End Type="Self.UserForms" Multiplicity="0..1" Role="UserForms" />
+          <End Type="Self.UserGroupRight" Multiplicity="*" Role="UserGroupRight" />
+          <ReferentialConstraint>
+            <Principal Role="UserForms">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserGroupRight">
+              <PropertyRef Name="Form_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserGroupRight_UserGroups">
+          <End Type="Self.UserGroups" Multiplicity="0..1" Role="UserGroups" />
+          <End Type="Self.UserGroupRight" Multiplicity="*" Role="UserGroupRight" />
+          <ReferentialConstraint>
+            <Principal Role="UserGroups">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserGroupRight">
+              <PropertyRef Name="Group_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="fn_diagramobjects" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="funGetInvoiceNo" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="InvoiceType" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="funGetItemStock" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ItemId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="funGetUserGroupRight" ReturnType="bit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="GroupId" Type="int" Mode="In" />
+          <Parameter Name="FromId" Type="int" Mode="In" />
+          <Parameter Name="Field" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="funGetWithdraw" ReturnType="numeric" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="date" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="funOrderBalance" ReturnType="numeric" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="funOrderBalanceToDate" ReturnType="numeric" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Date" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="funOrderCost" ReturnType="numeric" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="funOrderPayBack" ReturnType="numeric" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="funOrderPrice" ReturnType="numeric" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="funOrderReceive" ReturnType="numeric" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="funOrderReceiveToDate" ReturnType="numeric" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Date" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="funPreviousBalance" ReturnType="numeric" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Date" Type="datetime" Mode="In" />
+        </Function>
+        <Function Name="funSaleBalance" ReturnType="numeric" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="funSaleCost" ReturnType="numeric" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="funSalePrice" ReturnType="numeric" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="funSaleReceive" ReturnType="numeric" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="spCreateInternalStock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="InOut" />
+          <Parameter Name="ItemId" Type="int" Mode="In" />
+          <Parameter Name="StockDate" Type="datetime" Mode="In" />
+          <Parameter Name="CompanyName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Qty" Type="int" Mode="In" />
+          <Parameter Name="Type" Type="bit" Mode="In" />
+          <Parameter Name="Success" Type="bit" Mode="InOut" />
+          <Parameter Name="Message" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="spCreateOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="numeric" Mode="InOut" />
+          <Parameter Name="OrderNo" Type="int" Mode="InOut" />
+          <Parameter Name="OrderDate" Type="datetime" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="Description2" Type="nvarchar" Mode="In" />
+          <Parameter Name="ClientId" Type="numeric" Mode="In" />
+          <Parameter Name="ExtraDetail" Type="nvarchar" Mode="In" />
+          <Parameter Name="ExtraAmount" Type="numeric" Mode="In" />
+          <Parameter Name="DiscountAmount" Type="numeric" Mode="In" />
+          <Parameter Name="FinalTotal" Type="numeric" Mode="In" />
+          <Parameter Name="SalePerson" Type="nvarchar" Mode="In" />
+          <Parameter Name="Delivered" Type="bit" Mode="In" />
+          <Parameter Name="DeliveredDate" Type="datetime" Mode="In" />
+          <Parameter Name="Detail" Type="xml" Mode="In" />
+          <Parameter Name="Sale_Id" Type="int" Mode="InOut" />
+          <Parameter Name="Success" Type="bit" Mode="InOut" />
+          <Parameter Name="Message" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="spCreateOrder__bak_2003_22" Aggregate="false" BuiltIn="false" StoreFunctionName="spCreateOrder__bak_2003.22" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="numeric" Mode="InOut" />
+          <Parameter Name="OrderNo" Type="int" Mode="InOut" />
+          <Parameter Name="OrderDate" Type="datetime" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="ClientId" Type="numeric" Mode="In" />
+          <Parameter Name="ExtraDetail" Type="nvarchar" Mode="In" />
+          <Parameter Name="ExtraAmount" Type="numeric" Mode="In" />
+          <Parameter Name="FinalTotal" Type="numeric" Mode="In" />
+          <Parameter Name="Delivered" Type="bit" Mode="In" />
+          <Parameter Name="DeliveredDate" Type="datetime" Mode="In" />
+          <Parameter Name="Detail" Type="xml" Mode="In" />
+          <Parameter Name="Success" Type="bit" Mode="InOut" />
+          <Parameter Name="Message" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="spCreatePurchase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="numeric" Mode="InOut" />
+          <Parameter Name="PurchaseNo" Type="int" Mode="InOut" />
+          <Parameter Name="PurchaseDate" Type="datetime" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="VendorId" Type="numeric" Mode="In" />
+          <Parameter Name="ExtraDetail" Type="nvarchar" Mode="In" />
+          <Parameter Name="ExtraAmount" Type="numeric" Mode="In" />
+          <Parameter Name="FinalTotal" Type="numeric" Mode="In" />
+          <Parameter Name="ChallanNo" Type="int" Mode="In" />
+          <Parameter Name="Detail" Type="xml" Mode="In" />
+          <Parameter Name="Success" Type="bit" Mode="InOut" />
+          <Parameter Name="Message" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="spCreateSale" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="numeric" Mode="InOut" />
+          <Parameter Name="SaleNo" Type="int" Mode="InOut" />
+          <Parameter Name="SaleDate" Type="datetime" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="ClientId" Type="numeric" Mode="In" />
+          <Parameter Name="ExtraDetail" Type="nvarchar" Mode="In" />
+          <Parameter Name="ExtraAmount" Type="numeric" Mode="In" />
+          <Parameter Name="FinalTotal" Type="numeric" Mode="In" />
+          <Parameter Name="Detail" Type="xml" Mode="In" />
+          <Parameter Name="Success" Type="bit" Mode="InOut" />
+          <Parameter Name="Message" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="spDeleteInternalStock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="Success" Type="bit" Mode="InOut" />
+          <Parameter Name="Message" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="spDeleteOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spDeletePurchase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spDeleteSale" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="spUpdateInternalStock" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+          <Parameter Name="ItemId" Type="int" Mode="In" />
+          <Parameter Name="StockDate" Type="datetime" Mode="In" />
+          <Parameter Name="CompanyName" Type="nvarchar" Mode="In" />
+          <Parameter Name="Qty" Type="int" Mode="In" />
+          <Parameter Name="Type" Type="bit" Mode="In" />
+          <Parameter Name="Success" Type="bit" Mode="InOut" />
+          <Parameter Name="Message" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="spUpdateOrder" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="numeric" Mode="In" />
+          <Parameter Name="OrderNo" Type="int" Mode="In" />
+          <Parameter Name="OrderDate" Type="datetime" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="Description2" Type="nvarchar" Mode="In" />
+          <Parameter Name="ClientId" Type="numeric" Mode="In" />
+          <Parameter Name="ExtraDetail" Type="nvarchar" Mode="In" />
+          <Parameter Name="ExtraAmount" Type="numeric" Mode="In" />
+          <Parameter Name="DiscountAmount" Type="numeric" Mode="In" />
+          <Parameter Name="FinalTotal" Type="numeric" Mode="In" />
+          <Parameter Name="SalePerson" Type="nvarchar" Mode="In" />
+          <Parameter Name="Delivered" Type="bit" Mode="In" />
+          <Parameter Name="DeliveredDate" Type="datetime" Mode="In" />
+          <Parameter Name="Detail" Type="xml" Mode="In" />
+          <Parameter Name="Sale_Id" Type="int" Mode="InOut" />
+          <Parameter Name="Success" Type="bit" Mode="InOut" />
+          <Parameter Name="Message" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="spUpdateOrder__bak_2003_22" Aggregate="false" BuiltIn="false" StoreFunctionName="spUpdateOrder__bak_2003.22" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="numeric" Mode="In" />
+          <Parameter Name="OrderNo" Type="int" Mode="In" />
+          <Parameter Name="OrderDate" Type="datetime" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="ClientId" Type="numeric" Mode="In" />
+          <Parameter Name="ExtraDetail" Type="nvarchar" Mode="In" />
+          <Parameter Name="ExtraAmount" Type="numeric" Mode="In" />
+          <Parameter Name="FinalTotal" Type="numeric" Mode="In" />
+          <Parameter Name="Delivered" Type="bit" Mode="In" />
+          <Parameter Name="DeliveredDate" Type="datetime" Mode="In" />
+          <Parameter Name="Detail" Type="xml" Mode="In" />
+          <Parameter Name="Success" Type="bit" Mode="InOut" />
+          <Parameter Name="Message" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="spUpdatePurchase" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="numeric" Mode="In" />
+          <Parameter Name="PurchaseNo" Type="int" Mode="In" />
+          <Parameter Name="PurchaseDate" Type="datetime" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="VendorId" Type="numeric" Mode="In" />
+          <Parameter Name="ExtraDetail" Type="nvarchar" Mode="In" />
+          <Parameter Name="ExtraAmount" Type="numeric" Mode="In" />
+          <Parameter Name="FinalTotal" Type="numeric" Mode="In" />
+          <Parameter Name="ChallanNo" Type="int" Mode="In" />
+          <Parameter Name="Detail" Type="xml" Mode="In" />
+          <Parameter Name="Success" Type="bit" Mode="InOut" />
+          <Parameter Name="Message" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <Function Name="spUpdateSale" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="numeric" Mode="In" />
+          <Parameter Name="SaleNo" Type="int" Mode="In" />
+          <Parameter Name="SaleDate" Type="datetime" Mode="In" />
+          <Parameter Name="Description" Type="nvarchar" Mode="In" />
+          <Parameter Name="ClientId" Type="numeric" Mode="In" />
+          <Parameter Name="ExtraDetail" Type="nvarchar" Mode="In" />
+          <Parameter Name="ExtraAmount" Type="numeric" Mode="In" />
+          <Parameter Name="FinalTotal" Type="numeric" Mode="In" />
+          <Parameter Name="Detail" Type="xml" Mode="In" />
+          <Parameter Name="Success" Type="bit" Mode="InOut" />
+          <Parameter Name="Message" Type="nvarchar" Mode="InOut" />
+        </Function>
+        <EntityContainer Name="InventoryModelStoreContainer">
+          <EntitySet Name="AISYS" EntityType="Self.AISYS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Clients" EntityType="Self.Clients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Expense" EntityType="Self.Expense" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExpenseVoucher" EntityType="Self.ExpenseVoucher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InternalStock" EntityType="Self.InternalStock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemStock" EntityType="Self.ItemStock" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderReceive" EntityType="Self.OrderReceive" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrdersDetail" EntityType="Self.OrdersDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OwnerAccount" EntityType="Self.OwnerAccount" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PRInvoice" EntityType="Self.PRInvoice" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Purchase" EntityType="Self.Purchase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseDetail" EntityType="Self.PurchaseDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sale" EntityType="Self.Sale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleDetail" EntityType="Self.SaleDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleReceive" EntityType="Self.SaleReceive" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserForms" EntityType="Self.UserForms" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserGroupRight" EntityType="Self.UserGroupRight" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserGroups" EntityType="Self.UserGroups" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vendors" EntityType="Self.Vendors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="vClientSale" EntityType="Self.vClientSale" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vClientSale].[ClientId] AS [ClientId], 
+    [vClientSale].[Name] AS [Name], 
+    [vClientSale].[PhoneNo] AS [PhoneNo], 
+    [vClientSale].[Email] AS [Email], 
+    [vClientSale].[Address] AS [Address], 
+    [vClientSale].[DefaultEntry] AS [DefaultEntry], 
+    [vClientSale].[Id] AS [Id], 
+    [vClientSale].[OrderNo] AS [OrderNo], 
+    [vClientSale].[OrderDate] AS [OrderDate], 
+    [vClientSale].[Description] AS [Description], 
+    [vClientSale].[ExtraDetail] AS [ExtraDetail], 
+    [vClientSale].[ExtraAmount] AS [ExtraAmount], 
+    [vClientSale].[FinalTotal] AS [FinalTotal], 
+    [vClientSale].[Delivered] AS [Delivered], 
+    [vClientSale].[DeliveredDate] AS [DeliveredDate], 
+    [vClientSale].[Sale_Id] AS [Sale_Id], 
+    [vClientSale].[PaymentDate] AS [PaymentDate], 
+    [vClientSale].[PaymentDetail] AS [PaymentDetail], 
+    [vClientSale].[Amount] AS [Amount], 
+    [vClientSale].[OType] AS [OType]
+    FROM [dbo].[vClientSale] AS [vClientSale]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vExpense" EntityType="Self.vExpense" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vExpense].[Id] AS [Id], 
+    [vExpense].[Expense_Id] AS [Expense_Id], 
+    [vExpense].[Expense] AS [Expense], 
+    [vExpense].[Date] AS [Date], 
+    [vExpense].[Description] AS [Description], 
+    [vExpense].[Amount] AS [Amount]
+    FROM [dbo].[vExpense] AS [vExpense]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vInternalStock" EntityType="Self.vInternalStock" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vInternalStock].[Id] AS [Id], 
+    [vInternalStock].[CompanyName] AS [CompanyName], 
+    [vInternalStock].[Title] AS [Title], 
+    [vInternalStock].[Code] AS [Code], 
+    [vInternalStock].[StockDate] AS [StockDate], 
+    [vInternalStock].[Qty] AS [Qty], 
+    [vInternalStock].[Type] AS [Type], 
+    [vInternalStock].[Stock] AS [Stock], 
+    [vInternalStock].[ItemId] AS [ItemId]
+    FROM [dbo].[vInternalStock] AS [vInternalStock]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vItems" EntityType="Self.vItems" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vItems].[ItemId] AS [ItemId], 
+    [vItems].[Title] AS [Title], 
+    [vItems].[Decription] AS [Decription], 
+    [vItems].[Code] AS [Code], 
+    [vItems].[PurchasePrice] AS [PurchasePrice], 
+    [vItems].[SalePrice] AS [SalePrice], 
+    [vItems].[Stock] AS [Stock]
+    FROM [dbo].[vItems] AS [vItems]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vItemStock" EntityType="Self.vItemStock" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vItemStock].[Id] AS [Id], 
+    [vItemStock].[ItemId] AS [ItemId], 
+    [vItemStock].[Title] AS [Title], 
+    [vItemStock].[Decription] AS [Decription], 
+    [vItemStock].[Code] AS [Code], 
+    [vItemStock].[PurchasePrice] AS [PurchasePrice], 
+    [vItemStock].[SalePrice] AS [SalePrice], 
+    [vItemStock].[InvoiceId] AS [InvoiceId], 
+    [vItemStock].[InvoiceType] AS [InvoiceType], 
+    [vItemStock].[Qty] AS [Qty], 
+    [vItemStock].[Cost] AS [Cost], 
+    [vItemStock].[StockDate] AS [StockDate], 
+    [vItemStock].[InvoiceNo] AS [InvoiceNo], 
+    [vItemStock].[CompanyName] AS [CompanyName]
+    FROM [dbo].[vItemStock] AS [vItemStock]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vOrder" EntityType="Self.vOrder" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vOrder].[Id] AS [Id], 
+    [vOrder].[OrderNo] AS [OrderNo], 
+    [vOrder].[OrderDate] AS [OrderDate], 
+    [vOrder].[ClientId] AS [ClientId], 
+    [vOrder].[Name] AS [Name], 
+    [vOrder].[PhoneNo] AS [PhoneNo], 
+    [vOrder].[Email] AS [Email], 
+    [vOrder].[Description] AS [Description], 
+    [vOrder].[ExtraDetail] AS [ExtraDetail], 
+    [vOrder].[ExtraAmount] AS [ExtraAmount], 
+    [vOrder].[FinalTotal] AS [FinalTotal], 
+    [vOrder].[Receive] AS [Receive], 
+    [vOrder].[Balance] AS [Balance], 
+    [vOrder].[OrderPrice] AS [OrderPrice], 
+    [vOrder].[Cost] AS [Cost], 
+    [vOrder].[Delivered] AS [Delivered], 
+    [vOrder].[DeliveredDate] AS [DeliveredDate], 
+    [vOrder].[Sale_Id] AS [Sale_Id], 
+    [vOrder].[SalePerson] AS [SalePerson]
+    FROM [dbo].[vOrder] AS [vOrder]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vOrderDetail" EntityType="Self.vOrderDetail" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vOrderDetail].[Id] AS [Id], 
+    [vOrderDetail].[OrderNo] AS [OrderNo], 
+    [vOrderDetail].[OrderDate] AS [OrderDate], 
+    [vOrderDetail].[ClientId] AS [ClientId], 
+    [vOrderDetail].[Sale_Id] AS [Sale_Id], 
+    [vOrderDetail].[Name] AS [Name], 
+    [vOrderDetail].[PhoneNo] AS [PhoneNo], 
+    [vOrderDetail].[Email] AS [Email], 
+    [vOrderDetail].[Address] AS [Address], 
+    [vOrderDetail].[Description] AS [Description], 
+    [vOrderDetail].[ExtraDetail] AS [ExtraDetail], 
+    [vOrderDetail].[ExtraAmount] AS [ExtraAmount], 
+    [vOrderDetail].[FinalTotal] AS [FinalTotal], 
+    [vOrderDetail].[Delivered] AS [Delivered], 
+    [vOrderDetail].[DeliveredDate] AS [DeliveredDate], 
+    [vOrderDetail].[ItemId] AS [ItemId], 
+    [vOrderDetail].[Title] AS [Title], 
+    [vOrderDetail].[Code] AS [Code], 
+    [vOrderDetail].[Qty] AS [Qty], 
+    [vOrderDetail].[UnitPrice] AS [UnitPrice], 
+    [vOrderDetail].[TotalPrice] AS [TotalPrice], 
+    [vOrderDetail].[Cost] AS [Cost], 
+    [vOrderDetail].[ItemReturn] AS [ItemReturn], 
+    [vOrderDetail].[ItemDelivered] AS [ItemDelivered], 
+    [vOrderDetail].[SalePerson] AS [SalePerson], 
+    [vOrderDetail].[Discount] AS [Discount]
+    FROM [dbo].[vOrderDetail] AS [vOrderDetail]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vOrderReceive" EntityType="Self.vOrderReceive" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vOrderReceive].[Id] AS [Id], 
+    [vOrderReceive].[OrderNo] AS [OrderNo], 
+    [vOrderReceive].[OrderDate] AS [OrderDate], 
+    [vOrderReceive].[ClientId] AS [ClientId], 
+    [vOrderReceive].[Name] AS [Name], 
+    [vOrderReceive].[PhoneNo] AS [PhoneNo], 
+    [vOrderReceive].[Email] AS [Email], 
+    [vOrderReceive].[Description] AS [Description], 
+    [vOrderReceive].[ExtraDetail] AS [ExtraDetail], 
+    [vOrderReceive].[ExtraAmount] AS [ExtraAmount], 
+    [vOrderReceive].[FinalTotal] AS [FinalTotal], 
+    [vOrderReceive].[Receive] AS [Receive], 
+    [vOrderReceive].[Balance] AS [Balance], 
+    [vOrderReceive].[ReceiveDate] AS [ReceiveDate], 
+    [vOrderReceive].[ReceiveDetail] AS [ReceiveDetail], 
+    [vOrderReceive].[Amount] AS [Amount], 
+    [vOrderReceive].[Delivered] AS [Delivered], 
+    [vOrderReceive].[DeliveredDate] AS [DeliveredDate], 
+    [vOrderReceive].[Sale_Id] AS [Sale_Id], 
+    [vOrderReceive].[OType] AS [OType], 
+    [vOrderReceive].[SalePerson] AS [SalePerson]
+    FROM [dbo].[vOrderReceive] AS [vOrderReceive]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vPurchase" EntityType="Self.vPurchase" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vPurchase].[Id] AS [Id], 
+    [vPurchase].[PurchaseNo] AS [PurchaseNo], 
+    [vPurchase].[PurchaseDate] AS [PurchaseDate], 
+    [vPurchase].[VendorId] AS [VendorId], 
+    [vPurchase].[Name] AS [Name], 
+    [vPurchase].[PhoneNo] AS [PhoneNo], 
+    [vPurchase].[Email] AS [Email], 
+    [vPurchase].[Description] AS [Description], 
+    [vPurchase].[ExtraDetail] AS [ExtraDetail], 
+    [vPurchase].[ExtraAmount] AS [ExtraAmount], 
+    [vPurchase].[FinalTotal] AS [FinalTotal]
+    FROM [dbo].[vPurchase] AS [vPurchase]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vPurchaseDetail" EntityType="Self.vPurchaseDetail" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vPurchaseDetail].[Id] AS [Id], 
+    [vPurchaseDetail].[PurchaseNo] AS [PurchaseNo], 
+    [vPurchaseDetail].[PurchaseDate] AS [PurchaseDate], 
+    [vPurchaseDetail].[VendorId] AS [VendorId], 
+    [vPurchaseDetail].[Name] AS [Name], 
+    [vPurchaseDetail].[PhoneNo] AS [PhoneNo], 
+    [vPurchaseDetail].[Email] AS [Email], 
+    [vPurchaseDetail].[Description] AS [Description], 
+    [vPurchaseDetail].[ExtraDetail] AS [ExtraDetail], 
+    [vPurchaseDetail].[ExtraAmount] AS [ExtraAmount], 
+    [vPurchaseDetail].[FinalTotal] AS [FinalTotal], 
+    [vPurchaseDetail].[ItemId] AS [ItemId], 
+    [vPurchaseDetail].[ItemDescription] AS [ItemDescription], 
+    [vPurchaseDetail].[Qty] AS [Qty], 
+    [vPurchaseDetail].[UnitPrice] AS [UnitPrice], 
+    [vPurchaseDetail].[TotalPrice] AS [TotalPrice], 
+    [vPurchaseDetail].[Title] AS [Title], 
+    [vPurchaseDetail].[Code] AS [Code]
+    FROM [dbo].[vPurchaseDetail] AS [vPurchaseDetail]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vSale" EntityType="Self.vSale" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vSale].[Id] AS [Id], 
+    [vSale].[SaleNo] AS [SaleNo], 
+    [vSale].[SaleDate] AS [SaleDate], 
+    [vSale].[ClientId] AS [ClientId], 
+    [vSale].[Name] AS [Name], 
+    [vSale].[PhoneNo] AS [PhoneNo], 
+    [vSale].[Email] AS [Email], 
+    [vSale].[Description] AS [Description], 
+    [vSale].[ExtraDetail] AS [ExtraDetail], 
+    [vSale].[ExtraAmount] AS [ExtraAmount], 
+    [vSale].[FinalTotal] AS [FinalTotal], 
+    [vSale].[Receive] AS [Receive], 
+    [vSale].[Balance] AS [Balance], 
+    [vSale].[SalePrice] AS [SalePrice], 
+    [vSale].[Cost] AS [Cost]
+    FROM [dbo].[vSale] AS [vSale]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vSaleDetail" EntityType="Self.vSaleDetail" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vSaleDetail].[Id] AS [Id], 
+    [vSaleDetail].[SaleNo] AS [SaleNo], 
+    [vSaleDetail].[SaleDate] AS [SaleDate], 
+    [vSaleDetail].[ClientId] AS [ClientId], 
+    [vSaleDetail].[Name] AS [Name], 
+    [vSaleDetail].[PhoneNo] AS [PhoneNo], 
+    [vSaleDetail].[Email] AS [Email], 
+    [vSaleDetail].[Description] AS [Description], 
+    [vSaleDetail].[ExtraDetail] AS [ExtraDetail], 
+    [vSaleDetail].[ExtraAmount] AS [ExtraAmount], 
+    [vSaleDetail].[FinalTotal] AS [FinalTotal], 
+    [vSaleDetail].[Order_Id] AS [Order_Id], 
+    [vSaleDetail].[ItemId] AS [ItemId], 
+    [vSaleDetail].[Title] AS [Title], 
+    [vSaleDetail].[Decription] AS [Decription], 
+    [vSaleDetail].[Code] AS [Code], 
+    [vSaleDetail].[Qty] AS [Qty], 
+    [vSaleDetail].[UnitPrice] AS [UnitPrice], 
+    [vSaleDetail].[TotalPrice] AS [TotalPrice], 
+    [vSaleDetail].[Cost] AS [Cost]
+    FROM [dbo].[vSaleDetail] AS [vSaleDetail]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vUser" EntityType="Self.vUser" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vUser].[UserId] AS [UserId], 
+    [vUser].[UserLoginId] AS [UserLoginId], 
+    [vUser].[UserName] AS [UserName], 
+    [vUser].[UserPassword] AS [UserPassword], 
+    [vUser].[Active] AS [Active], 
+    [vUser].[DefaultEntry] AS [DefaultEntry], 
+    [vUser].[Group_Id] AS [Group_Id], 
+    [vUser].[GroupName] AS [GroupName]
+    FROM [dbo].[vUser] AS [vUser]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="vUserGroupRights" EntityType="Self.vUserGroupRights" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [vUserGroupRights].[Id] AS [Id], 
+    [vUserGroupRights].[FromName] AS [FromName], 
+    [vUserGroupRights].[Group_Id] AS [Group_Id], 
+    [vUserGroupRights].[GroupName] AS [GroupName], 
+    [vUserGroupRights].[DefaultEntry] AS [DefaultEntry], 
+    [vUserGroupRights].[CanView] AS [CanView], 
+    [vUserGroupRights].[CanAdd] AS [CanAdd], 
+    [vUserGroupRights].[CanUpdate] AS [CanUpdate], 
+    [vUserGroupRights].[CanDelete] AS [CanDelete]
+    FROM [dbo].[vUserGroupRights] AS [vUserGroupRights]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_AISYS_UserGroups" Association="Self.FK_AISYS_UserGroups">
+            <End EntitySet="UserGroups" Role="UserGroups" />
+            <End EntitySet="AISYS" Role="AISYS" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExpenseVoucher_Expense" Association="Self.FK_ExpenseVoucher_Expense">
+            <End EntitySet="Expense" Role="Expense" />
+            <End EntitySet="ExpenseVoucher" Role="ExpenseVoucher" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrdersDetail_Orders" Association="Self.FK_OrdersDetail_Orders">
+            <End EntitySet="Orders" Role="Orders" />
+            <End EntitySet="OrdersDetail" Role="OrdersDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDetail_Purchase" Association="Self.FK_PurchaseDetail_Purchase">
+            <End EntitySet="Purchase" Role="Purchase" />
+            <End EntitySet="PurchaseDetail" Role="PurchaseDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleDetail_Sale" Association="Self.FK_SaleDetail_Sale">
+            <End EntitySet="Sale" Role="Sale" />
+            <End EntitySet="SaleDetail" Role="SaleDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserGroupRight_Forms" Association="Self.FK_UserGroupRight_Forms">
+            <End EntitySet="UserForms" Role="UserForms" />
+            <End EntitySet="UserGroupRight" Role="UserGroupRight" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserGroupRight_UserGroups" Association="Self.FK_UserGroupRight_UserGroups">
+            <End EntitySet="UserGroups" Role="UserGroups" />
+            <End EntitySet="UserGroupRight" Role="UserGroupRight" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InventoryModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AISY">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Decimal" Precision="10" Scale="0" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserLoginId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="DefaultEntry" Type="Boolean" />
+          <Property Name="Group_Id" Type="Int32" />
+          <NavigationProperty Name="UserGroup" Relationship="InventoryModel.FK_AISYS_UserGroups" FromRole="AISY" ToRole="UserGroup" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Decription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PurchasePrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SalePrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="VendorId" Type="Int32" />
+          <Property Name="OStock" Type="Int32" />
+        </EntityType>
+        <EntityContainer Name="InventoryEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AISYS" EntityType="Self.AISY" />
+          <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="Clients" EntityType="InventoryModel.Client" />
+          <EntitySet Name="Vendors" EntityType="InventoryModel.Vendor" />
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Type="String" Mode="In" />
+            <Parameter Name="owner_id" Type="Int32" Mode="In" />
+            <Parameter Name="version" Type="Int32" Mode="In" />
+            <Parameter Name="definition" Type="Binary" Mode="In" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Type="String" Mode="In" />
+            <Parameter Name="owner_id" Type="Int32" Mode="In" />
+            <Parameter Name="version" Type="Int32" Mode="In" />
+            <Parameter Name="definition" Type="Binary" Mode="In" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Type="String" Mode="In" />
+            <Parameter Name="owner_id" Type="Int32" Mode="In" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(InventoryModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Type="String" Mode="In" />
+            <Parameter Name="owner_id" Type="Int32" Mode="In" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(InventoryModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Type="String" Mode="In" />
+            <Parameter Name="owner_id" Type="Int32" Mode="In" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Type="String" Mode="In" />
+            <Parameter Name="owner_id" Type="Int32" Mode="In" />
+            <Parameter Name="new_diagramname" Type="String" Mode="In" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="spCreateOrder">
+            <Parameter Name="Id" Type="Decimal" Mode="InOut" />
+            <Parameter Name="OrderNo" Type="Int32" Mode="InOut" />
+            <Parameter Name="OrderDate" Type="DateTime" Mode="In" />
+            <Parameter Name="Description" Type="String" Mode="In" />
+            <Parameter Name="Description2" Type="String" Mode="In" />
+            <Parameter Name="ClientId" Type="Decimal" Mode="In" />
+            <Parameter Name="ExtraDetail" Type="String" Mode="In" />
+            <Parameter Name="ExtraAmount" Type="Decimal" Mode="In" />
+            <Parameter Name="DiscountAmount" Type="Decimal" Mode="In" />
+            <Parameter Name="FinalTotal" Type="Decimal" Mode="In" />
+            <Parameter Name="SalePerson" Type="String" Mode="In" />
+            <Parameter Name="Delivered" Type="Boolean" Mode="In" />
+            <Parameter Name="DeliveredDate" Type="DateTime" Mode="In" />
+            <Parameter Name="Detail" Type="String" Mode="In" />
+            <Parameter Name="Sale_Id" Type="Int32" Mode="InOut" />
+            <Parameter Name="Success" Type="Boolean" Mode="InOut" />
+            <Parameter Name="Message" Type="String" Mode="InOut" />
+          </FunctionImport>
+          <EntitySet Name="Orders" EntityType="InventoryModel.Order" />
+          <EntitySet Name="OrdersDetails" EntityType="InventoryModel.OrdersDetail" />
+          <AssociationSet Name="FK_OrdersDetail_Orders" Association="InventoryModel.FK_OrdersDetail_Orders">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="OrdersDetail" EntitySet="OrdersDetails" />
+          </AssociationSet>
+          <EntitySet Name="sysdiagrams" EntityType="InventoryModel.sysdiagram" />
+          <EntitySet Name="vOrders" EntityType="InventoryModel.vOrder" />
+          <FunctionImport Name="spUpdateOrder">
+            <Parameter Name="Id" Type="Decimal" Mode="In" />
+            <Parameter Name="OrderNo" Type="Int32" Mode="In" />
+            <Parameter Name="OrderDate" Type="DateTime" Mode="In" />
+            <Parameter Name="Description" Type="String" Mode="In" />
+            <Parameter Name="Description2" Type="String" Mode="In" />
+            <Parameter Name="ClientId" Type="Decimal" Mode="In" />
+            <Parameter Name="ExtraDetail" Type="String" Mode="In" />
+            <Parameter Name="ExtraAmount" Type="Decimal" Mode="In" />
+            <Parameter Name="DiscountAmount" Type="Decimal" Mode="In" />
+            <Parameter Name="FinalTotal" Type="Decimal" Mode="In" />
+            <Parameter Name="SalePerson" Type="String" Mode="In" />
+            <Parameter Name="Delivered" Type="Boolean" Mode="In" />
+            <Parameter Name="DeliveredDate" Type="DateTime" Mode="In" />
+            <Parameter Name="Detail" Type="String" Mode="In" />
+            <Parameter Name="Sale_Id" Type="Int32" Mode="InOut" />
+            <Parameter Name="Success" Type="Boolean" Mode="InOut" />
+            <Parameter Name="Message" Type="String" Mode="InOut" />
+          </FunctionImport>
+          <EntitySet Name="Purchases" EntityType="InventoryModel.Purchase" />
+          <EntitySet Name="PurchaseDetails" EntityType="InventoryModel.PurchaseDetail" />
+          <AssociationSet Name="FK_PurchaseDetail_Purchase" Association="InventoryModel.FK_PurchaseDetail_Purchase">
+            <End Role="Purchase" EntitySet="Purchases" />
+            <End Role="PurchaseDetail" EntitySet="PurchaseDetails" />
+          </AssociationSet>
+          <FunctionImport Name="spCreatePurchase">
+            <Parameter Name="Id" Type="Decimal" Mode="InOut" />
+            <Parameter Name="PurchaseNo" Type="Int32" Mode="InOut" />
+            <Parameter Name="PurchaseDate" Type="DateTime" Mode="In" />
+            <Parameter Name="Description" Type="String" Mode="In" />
+            <Parameter Name="VendorId" Type="Decimal" Mode="In" />
+            <Parameter Name="ExtraDetail" Type="String" Mode="In" />
+            <Parameter Name="ExtraAmount" Type="Decimal" Mode="In" />
+            <Parameter Name="FinalTotal" Type="Decimal" Mode="In" />
+            <Parameter Name="ChallanNo" Type="Int32" Mode="In" />
+            <Parameter Name="Detail" Type="String" Mode="In" />
+            <Parameter Name="Success" Type="Boolean" Mode="InOut" />
+            <Parameter Name="Message" Type="String" Mode="InOut" />
+          </FunctionImport>
+          <FunctionImport Name="spUpdatePurchase">
+            <Parameter Name="Id" Type="Decimal" Mode="In" />
+            <Parameter Name="PurchaseNo" Type="Int32" Mode="In" />
+            <Parameter Name="PurchaseDate" Type="DateTime" Mode="In" />
+            <Parameter Name="Description" Type="String" Mode="In" />
+            <Parameter Name="VendorId" Type="Decimal" Mode="In" />
+            <Parameter Name="ExtraDetail" Type="String" Mode="In" />
+            <Parameter Name="ExtraAmount" Type="Decimal" Mode="In" />
+            <Parameter Name="FinalTotal" Type="Decimal" Mode="In" />
+            <Parameter Name="ChallanNo" Type="Int32" Mode="In" />
+            <Parameter Name="Detail" Type="String" Mode="In" />
+            <Parameter Name="Success" Type="Boolean" Mode="InOut" />
+            <Parameter Name="Message" Type="String" Mode="InOut" />
+          </FunctionImport>
+          <EntitySet Name="Sales" EntityType="InventoryModel.Sale" />
+          <EntitySet Name="SaleDetails" EntityType="InventoryModel.SaleDetail" />
+          <EntitySet Name="vPurchases" EntityType="InventoryModel.vPurchase" />
+          <EntitySet Name="vSales" EntityType="InventoryModel.vSale" />
+          <AssociationSet Name="FK_SaleDetail_Sale" Association="InventoryModel.FK_SaleDetail_Sale">
+            <End Role="Sale" EntitySet="Sales" />
+            <End Role="SaleDetail" EntitySet="SaleDetails" />
+          </AssociationSet>
+          <FunctionImport Name="spCreateSale">
+            <Parameter Name="Id" Type="Decimal" Mode="InOut" />
+            <Parameter Name="SaleNo" Type="Int32" Mode="InOut" />
+            <Parameter Name="SaleDate" Type="DateTime" Mode="In" />
+            <Parameter Name="Description" Type="String" Mode="In" />
+            <Parameter Name="ClientId" Type="Decimal" Mode="In" />
+            <Parameter Name="ExtraDetail" Type="String" Mode="In" />
+            <Parameter Name="ExtraAmount" Type="Decimal" Mode="In" />
+            <Parameter Name="FinalTotal" Type="Decimal" Mode="In" />
+            <Parameter Name="Detail" Type="String" Mode="In" />
+            <Parameter Name="Success" Type="Boolean" Mode="InOut" />
+            <Parameter Name="Message" Type="String" Mode="InOut" />
+          </FunctionImport>
+          <FunctionImport Name="spUpdateSale">
+            <Parameter Name="Id" Type="Decimal" Mode="In" />
+            <Parameter Name="SaleNo" Type="Int32" Mode="In" />
+            <Parameter Name="SaleDate" Type="DateTime" Mode="In" />
+            <Parameter Name="Description" Type="String" Mode="In" />
+            <Parameter Name="ClientId" Type="Decimal" Mode="In" />
+            <Parameter Name="ExtraDetail" Type="String" Mode="In" />
+            <Parameter Name="ExtraAmount" Type="Decimal" Mode="In" />
+            <Parameter Name="FinalTotal" Type="Decimal" Mode="In" />
+            <Parameter Name="Detail" Type="String" Mode="In" />
+            <Parameter Name="Success" Type="Boolean" Mode="InOut" />
+            <Parameter Name="Message" Type="String" Mode="InOut" />
+          </FunctionImport>
+          <EntitySet Name="Expenses" EntityType="InventoryModel.Expense" />
+          <EntitySet Name="ExpenseVouchers" EntityType="InventoryModel.ExpenseVoucher" />
+          <AssociationSet Name="FK_ExpenseVoucher_Expense" Association="InventoryModel.FK_ExpenseVoucher_Expense">
+            <End Role="Expense" EntitySet="Expenses" />
+            <End Role="ExpenseVoucher" EntitySet="ExpenseVouchers" />
+          </AssociationSet>
+          <EntitySet Name="vExpenses" EntityType="InventoryModel.vExpense" />
+          <EntitySet Name="SaleReceives" EntityType="InventoryModel.SaleReceive" />
+          <EntitySet Name="ItemStocks" EntityType="InventoryModel.ItemStock" />
+          <EntitySet Name="OrderReceives" EntityType="InventoryModel.OrderReceive" />
+          <FunctionImport Name="spDeleteSale">
+          <Parameter Name="Id" Type="Int32" Mode="In" />
+          </FunctionImport>
+          <FunctionImport Name="spDeletePurchase">
+          <Parameter Name="Id" Type="Int32" Mode="In" />
+          </FunctionImport>
+          <EntitySet Name="vItems" EntityType="InventoryModel.vItem" />
+          <EntitySet Name="OwnerAccounts" EntityType="InventoryModel.OwnerAccount" />
+          <EntitySet Name="vOrderDetails" EntityType="InventoryModel.vOrderDetail" />
+          <EntitySet Name="vOrderReceives" EntityType="InventoryModel.vOrderReceive" />
+          <EntitySet Name="vPurchaseDetails" EntityType="InventoryModel.vPurchaseDetail" />
+          <EntitySet Name="vSaleDetails" EntityType="InventoryModel.vSaleDetail" />
+          <EntitySet Name="vItemStocks" EntityType="InventoryModel.vItemStock" />
+          <FunctionImport Name="spCreateOrder__bak_2003_22">
+            <Parameter Name="Id" Type="Decimal" Mode="InOut" />
+            <Parameter Name="OrderNo" Type="Int32" Mode="InOut" />
+            <Parameter Name="OrderDate" Type="DateTime" Mode="In" />
+            <Parameter Name="Description" Type="String" Mode="In" />
+            <Parameter Name="ClientId" Type="Decimal" Mode="In" />
+            <Parameter Name="ExtraDetail" Type="String" Mode="In" />
+            <Parameter Name="ExtraAmount" Type="Decimal" Mode="In" />
+            <Parameter Name="FinalTotal" Type="Decimal" Mode="In" />
+            <Parameter Name="Delivered" Type="Boolean" Mode="In" />
+            <Parameter Name="DeliveredDate" Type="DateTime" Mode="In" />
+            <Parameter Name="Detail" Type="String" Mode="In" />
+            <Parameter Name="Success" Type="Boolean" Mode="InOut" />
+            <Parameter Name="Message" Type="String" Mode="InOut" />
+          </FunctionImport>
+          <FunctionImport Name="spUpdateOrder__bak_2003_22">
+            <Parameter Name="Id" Type="Decimal" Mode="In" />
+            <Parameter Name="OrderNo" Type="Int32" Mode="In" />
+            <Parameter Name="OrderDate" Type="DateTime" Mode="In" />
+            <Parameter Name="Description" Type="String" Mode="In" />
+            <Parameter Name="ClientId" Type="Decimal" Mode="In" />
+            <Parameter Name="ExtraDetail" Type="String" Mode="In" />
+            <Parameter Name="ExtraAmount" Type="Decimal" Mode="In" />
+            <Parameter Name="FinalTotal" Type="Decimal" Mode="In" />
+            <Parameter Name="Delivered" Type="Boolean" Mode="In" />
+            <Parameter Name="DeliveredDate" Type="DateTime" Mode="In" />
+            <Parameter Name="Detail" Type="String" Mode="In" />
+            <Parameter Name="Success" Type="Boolean" Mode="InOut" />
+            <Parameter Name="Message" Type="String" Mode="InOut" />
+          </FunctionImport>
+          <FunctionImport Name="spDeleteOrder">
+          <Parameter Name="Id" Type="Int32" Mode="In" />
+          </FunctionImport>
+          <EntitySet Name="UserGroups" EntityType="InventoryModel.UserGroup" />
+          <AssociationSet Name="FK_AISYS_UserGroups" Association="InventoryModel.FK_AISYS_UserGroups">
+            <End Role="UserGroup" EntitySet="UserGroups" />
+            <End Role="AISY" EntitySet="AISYS" />
+          </AssociationSet>
+          <EntitySet Name="vUserGroupRights" EntityType="InventoryModel.vUserGroupRight" />
+          <EntitySet Name="UserForms" EntityType="InventoryModel.UserForm" />
+          <EntitySet Name="UserGroupRights" EntityType="InventoryModel.UserGroupRight" />
+          <AssociationSet Name="FK_UserGroupRight_Forms" Association="InventoryModel.FK_UserGroupRight_Forms">
+            <End Role="UserForm" EntitySet="UserForms" />
+            <End Role="UserGroupRight" EntitySet="UserGroupRights" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserGroupRight_UserGroups" Association="InventoryModel.FK_UserGroupRight_UserGroups">
+            <End Role="UserGroup" EntitySet="UserGroups" />
+            <End Role="UserGroupRight" EntitySet="UserGroupRights" />
+          </AssociationSet>
+          <EntitySet Name="vClientSales" EntityType="InventoryModel.vClientSale" />
+          <EntitySet Name="vUsers" EntityType="InventoryModel.vUser" />
+          <FunctionImport Name="spCreateInternalStock">
+            <Parameter Name="Id" Type="Int32" Mode="InOut" />
+            <Parameter Name="ItemId" Type="Int32" Mode="In" />
+            <Parameter Name="StockDate" Type="DateTime" Mode="In" />
+            <Parameter Name="CompanyName" Type="String" Mode="In" />
+            <Parameter Name="Qty" Type="Int32" Mode="In" />
+            <Parameter Name="Type" Type="Boolean" Mode="In" />
+            <Parameter Name="Success" Type="Boolean" Mode="InOut" />
+            <Parameter Name="Message" Type="String" Mode="InOut" />
+          </FunctionImport>
+          <FunctionImport Name="spDeleteInternalStock">
+            <Parameter Name="Id" Type="Int32" Mode="In" />
+            <Parameter Name="Success" Type="Boolean" Mode="InOut" />
+            <Parameter Name="Message" Type="String" Mode="InOut" />
+          </FunctionImport>
+          <FunctionImport Name="spUpdateInternalStock">
+            <Parameter Name="Id" Type="Int32" Mode="In" />
+            <Parameter Name="ItemId" Type="Int32" Mode="In" />
+            <Parameter Name="StockDate" Type="DateTime" Mode="In" />
+            <Parameter Name="CompanyName" Type="String" Mode="In" />
+            <Parameter Name="Qty" Type="Int32" Mode="In" />
+            <Parameter Name="Type" Type="Boolean" Mode="In" />
+            <Parameter Name="Success" Type="Boolean" Mode="InOut" />
+            <Parameter Name="Message" Type="String" Mode="InOut" />
+          </FunctionImport>
+          <EntitySet Name="InternalStocks" EntityType="InventoryModel.InternalStock" />
+          <EntitySet Name="vInternalStocks" EntityType="InventoryModel.vInternalStock" />
+          <EntitySet Name="PRInvoices" EntityType="InventoryModel.PRInvoice" />
+        </EntityContainer>
+        <EntityType Name="Client">
+          <Key>
+            <PropertyRef Name="ClientId" />
+          </Key>
+          <Property Name="ClientId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultEntry" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="VendorId" />
+          </Key>
+          <Property Name="VendorId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultEntry" Type="Boolean" />
+        </EntityType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderNo" Type="Int32" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="ClientId" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraDetail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraAmount" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="OrdersDetails" Relationship="InventoryModel.FK_OrdersDetail_Orders" FromRole="Order" ToRole="OrdersDetail" />
+          <Property Name="FinalTotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Delivered" Type="Boolean" />
+          <Property Name="DeliveredDate" Type="DateTime" Precision="3" />
+          <Property Name="Sale_Id" Type="Int32" />
+          <Property Name="SalePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Description2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="OrdersDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Order_Id" Type="Int32" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Qty" Type="Int32" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Order" Relationship="InventoryModel.FK_OrdersDetail_Orders" FromRole="OrdersDetail" ToRole="Order" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ItemReturn" Type="Boolean" />
+          <Property Name="Delivered" Type="Boolean" />
+          <Property Name="ItemCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_OrdersDetail_Orders">
+          <End Type="InventoryModel.Order" Role="Order" Multiplicity="0..1" />
+          <End Type="InventoryModel.OrdersDetail" Role="OrdersDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="OrdersDetail">
+              <PropertyRef Name="Order_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="vOrder">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="OrderNo" Type="Int32" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="ClientId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraDetail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FinalTotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Balance" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Receive" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OrderPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Delivered" Type="Boolean" />
+          <Property Name="DeliveredDate" Type="DateTime" Precision="3" />
+          <Property Name="Sale_Id" Type="Int32" />
+          <Property Name="SalePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Purchase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PurchaseNo" Type="Int32" />
+          <Property Name="PurchaseDate" Type="DateTime" Precision="3" />
+          <Property Name="VendorId" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraDetail" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ExtraAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FinalTotal" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="PurchaseDetails" Relationship="InventoryModel.FK_PurchaseDetail_Purchase" FromRole="Purchase" ToRole="PurchaseDetail" />
+          <Property Name="ChallanNo" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PurchaseDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Purchase_Id" Type="Int32" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Qty" Type="Int32" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Purchase" Relationship="InventoryModel.FK_PurchaseDetail_Purchase" FromRole="PurchaseDetail" ToRole="Purchase" />
+          <Property Name="ItemReturn" Type="Boolean" />
+          <Property Name="ItemCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK_PurchaseDetail_Purchase">
+          <End Type="InventoryModel.Purchase" Role="Purchase" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="InventoryModel.PurchaseDetail" Role="PurchaseDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Purchase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PurchaseDetail">
+              <PropertyRef Name="Purchase_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Sale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaleNo" Type="Int32" />
+          <Property Name="SaleDate" Type="DateTime" Precision="3" />
+          <Property Name="ClientId" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraDetail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FinalTotal" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="SaleDetails" Relationship="InventoryModel.FK_SaleDetail_Sale" FromRole="Sale" ToRole="SaleDetail" />
+          <Property Name="Order_Id" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SaleDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sale_Id" Type="Int32" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Qty" Type="Int32" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Sale" Relationship="InventoryModel.FK_SaleDetail_Sale" FromRole="SaleDetail" ToRole="Sale" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ItemReturn" Type="Boolean" />
+          <Property Name="Delivered" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="vPurchase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PurchaseNo" Type="Int32" />
+          <Property Name="PurchaseDate" Type="DateTime" Precision="3" />
+          <Property Name="VendorId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraDetail" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ExtraAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FinalTotal" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="vSale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="SaleNo" Type="Int32" />
+          <Property Name="SaleDate" Type="DateTime" Precision="3" />
+          <Property Name="ClientId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraDetail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FinalTotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Balance" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Receive" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SalePrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <Association Name="FK_SaleDetail_Sale">
+          <End Type="InventoryModel.Sale" Role="Sale" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="InventoryModel.SaleDetail" Role="SaleDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sale">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="SaleDetail">
+              <PropertyRef Name="Sale_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Expense">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Expense1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ExpenseVouchers" Relationship="InventoryModel.FK_ExpenseVoucher_Expense" FromRole="Expense" ToRole="ExpenseVoucher" />
+        </EntityType>
+        <EntityType Name="ExpenseVoucher">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Expense_Id" Type="Int32" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="Expense" Relationship="InventoryModel.FK_ExpenseVoucher_Expense" FromRole="ExpenseVoucher" ToRole="Expense" />
+        </EntityType>
+        <Association Name="FK_ExpenseVoucher_Expense">
+          <End Type="InventoryModel.Expense" Role="Expense" Multiplicity="0..1" />
+          <End Type="InventoryModel.ExpenseVoucher" Role="ExpenseVoucher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expense">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ExpenseVoucher">
+              <PropertyRef Name="Expense_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vExpense">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Expense_Id" Type="Int32" />
+          <Property Name="Expense" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="SaleReceive">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sale_Id" Type="Int32" />
+          <Property Name="SaleDate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="ItemStock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemId" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="InvoiceId" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="InvoiceType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Qty" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="Cost" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="StockDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="OrderReceive">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Order_Id" Type="Int32" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OType" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vItem">
+          <Key>
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="ItemId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Decription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PurchasePrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SalePrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Stock" Type="Int32" />
+        </EntityType>
+        <EntityType Name="OwnerAccount">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PayBy" Type="String" />
+          <Property Name="ReceiveBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="BankName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AccountNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Date" Type="DateTime" Precision="3" />
+          <Property Name="Detail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="vOrderDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="OrderNo" Type="Int32" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="ClientId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraDetail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FinalTotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Delivered" Type="Boolean" />
+          <Property Name="DeliveredDate" Type="DateTime" Precision="3" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Qty" Type="Int32" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Sale_Id" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ItemReturn" Type="Boolean" />
+          <Property Name="ItemDelivered" Type="Boolean" />
+          <Property Name="SalePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="vOrderReceive">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="OrderNo" Type="Int32" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="ClientId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraDetail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FinalTotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Receive" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Balance" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ReceiveDate" Type="DateTime" Precision="3" />
+          <Property Name="ReceiveDetail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Delivered" Type="Boolean" />
+          <Property Name="DeliveredDate" Type="DateTime" Precision="3" />
+          <Property Name="Sale_Id" Type="Int32" />
+          <Property Name="OType" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+          <Property Name="SalePerson" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vPurchaseDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="PurchaseNo" Type="Int32" />
+          <Property Name="PurchaseDate" Type="DateTime" Precision="3" />
+          <Property Name="VendorId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraDetail" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="ExtraAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FinalTotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="ItemDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Qty" Type="Int32" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vSaleDetail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="SaleNo" Type="Int32" />
+          <Property Name="SaleDate" Type="DateTime" Precision="3" />
+          <Property Name="ClientId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraDetail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FinalTotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Order_Id" Type="Int32" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Decription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Qty" Type="Int32" />
+          <Property Name="UnitPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="vItemStock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="ItemId" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Decription" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PurchasePrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="SalePrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="InvoiceId" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="InvoiceType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Qty" Type="Decimal" Precision="15" Scale="0" />
+          <Property Name="Cost" Type="Decimal" Precision="15" Scale="2" />
+          <Property Name="StockDate" Type="DateTime" Precision="3" />
+          <Property Name="InvoiceNo" Type="Int32" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="UserGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultEntry" Type="Boolean" />
+          <NavigationProperty Name="AISYS" Relationship="InventoryModel.FK_AISYS_UserGroups" FromRole="UserGroup" ToRole="AISY" />
+          <NavigationProperty Name="UserGroupRights" Relationship="InventoryModel.FK_UserGroupRight_UserGroups" FromRole="UserGroup" ToRole="UserGroupRight" />
+        </EntityType>
+        <Association Name="FK_AISYS_UserGroups">
+          <End Type="InventoryModel.UserGroup" Role="UserGroup" Multiplicity="0..1" />
+          <End Type="InventoryModel.AISY" Role="AISY" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="AISY">
+              <PropertyRef Name="Group_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vUserGroupRight">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FromName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Group_Id" Type="Int32" />
+          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultEntry" Type="Boolean" />
+          <Property Name="CanView" Type="Boolean" />
+          <Property Name="CanAdd" Type="Boolean" />
+          <Property Name="CanUpdate" Type="Boolean" />
+          <Property Name="CanDelete" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="UserForm">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="FromName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserGroupRights" Relationship="InventoryModel.FK_UserGroupRight_Forms" FromRole="UserForm" ToRole="UserGroupRight" />
+          <Property Name="Report" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="UserGroupRight">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Group_Id" Type="Int32" />
+          <Property Name="Form_Id" Type="Int32" />
+          <Property Name="CanView" Type="Boolean" />
+          <Property Name="CanAdd" Type="Boolean" />
+          <Property Name="CanUpdate" Type="Boolean" />
+          <Property Name="CanDelete" Type="Boolean" />
+          <NavigationProperty Name="UserForm" Relationship="InventoryModel.FK_UserGroupRight_Forms" FromRole="UserGroupRight" ToRole="UserForm" />
+          <NavigationProperty Name="UserGroup" Relationship="InventoryModel.FK_UserGroupRight_UserGroups" FromRole="UserGroupRight" ToRole="UserGroup" />
+        </EntityType>
+        <Association Name="FK_UserGroupRight_Forms">
+          <End Type="InventoryModel.UserForm" Role="UserForm" Multiplicity="0..1" />
+          <End Type="InventoryModel.UserGroupRight" Role="UserGroupRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserForm">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserGroupRight">
+              <PropertyRef Name="Form_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserGroupRight_UserGroups">
+          <End Type="InventoryModel.UserGroup" Role="UserGroup" Multiplicity="0..1" />
+          <End Type="InventoryModel.UserGroupRight" Role="UserGroupRight" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserGroup">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserGroupRight">
+              <PropertyRef Name="Group_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="vClientSale">
+          <Key>
+            <PropertyRef Name="ClientId" />
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="ClientId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DefaultEntry" Type="Boolean" />
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="OrderNo" Type="Int32" />
+          <Property Name="OrderDate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraDetail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ExtraAmount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="FinalTotal" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Delivered" Type="Boolean" />
+          <Property Name="DeliveredDate" Type="DateTime" Precision="3" />
+          <Property Name="Sale_Id" Type="Int32" />
+          <Property Name="PaymentDate" Type="DateTime" Precision="3" />
+          <Property Name="PaymentDetail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="OType" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="vUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Decimal" Nullable="false" Precision="10" Scale="0" />
+          <Property Name="UserLoginId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="UserPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Active" Type="Boolean" />
+          <Property Name="DefaultEntry" Type="Boolean" />
+          <Property Name="Group_Id" Type="Int32" />
+          <Property Name="GroupName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="InternalStock">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ItemId" Type="Int32" />
+          <Property Name="StockDate" Type="DateTime" Precision="3" />
+          <Property Name="Qty" Type="Int32" />
+          <Property Name="Type" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="vInternalStock">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="Stock" />
+            <PropertyRef Name="ItemId" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Title" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StockDate" Type="DateTime" Precision="3" />
+          <Property Name="Qty" Type="Int32" />
+          <Property Name="Type" Type="Boolean" />
+          <Property Name="Stock" Type="String" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Name="ItemId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PRInvoice">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InvoviceNo" Type="Int32" />
+          <Property Name="Detail" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Cost" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Extra" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="InvoiceDate" Type="DateTime" Precision="3" />
+          <Property Name="ExtraDetail" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InventoryModelStoreContainer" CdmEntityContainer="InventoryEntities">
+          <EntitySetMapping Name="AISYS">
+            <EntityTypeMapping TypeName="InventoryModel.AISY">
+              <MappingFragment StoreEntitySet="AISYS">
+                <ScalarProperty Name="Group_Id" ColumnName="Group_Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserLoginId" ColumnName="UserLoginId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="DefaultEntry" ColumnName="DefaultEntry" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="InventoryModel.Item">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="OStock" ColumnName="OStock" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Decription" ColumnName="Decription" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Clients">
+            <EntityTypeMapping TypeName="InventoryModel.Client">
+              <MappingFragment StoreEntitySet="Clients">
+                <ScalarProperty Name="DefaultEntry" ColumnName="DefaultEntry" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vendors">
+            <EntityTypeMapping TypeName="InventoryModel.Vendor">
+              <MappingFragment StoreEntitySet="Vendors">
+                <ScalarProperty Name="DefaultEntry" ColumnName="DefaultEntry" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="InventoryModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="InventoryModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="InventoryModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="InventoryModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventoryModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="InventoryModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventoryModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="InventoryModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="InventoryModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="spCreateOrder" FunctionName="InventoryModel.Store.spCreateOrder" />
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="InventoryModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="Description2" ColumnName="Description2" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="SalePerson" ColumnName="SalePerson" />
+                <ScalarProperty Name="Sale_Id" ColumnName="Sale_Id" />
+                <ScalarProperty Name="DeliveredDate" ColumnName="DeliveredDate" />
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
+                <ScalarProperty Name="ExtraAmount" ColumnName="ExtraAmount" />
+                <ScalarProperty Name="ExtraDetail" ColumnName="ExtraDetail" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrdersDetails">
+            <EntityTypeMapping TypeName="InventoryModel.OrdersDetail">
+              <MappingFragment StoreEntitySet="OrdersDetail">
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="ItemReturn" ColumnName="ItemReturn" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="InventoryModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vOrders">
+            <EntityTypeMapping TypeName="InventoryModel.vOrder">
+              <MappingFragment StoreEntitySet="vOrder">
+                <ScalarProperty Name="SalePerson" ColumnName="SalePerson" />
+                <ScalarProperty Name="Sale_Id" ColumnName="Sale_Id" />
+                <ScalarProperty Name="DeliveredDate" ColumnName="DeliveredDate" />
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="OrderPrice" ColumnName="OrderPrice" />
+                <ScalarProperty Name="Receive" ColumnName="Receive" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
+                <ScalarProperty Name="ExtraAmount" ColumnName="ExtraAmount" />
+                <ScalarProperty Name="ExtraDetail" ColumnName="ExtraDetail" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spUpdateOrder" FunctionName="InventoryModel.Store.spUpdateOrder" />
+          <EntitySetMapping Name="Purchases">
+            <EntityTypeMapping TypeName="InventoryModel.Purchase">
+              <MappingFragment StoreEntitySet="Purchase">
+                <ScalarProperty Name="ChallanNo" ColumnName="ChallanNo" />
+                <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
+                <ScalarProperty Name="ExtraAmount" ColumnName="ExtraAmount" />
+                <ScalarProperty Name="ExtraDetail" ColumnName="ExtraDetail" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="PurchaseNo" ColumnName="PurchaseNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseDetails">
+            <EntityTypeMapping TypeName="InventoryModel.PurchaseDetail">
+              <MappingFragment StoreEntitySet="PurchaseDetail">
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemReturn" ColumnName="ItemReturn" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Purchase_Id" ColumnName="Purchase_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spCreatePurchase" FunctionName="InventoryModel.Store.spCreatePurchase" />
+          <FunctionImportMapping FunctionImportName="spUpdatePurchase" FunctionName="InventoryModel.Store.spUpdatePurchase" />
+          <EntitySetMapping Name="Sales">
+            <EntityTypeMapping TypeName="InventoryModel.Sale">
+              <MappingFragment StoreEntitySet="Sale">
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+                <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
+                <ScalarProperty Name="ExtraAmount" ColumnName="ExtraAmount" />
+                <ScalarProperty Name="ExtraDetail" ColumnName="ExtraDetail" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+                <ScalarProperty Name="SaleNo" ColumnName="SaleNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleDetails">
+            <EntityTypeMapping TypeName="InventoryModel.SaleDetail">
+              <MappingFragment StoreEntitySet="SaleDetail">
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="ItemReturn" ColumnName="ItemReturn" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Sale_Id" ColumnName="Sale_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vPurchases">
+            <EntityTypeMapping TypeName="InventoryModel.vPurchase">
+              <MappingFragment StoreEntitySet="vPurchase">
+                <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
+                <ScalarProperty Name="ExtraAmount" ColumnName="ExtraAmount" />
+                <ScalarProperty Name="ExtraDetail" ColumnName="ExtraDetail" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="PurchaseNo" ColumnName="PurchaseNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vSales">
+            <EntityTypeMapping TypeName="InventoryModel.vSale">
+              <MappingFragment StoreEntitySet="vSale">
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="Receive" ColumnName="Receive" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
+                <ScalarProperty Name="ExtraAmount" ColumnName="ExtraAmount" />
+                <ScalarProperty Name="ExtraDetail" ColumnName="ExtraDetail" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+                <ScalarProperty Name="SaleNo" ColumnName="SaleNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spCreateSale" FunctionName="InventoryModel.Store.spCreateSale" />
+          <FunctionImportMapping FunctionImportName="spUpdateSale" FunctionName="InventoryModel.Store.spUpdateSale" />
+          <EntitySetMapping Name="Expenses">
+            <EntityTypeMapping TypeName="InventoryModel.Expense">
+              <MappingFragment StoreEntitySet="Expense">
+                <ScalarProperty Name="Expense1" ColumnName="Expense" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ExpenseVouchers">
+            <EntityTypeMapping TypeName="InventoryModel.ExpenseVoucher">
+              <MappingFragment StoreEntitySet="ExpenseVoucher">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Expense_Id" ColumnName="Expense_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vExpenses">
+            <EntityTypeMapping TypeName="InventoryModel.vExpense">
+              <MappingFragment StoreEntitySet="vExpense">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Expense" ColumnName="Expense" />
+                <ScalarProperty Name="Expense_Id" ColumnName="Expense_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleReceives">
+            <EntityTypeMapping TypeName="InventoryModel.SaleReceive">
+              <MappingFragment StoreEntitySet="SaleReceive">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+                <ScalarProperty Name="Sale_Id" ColumnName="Sale_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemStocks">
+            <EntityTypeMapping TypeName="InventoryModel.ItemStock">
+              <MappingFragment StoreEntitySet="ItemStock">
+                <ScalarProperty Name="StockDate" ColumnName="StockDate" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="InvoiceType" ColumnName="InvoiceType" />
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderReceives">
+            <EntityTypeMapping TypeName="InventoryModel.OrderReceive">
+              <MappingFragment StoreEntitySet="OrderReceive">
+                <ScalarProperty Name="OType" ColumnName="OType" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spDeleteSale" FunctionName="InventoryModel.Store.spDeleteSale" />
+          <FunctionImportMapping FunctionImportName="spDeletePurchase" FunctionName="InventoryModel.Store.spDeletePurchase" />
+          <EntitySetMapping Name="vItems">
+            <EntityTypeMapping TypeName="InventoryModel.vItem">
+              <MappingFragment StoreEntitySet="vItems">
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Decription" ColumnName="Decription" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OwnerAccounts">
+            <EntityTypeMapping TypeName="InventoryModel.OwnerAccount">
+              <MappingFragment StoreEntitySet="OwnerAccount">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="AccountNo" ColumnName="AccountNo" />
+                <ScalarProperty Name="BankName" ColumnName="BankName" />
+                <ScalarProperty Name="PaymentType" ColumnName="PaymentType" />
+                <ScalarProperty Name="ReceiveBy" ColumnName="ReceiveBy" />
+                <ScalarProperty Name="PayBy" ColumnName="PayBy" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vOrderDetails">
+            <EntityTypeMapping TypeName="InventoryModel.vOrderDetail">
+              <MappingFragment StoreEntitySet="vOrderDetail">
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="SalePerson" ColumnName="SalePerson" />
+                <ScalarProperty Name="ItemDelivered" ColumnName="ItemDelivered" />
+                <ScalarProperty Name="ItemReturn" ColumnName="ItemReturn" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Sale_Id" ColumnName="Sale_Id" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="DeliveredDate" ColumnName="DeliveredDate" />
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
+                <ScalarProperty Name="ExtraAmount" ColumnName="ExtraAmount" />
+                <ScalarProperty Name="ExtraDetail" ColumnName="ExtraDetail" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vOrderReceives">
+            <EntityTypeMapping TypeName="InventoryModel.vOrderReceive">
+              <MappingFragment StoreEntitySet="vOrderReceive">
+                <ScalarProperty Name="SalePerson" ColumnName="SalePerson" />
+                <ScalarProperty Name="OType" ColumnName="OType" />
+                <ScalarProperty Name="Sale_Id" ColumnName="Sale_Id" />
+                <ScalarProperty Name="DeliveredDate" ColumnName="DeliveredDate" />
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="ReceiveDetail" ColumnName="ReceiveDetail" />
+                <ScalarProperty Name="ReceiveDate" ColumnName="ReceiveDate" />
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
+                <ScalarProperty Name="Receive" ColumnName="Receive" />
+                <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
+                <ScalarProperty Name="ExtraAmount" ColumnName="ExtraAmount" />
+                <ScalarProperty Name="ExtraDetail" ColumnName="ExtraDetail" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vPurchaseDetails">
+            <EntityTypeMapping TypeName="InventoryModel.vPurchaseDetail">
+              <MappingFragment StoreEntitySet="vPurchaseDetail">
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="ItemDescription" ColumnName="ItemDescription" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
+                <ScalarProperty Name="ExtraAmount" ColumnName="ExtraAmount" />
+                <ScalarProperty Name="ExtraDetail" ColumnName="ExtraDetail" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="VendorId" ColumnName="VendorId" />
+                <ScalarProperty Name="PurchaseDate" ColumnName="PurchaseDate" />
+                <ScalarProperty Name="PurchaseNo" ColumnName="PurchaseNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vSaleDetails">
+            <EntityTypeMapping TypeName="InventoryModel.vSaleDetail">
+              <MappingFragment StoreEntitySet="vSaleDetail">
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Decription" ColumnName="Decription" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Order_Id" ColumnName="Order_Id" />
+                <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
+                <ScalarProperty Name="ExtraAmount" ColumnName="ExtraAmount" />
+                <ScalarProperty Name="ExtraDetail" ColumnName="ExtraDetail" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+                <ScalarProperty Name="SaleDate" ColumnName="SaleDate" />
+                <ScalarProperty Name="SaleNo" ColumnName="SaleNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vItemStocks">
+            <EntityTypeMapping TypeName="InventoryModel.vItemStock">
+              <MappingFragment StoreEntitySet="vItemStock">
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="InvoiceNo" ColumnName="InvoiceNo" />
+                <ScalarProperty Name="StockDate" ColumnName="StockDate" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="InvoiceType" ColumnName="InvoiceType" />
+                <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Decription" ColumnName="Decription" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spCreateOrder__bak_2003_22" FunctionName="InventoryModel.Store.spCreateOrder__bak_2003_22" />
+          <FunctionImportMapping FunctionImportName="spUpdateOrder__bak_2003_22" FunctionName="InventoryModel.Store.spUpdateOrder__bak_2003_22" />
+          <FunctionImportMapping FunctionImportName="spDeleteOrder" FunctionName="InventoryModel.Store.spDeleteOrder" />
+          <EntitySetMapping Name="UserGroups">
+            <EntityTypeMapping TypeName="InventoryModel.UserGroup">
+              <MappingFragment StoreEntitySet="UserGroups">
+                <ScalarProperty Name="DefaultEntry" ColumnName="DefaultEntry" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vUserGroupRights">
+            <EntityTypeMapping TypeName="InventoryModel.vUserGroupRight">
+              <MappingFragment StoreEntitySet="vUserGroupRights">
+                <ScalarProperty Name="CanDelete" ColumnName="CanDelete" />
+                <ScalarProperty Name="CanUpdate" ColumnName="CanUpdate" />
+                <ScalarProperty Name="CanAdd" ColumnName="CanAdd" />
+                <ScalarProperty Name="CanView" ColumnName="CanView" />
+                <ScalarProperty Name="DefaultEntry" ColumnName="DefaultEntry" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="Group_Id" ColumnName="Group_Id" />
+                <ScalarProperty Name="FromName" ColumnName="FromName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserForms">
+            <EntityTypeMapping TypeName="InventoryModel.UserForm">
+              <MappingFragment StoreEntitySet="UserForms">
+                <ScalarProperty Name="Report" ColumnName="Report" />
+                <ScalarProperty Name="FromName" ColumnName="FromName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserGroupRights">
+            <EntityTypeMapping TypeName="InventoryModel.UserGroupRight">
+              <MappingFragment StoreEntitySet="UserGroupRight">
+                <ScalarProperty Name="CanDelete" ColumnName="CanDelete" />
+                <ScalarProperty Name="CanUpdate" ColumnName="CanUpdate" />
+                <ScalarProperty Name="CanAdd" ColumnName="CanAdd" />
+                <ScalarProperty Name="CanView" ColumnName="CanView" />
+                <ScalarProperty Name="Form_Id" ColumnName="Form_Id" />
+                <ScalarProperty Name="Group_Id" ColumnName="Group_Id" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vClientSales">
+            <EntityTypeMapping TypeName="InventoryModel.vClientSale">
+              <MappingFragment StoreEntitySet="vClientSale">
+                <ScalarProperty Name="OType" ColumnName="OType" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="PaymentDetail" ColumnName="PaymentDetail" />
+                <ScalarProperty Name="PaymentDate" ColumnName="PaymentDate" />
+                <ScalarProperty Name="Sale_Id" ColumnName="Sale_Id" />
+                <ScalarProperty Name="DeliveredDate" ColumnName="DeliveredDate" />
+                <ScalarProperty Name="Delivered" ColumnName="Delivered" />
+                <ScalarProperty Name="FinalTotal" ColumnName="FinalTotal" />
+                <ScalarProperty Name="ExtraAmount" ColumnName="ExtraAmount" />
+                <ScalarProperty Name="ExtraDetail" ColumnName="ExtraDetail" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="OrderDate" ColumnName="OrderDate" />
+                <ScalarProperty Name="OrderNo" ColumnName="OrderNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DefaultEntry" ColumnName="DefaultEntry" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ClientId" ColumnName="ClientId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vUsers">
+            <EntityTypeMapping TypeName="InventoryModel.vUser">
+              <MappingFragment StoreEntitySet="vUser">
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="Group_Id" ColumnName="Group_Id" />
+                <ScalarProperty Name="DefaultEntry" ColumnName="DefaultEntry" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UserPassword" ColumnName="UserPassword" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserLoginId" ColumnName="UserLoginId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="spCreateInternalStock" FunctionName="InventoryModel.Store.spCreateInternalStock" />
+          <FunctionImportMapping FunctionImportName="spDeleteInternalStock" FunctionName="InventoryModel.Store.spDeleteInternalStock" />
+          <FunctionImportMapping FunctionImportName="spUpdateInternalStock" FunctionName="InventoryModel.Store.spUpdateInternalStock" />
+          <EntitySetMapping Name="InternalStocks">
+            <EntityTypeMapping TypeName="InventoryModel.InternalStock">
+              <MappingFragment StoreEntitySet="InternalStock">
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="StockDate" ColumnName="StockDate" />
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="vInternalStocks">
+            <EntityTypeMapping TypeName="InventoryModel.vInternalStock">
+              <MappingFragment StoreEntitySet="vInternalStock">
+                <ScalarProperty Name="ItemId" ColumnName="ItemId" />
+                <ScalarProperty Name="Stock" ColumnName="Stock" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="StockDate" ColumnName="StockDate" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PRInvoices">
+            <EntityTypeMapping TypeName="InventoryModel.PRInvoice">
+              <MappingFragment StoreEntitySet="PRInvoice">
+                <ScalarProperty Name="ExtraDetail" ColumnName="ExtraDetail" />
+                <ScalarProperty Name="InvoiceDate" ColumnName="InvoiceDate" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Extra" ColumnName="Extra" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="Detail" ColumnName="Detail" />
+                <ScalarProperty Name="InvoviceNo" ColumnName="InvoviceNo" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

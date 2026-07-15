@@ -1,0 +1,130 @@
+## .NET / Visual Studio .gitignore for WinForms projects
+
+# Build results
+[Dd]ebug/
+[Dd]ebugPublic/
+[Rr]elease/
+[Rr]eleases/
+x64/
+x86/
+[Ww][Ii][Nn]32/
+[Aa][Rr][Mm]/
+[Aa][Rr][Mm]64/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+# Visual Studio files
+.vs/
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
+
+# MSBuild Binary and Structured Log
+*.binlog
+
+# NuGet Packages
+*.nupkg
+*.snupkg
+**/[Pp]ackages/*
+!**/[Pp]ackages/build/
+*.nuget.props
+*.nuget.targets
+
+# Build outputs for various project types
+*.dll
+*.exe
+*.pdb
+*.cache
+
+# ReSharper
+_ReSharper*/
+*.[Rr]esharper
+*.DotSettings.user
+
+# TeamCity
+_TeamCity*
+
+# DotCover
+*.dotCover
+
+# AxoCover
+.axoCover/*
+!.axoCover/settings.json
+
+# Visual Studio Trace Files
+*.e2e
+
+# Publish / ClickOnce
+*.pubxml
+*.publishproj
+[Pp]ublish/
+ClientBin/
+publish/
+Ncsln/Ncsln/bin/
+PublishScripts/
+
+# Windows Forms designer generated resource files (usually fine to keep, but excluded if regenerated)
+*.resharper
+
+# Rider
+.idea/
+
+# OS generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Test Results
+[Tt]est[Rr]esult*/
+[Bb]uild[Ll]og.*
+
+# NCrunch
+_NCrunch_*
+.*crunch*.local.xml
+nCrunchTemp_*
+
+# StyleCop
+StyleCopReport.xml
+
+# Files built by Visual Studio
+*_i.c
+*_p.c
+*_h.h
+*.ilk
+*.meta
+*.obj
+*.iobj
+*.pch
+*.pgc
+*.pgd
+*.rsp
+*.sbr
+*.tlb
+*.tli
+*.tlh
+*.tmp
+*.tmp_proj
+*_wpftmp.csproj
+*.vspscc
+*.vssscc
+.builds
+*.pidb
+*.svclog
+*.scc
+
+# App settings that may contain secrets/local config (optional - review before ignoring)
+appsettings.Development.json
+appsettings.Local.json
+
+# Backup files
+*.bak
+*.orig
+
+# Crash dumps
+*.dmp

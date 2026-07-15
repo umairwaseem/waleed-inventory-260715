@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsFinalReport" targetNamespace="http://tempuri.org/dsFinalReport.xsd" xmlns:mstns="http://tempuri.org/dsFinalReport.xsd" xmlns="http://tempuri.org/dsFinalReport.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsFinalReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsFinalReport" msprop:Generator_UserDSName="dsFinalReport">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vFinalReport" msprop:Generator_TableClassName="vFinalReportDataTable" msprop:Generator_TableVarName="tablevFinalReport" msprop:Generator_RowChangedName="vFinalReportRowChanged" msprop:Generator_TablePropName="vFinalReport" msprop:Generator_RowDeletingName="vFinalReportRowDeleting" msprop:Generator_RowChangingName="vFinalReportRowChanging" msprop:Generator_RowEvHandlerName="vFinalReportRowChangeEventHandler" msprop:Generator_RowDeletedName="vFinalReportRowDeleted" msprop:Generator_RowClassName="vFinalReportRow" msprop:Generator_UserTableName="vFinalReport" msprop:Generator_RowEvArgName="vFinalReportRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="BranchName" msprop:Generator_ColumnVarNameInTable="columnBranchName" msprop:Generator_ColumnPropNameInRow="BranchName" msprop:Generator_ColumnPropNameInTable="BranchNameColumn" msprop:Generator_UserColumnName="BranchName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="GT" msprop:Generator_ColumnVarNameInTable="columnGT" msprop:Generator_ColumnPropNameInRow="GT" msprop:Generator_ColumnPropNameInTable="GTColumn" msprop:Generator_UserColumnName="GT" type="xs:decimal" minOccurs="0" />
+              <xs:element name="VendorBalance" msprop:Generator_ColumnVarNameInTable="columnVendorBalance" msprop:Generator_ColumnPropNameInRow="VendorBalance" msprop:Generator_ColumnPropNameInTable="VendorBalanceColumn" msprop:Generator_UserColumnName="VendorBalance" type="xs:decimal" minOccurs="0" />
+              <xs:element name="BankBalance" msprop:Generator_ColumnVarNameInTable="columnBankBalance" msprop:Generator_ColumnPropNameInRow="BankBalance" msprop:Generator_ColumnPropNameInTable="BankBalanceColumn" msprop:Generator_UserColumnName="BankBalance" type="xs:decimal" minOccurs="0" />
+              <xs:element name="AdvancesBalance" msprop:Generator_ColumnVarNameInTable="columnAdvancesBalance" msprop:Generator_ColumnPropNameInRow="AdvancesBalance" msprop:Generator_ColumnPropNameInTable="AdvancesBalanceColumn" msprop:Generator_UserColumnName="AdvancesBalance" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Detail" msprop:Generator_ColumnVarNameInTable="columnDetail" msprop:Generator_ColumnPropNameInRow="Detail" msprop:Generator_ColumnPropNameInTable="DetailColumn" msprop:Generator_UserColumnName="Detail" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VendorPayments" msprop:Generator_ColumnVarNameInTable="columnVendorPayments" msprop:Generator_ColumnPropNameInRow="VendorPayments" msprop:Generator_ColumnPropNameInTable="VendorPaymentsColumn" msprop:Generator_UserColumnName="VendorPayments" type="xs:decimal" minOccurs="0" />
+              <xs:element name="VendorGPayments" msprop:Generator_ColumnVarNameInTable="columnVendorGPayments" msprop:Generator_ColumnPropNameInRow="VendorGPayments" msprop:Generator_ColumnPropNameInTable="VendorGPaymentsColumn" msprop:Generator_UserColumnName="VendorGPayments" type="xs:decimal" minOccurs="0" />
+              <xs:element name="VendorGBalance" msprop:Generator_ColumnVarNameInTable="columnVendorGBalance" msprop:Generator_ColumnPropNameInRow="VendorGBalance" msprop:Generator_ColumnPropNameInTable="VendorGBalanceColumn" msprop:Generator_UserColumnName="VendorGBalance" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ManafacturingVendorBalance" msprop:Generator_ColumnVarNameInTable="columnManafacturingVendorBalance" msprop:Generator_ColumnPropNameInRow="ManafacturingVendorBalance" msprop:Generator_ColumnPropNameInTable="ManafacturingVendorBalanceColumn" msprop:Generator_UserColumnName="ManafacturingVendorBalance" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ExpensePayment" msprop:Generator_ColumnVarNameInTable="columnExpensePayment" msprop:Generator_ColumnPropNameInRow="ExpensePayment" msprop:Generator_ColumnPropNameInTable="ExpensePaymentColumn" msprop:Generator_UserColumnName="ExpensePayment" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vFinalReport" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

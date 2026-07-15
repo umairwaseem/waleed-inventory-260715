@@ -1,0 +1,45 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Hospital_Management", "E:\Web_Applications\Hospital_Management\", "{5BA7622E-6CB9-4BC0-8EF9-FE104DF875DF}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/Hospital_Management"
+		Debug.AspNetCompiler.PhysicalPath = "E:\Web_Applications\Hospital_Management\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Hospital_Management\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/Hospital_Management"
+		Release.AspNetCompiler.PhysicalPath = "E:\Web_Applications\Hospital_Management\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\Hospital_Management\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "58247"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreControl", "CoreControl\CoreControl.csproj", "{E1132F1D-6BE0-494E-8DA0-436A2E7F9F55}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5BA7622E-6CB9-4BC0-8EF9-FE104DF875DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BA7622E-6CB9-4BC0-8EF9-FE104DF875DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BA7622E-6CB9-4BC0-8EF9-FE104DF875DF}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BA7622E-6CB9-4BC0-8EF9-FE104DF875DF}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{E1132F1D-6BE0-494E-8DA0-436A2E7F9F55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E1132F1D-6BE0-494E-8DA0-436A2E7F9F55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E1132F1D-6BE0-494E-8DA0-436A2E7F9F55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E1132F1D-6BE0-494E-8DA0-436A2E7F9F55}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

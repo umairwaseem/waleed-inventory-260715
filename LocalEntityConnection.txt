@@ -1,0 +1,8 @@
+<add name="InventoryEntities-ws" connectionString="metadata=res://*/DBModel.InventortModel.csdl|res://*/DBModel.InventortModel.ssdl|res://*/DBModel.InventortModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DESKTOP-I89D7HF;initial catalog=Inventory-ws;user id=pri;password=123;MultipleActiveResultSets=True;App=EntityFramework&quot;"
+      providerName="System.Data.EntityClient" />
+    <add name="InventoryEntities-om" connectionString="metadata=res://*/DBModel.InventortModel.csdl|res://*/DBModel.InventortModel.ssdl|res://*/DBModel.InventortModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DESKTOP-I89D7HF;initial catalog=Inventory-om;user id=pri;password=123;MultipleActiveResultSets=True;App=EntityFramework&quot;"
+      providerName="System.Data.EntityClient" />
+    <add name="InventoryEntities-oo" connectionString="metadata=res://*/DBModel.InventortModel.csdl|res://*/DBModel.InventortModel.ssdl|res://*/DBModel.InventortModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DESKTOP-I89D7HF;initial catalog=Inventory-oo;user id=pri;password=123;MultipleActiveResultSets=True;App=EntityFramework&quot;"
+      providerName="System.Data.EntityClient" />
+    <add name="InventoryEntities-oe" connectionString="metadata=res://*/DBModel.InventortModel.csdl|res://*/DBModel.InventortModel.ssdl|res://*/DBModel.InventortModel.msl;provider=System.Data.SqlClient;provider connection string=&quot;data source=DESKTOP-I89D7HF;initial catalog=Inventory-oe;user id=pri;password=123;MultipleActiveResultSets=True;App=EntityFramework&quot;"
+      providerName="System.Data.EntityClient" />

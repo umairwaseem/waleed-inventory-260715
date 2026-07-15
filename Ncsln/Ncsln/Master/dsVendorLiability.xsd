@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsVendorLiability" targetNamespace="http://tempuri.org/dsVendorLiability.xsd" xmlns:mstns="http://tempuri.org/dsVendorLiability.xsd" xmlns="http://tempuri.org/dsVendorLiability.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsVendorLiability" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsVendorLiability" msprop:Generator_UserDSName="dsVendorLiability">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="VendorGLiability" msprop:Generator_TableClassName="VendorGLiabilityDataTable" msprop:Generator_TableVarName="tableVendorGLiability" msprop:Generator_TablePropName="VendorGLiability" msprop:Generator_RowDeletingName="VendorGLiabilityRowDeleting" msprop:Generator_RowChangingName="VendorGLiabilityRowChanging" msprop:Generator_RowEvHandlerName="VendorGLiabilityRowChangeEventHandler" msprop:Generator_RowDeletedName="VendorGLiabilityRowDeleted" msprop:Generator_UserTableName="VendorGLiability" msprop:Generator_RowChangedName="VendorGLiabilityRowChanged" msprop:Generator_RowEvArgName="VendorGLiabilityRowChangeEvent" msprop:Generator_RowClassName="VendorGLiabilityRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="Vendor_Id" msprop:Generator_ColumnVarNameInTable="columnVendor_Id" msprop:Generator_ColumnPropNameInRow="Vendor_Id" msprop:Generator_ColumnPropNameInTable="Vendor_IdColumn" msprop:Generator_UserColumnName="Vendor_Id" type="xs:int" minOccurs="0" />
+              <xs:element name="PaymentDate" msprop:Generator_ColumnVarNameInTable="columnPaymentDate" msprop:Generator_ColumnPropNameInRow="PaymentDate" msprop:Generator_ColumnPropNameInTable="PaymentDateColumn" msprop:Generator_UserColumnName="PaymentDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" msprop:Generator_UserColumnName="Description" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:VendorGLiability" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

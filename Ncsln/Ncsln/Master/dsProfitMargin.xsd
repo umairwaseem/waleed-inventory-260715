@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsProfitMargin" targetNamespace="http://tempuri.org/dsProfitMargin.xsd" xmlns:mstns="http://tempuri.org/dsProfitMargin.xsd" xmlns="http://tempuri.org/dsProfitMargin.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsProfitMargin" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsProfitMargin" msprop:Generator_UserDSName="dsProfitMargin">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ProfitSharing" msprop:Generator_TableClassName="ProfitSharingDataTable" msprop:Generator_TableVarName="tableProfitSharing" msprop:Generator_RowChangedName="ProfitSharingRowChanged" msprop:Generator_TablePropName="ProfitSharing" msprop:Generator_RowDeletingName="ProfitSharingRowDeleting" msprop:Generator_RowChangingName="ProfitSharingRowChanging" msprop:Generator_RowEvHandlerName="ProfitSharingRowChangeEventHandler" msprop:Generator_RowDeletedName="ProfitSharingRowDeleted" msprop:Generator_RowClassName="ProfitSharingRow" msprop:Generator_UserTableName="ProfitSharing" msprop:Generator_RowEvArgName="ProfitSharingRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="AmountOne" msprop:Generator_ColumnVarNameInTable="columnAmountOne" msprop:Generator_ColumnPropNameInRow="AmountOne" msprop:Generator_ColumnPropNameInTable="AmountOneColumn" msprop:Generator_UserColumnName="AmountOne" type="xs:decimal" minOccurs="0" />
+              <xs:element name="AmountTwo" msprop:Generator_ColumnVarNameInTable="columnAmountTwo" msprop:Generator_ColumnPropNameInRow="AmountTwo" msprop:Generator_ColumnPropNameInTable="AmountTwoColumn" msprop:Generator_UserColumnName="AmountTwo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="AmountThree" msprop:Generator_ColumnVarNameInTable="columnAmountThree" msprop:Generator_ColumnPropNameInRow="AmountThree" msprop:Generator_ColumnPropNameInTable="AmountThreeColumn" msprop:Generator_UserColumnName="AmountThree" type="xs:decimal" minOccurs="0" />
+              <xs:element name="AmountFour" msprop:Generator_ColumnVarNameInTable="columnAmountFour" msprop:Generator_ColumnPropNameInRow="AmountFour" msprop:Generator_ColumnPropNameInTable="AmountFourColumn" msprop:Generator_UserColumnName="AmountFour" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ProfitSharing" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

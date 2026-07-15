@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsItemTrend" targetNamespace="http://tempuri.org/dsItemTrend.xsd" xmlns:mstns="http://tempuri.org/dsItemTrend.xsd" xmlns="http://tempuri.org/dsItemTrend.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsItemTrend" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsItemTrend" msprop:Generator_UserDSName="dsItemTrend">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="spRptTrandingItem" msprop:Generator_TableClassName="spRptTrandingItemDataTable" msprop:Generator_TableVarName="tablespRptTrandingItem" msprop:Generator_TablePropName="spRptTrandingItem" msprop:Generator_RowDeletingName="spRptTrandingItemRowDeleting" msprop:Generator_RowChangingName="spRptTrandingItemRowChanging" msprop:Generator_RowEvHandlerName="spRptTrandingItemRowChangeEventHandler" msprop:Generator_RowDeletedName="spRptTrandingItemRowDeleted" msprop:Generator_UserTableName="spRptTrandingItem" msprop:Generator_RowChangedName="spRptTrandingItemRowChanged" msprop:Generator_RowEvArgName="spRptTrandingItemRowChangeEvent" msprop:Generator_RowClassName="spRptTrandingItemRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ItemId" msprop:Generator_ColumnVarNameInTable="columnItemId" msprop:Generator_ColumnPropNameInRow="ItemId" msprop:Generator_ColumnPropNameInTable="ItemIdColumn" msprop:Generator_UserColumnName="ItemId" type="xs:int" minOccurs="0" />
+              <xs:element name="Title" msprop:Generator_ColumnVarNameInTable="columnTitle" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_UserColumnName="Title" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Code" msprop:Generator_ColumnVarNameInTable="columnCode" msprop:Generator_ColumnPropNameInRow="Code" msprop:Generator_ColumnPropNameInTable="CodeColumn" msprop:Generator_UserColumnName="Code" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="StockIn" msprop:Generator_ColumnVarNameInTable="columnStockIn" msprop:Generator_ColumnPropNameInRow="StockIn" msprop:Generator_ColumnPropNameInTable="StockInColumn" msprop:Generator_UserColumnName="StockIn" type="xs:int" minOccurs="0" />
+              <xs:element name="StockOut" msprop:Generator_ColumnVarNameInTable="columnStockOut" msprop:Generator_ColumnPropNameInRow="StockOut" msprop:Generator_ColumnPropNameInTable="StockOutColumn" msprop:Generator_UserColumnName="StockOut" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

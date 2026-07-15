@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsMonthlyFinalReportBranches" targetNamespace="http://tempuri.org/dsMonthlyFinalReportBranches.xsd" xmlns:mstns="http://tempuri.org/dsMonthlyFinalReportBranches.xsd" xmlns="http://tempuri.org/dsMonthlyFinalReportBranches.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsMonthlyFinalReportBranches" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsMonthlyFinalReportBranches" msprop:Generator_UserDSName="dsMonthlyFinalReportBranches">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="BranchesGroup" msprop:Generator_TableClassName="BranchesGroupDataTable" msprop:Generator_TableVarName="tableBranchesGroup" msprop:Generator_TablePropName="BranchesGroup" msprop:Generator_RowDeletingName="BranchesGroupRowDeleting" msprop:Generator_RowChangingName="BranchesGroupRowChanging" msprop:Generator_RowEvHandlerName="BranchesGroupRowChangeEventHandler" msprop:Generator_RowDeletedName="BranchesGroupRowDeleted" msprop:Generator_UserTableName="BranchesGroup" msprop:Generator_RowChangedName="BranchesGroupRowChanged" msprop:Generator_RowEvArgName="BranchesGroupRowChangeEvent" msprop:Generator_RowClassName="BranchesGroupRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" minOccurs="0" />
+              <xs:element name="GroupName" msprop:Generator_ColumnVarNameInTable="columnGroupName" msprop:Generator_ColumnPropNameInRow="GroupName" msprop:Generator_ColumnPropNameInTable="GroupNameColumn" msprop:Generator_UserColumnName="GroupName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Salaries" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSalaries" msprop:Generator_ColumnPropNameInRow="Salaries" msprop:Generator_ColumnPropNameInTable="SalariesColumn" msprop:Generator_UserColumnName="Salaries" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

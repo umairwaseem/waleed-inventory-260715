@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <metadata name="Bonus.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="employeeSalaryDetailBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>755, 25</value>
+  </metadata>
+  <metadata name="dsEmployeeSalaryDetail1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>528, 25</value>
+  </metadata>
+  <metadata name="daEmployeeSalaryDetail.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>32, 23</value>
+  </metadata>
+  <metadata name="sqlDeleteCommand.DesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="sqlDeleteCommand.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </metadata>
+  <metadata name="sqlDeleteCommand.CommandDesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="sqlDeleteCommand.CommandText" xml:space="preserve">
+    <value>DELETE FROM [EmployeeSalaryDetail] WHERE (([Id] = @Original_Id) AND ((@IsNull_Employee_Id = 1 AND [Employee_Id] IS NULL) OR ([Employee_Id] = @Original_Employee_Id)) AND ((@IsNull_Salary = 1 AND [Salary] IS NULL) OR ([Salary] = @Original_Salary)) AND ((@IsNull_Percentage = 1 AND [Percentage] IS NULL) OR ([Percentage] = @Original_Percentage)) AND ((@IsNull_PercentAmount = 1 AND [PercentAmount] IS NULL) OR ([PercentAmount] = @Original_PercentAmount)) AND ((@IsNull_GrowsAmount = 1 AND [GrowsAmount] IS NULL) OR ([GrowsAmount] = @Original_GrowsAmount)) AND ((@IsNull_AbsentDays = 1 AND [AbsentDays] IS NULL) OR ([AbsentDays] = @Original_AbsentDays)) AND ((@IsNull_AbsentAmount = 1 AND [AbsentAmount] IS NULL) OR ([AbsentAmount] = @Original_AbsentAmount)) AND ((@IsNull_FinalAmount = 1 AND [FinalAmount] IS NULL) OR ([FinalAmount] = @Original_FinalAmount)) AND ((@IsNull_Branch_Id = 1 AND [Branch_Id] IS NULL) OR ([Branch_Id] = @Original_Branch_Id)) AND ((@IsNull_EmployeeSalary_Id = 1 AND [EmployeeSalary_Id] IS NULL) OR ([EmployeeSalary_Id] = @Original_EmployeeSalary_Id)) AND ((@IsNull_Bonus = 1 AND [Bonus] IS NULL) OR ([Bonus] = @Original_Bonus)))</value>
+  </data>
+  <metadata name="sqlConnection1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>366, 25</value>
+  </metadata>
+  <metadata name="sqlInsertCommand.DesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="sqlInsertCommand.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </metadata>
+  <metadata name="sqlInsertCommand.CommandDesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="sqlInsertCommand.CommandText" xml:space="preserve">
+    <value>INSERT INTO [EmployeeSalaryDetail] ([Employee_Id], [Salary], [Percentage], [PercentAmount], [GrowsAmount], [AbsentDays], [AbsentAmount], [FinalAmount], [Branch_Id], [EmployeeSalary_Id], [Bonus]) VALUES (@Employee_Id, @Salary, @Percentage, @PercentAmount, @GrowsAmount, @AbsentDays, @AbsentAmount, @FinalAmount, @Branch_Id, @EmployeeSalary_Id, @Bonus);
+SELECT Id, Employee_Id, Salary, Percentage, PercentAmount, GrowsAmount, AbsentDays, AbsentAmount, FinalAmount, Branch_Id, EmployeeSalary_Id, Bonus FROM EmployeeSalaryDetail WHERE (Id = SCOPE_IDENTITY())</value>
+  </data>
+  <metadata name="sqlSelectCommand1.DesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="sqlSelectCommand1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </metadata>
+  <metadata name="sqlSelectCommand1.CommandDesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="sqlSelectCommand1.CommandText" xml:space="preserve">
+    <value>SELECT Id, Employee_Id, Salary, Percentage, PercentAmount, GrowsAmount, AbsentDays, AbsentAmount, FinalAmount, Branch_Id, EmployeeSalary_Id, Bonus
+FROM     EmployeeSalaryDetail
+WHERE  (EmployeeSalary_Id = @Id)</value>
+  </data>
+  <metadata name="sqlUpdateCommand.DesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <metadata name="sqlUpdateCommand.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>0, 0</value>
+  </metadata>
+  <metadata name="sqlUpdateCommand.CommandDesignTimeVisible" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>False</value>
+  </metadata>
+  <data name="sqlUpdateCommand.CommandText" xml:space="preserve">
+    <value>UPDATE [EmployeeSalaryDetail] SET [Employee_Id] = @Employee_Id, [Salary] = @Salary, [Percentage] = @Percentage, [PercentAmount] = @PercentAmount, [GrowsAmount] = @GrowsAmount, [AbsentDays] = @AbsentDays, [AbsentAmount] = @AbsentAmount, [FinalAmount] = @FinalAmount, [Branch_Id] = @Branch_Id, [EmployeeSalary_Id] = @EmployeeSalary_Id, [Bonus] = @Bonus WHERE (([Id] = @Original_Id) AND ((@IsNull_Employee_Id = 1 AND [Employee_Id] IS NULL) OR ([Employee_Id] = @Original_Employee_Id)) AND ((@IsNull_Salary = 1 AND [Salary] IS NULL) OR ([Salary] = @Original_Salary)) AND ((@IsNull_Percentage = 1 AND [Percentage] IS NULL) OR ([Percentage] = @Original_Percentage)) AND ((@IsNull_PercentAmount = 1 AND [PercentAmount] IS NULL) OR ([PercentAmount] = @Original_PercentAmount)) AND ((@IsNull_GrowsAmount = 1 AND [GrowsAmount] IS NULL) OR ([GrowsAmount] = @Original_GrowsAmount)) AND ((@IsNull_AbsentDays = 1 AND [AbsentDays] IS NULL) OR ([AbsentDays] = @Original_AbsentDays)) AND ((@IsNull_AbsentAmount = 1 AND [AbsentAmount] IS NULL) OR ([AbsentAmount] = @Original_AbsentAmount)) AND ((@IsNull_FinalAmount = 1 AND [FinalAmount] IS NULL) OR ([FinalAmount] = @Original_FinalAmount)) AND ((@IsNull_Branch_Id = 1 AND [Branch_Id] IS NULL) OR ([Branch_Id] = @Original_Branch_Id)) AND ((@IsNull_EmployeeSalary_Id = 1 AND [EmployeeSalary_Id] IS NULL) OR ([EmployeeSalary_Id] = @Original_EmployeeSalary_Id)) AND ((@IsNull_Bonus = 1 AND [Bonus] IS NULL) OR ([Bonus] = @Original_Bonus)));
+SELECT Id, Employee_Id, Salary, Percentage, PercentAmount, GrowsAmount, AbsentDays, AbsentAmount, FinalAmount, Branch_Id, EmployeeSalary_Id, Bonus FROM EmployeeSalaryDetail WHERE (Id = @Id)</value>
+  </data>
+</root>

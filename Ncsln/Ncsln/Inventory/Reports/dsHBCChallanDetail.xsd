@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsHBCChallanDetail" targetNamespace="http://tempuri.org/dsHBCChallanDetail.xsd" xmlns:mstns="http://tempuri.org/dsHBCChallanDetail.xsd" xmlns="http://tempuri.org/dsHBCChallanDetail.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsHBCChallanDetail" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsHBCChallanDetail" msprop:Generator_UserDSName="dsHBCChallanDetail">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vHBCChallanDetail" msprop:Generator_TableClassName="vHBCChallanDetailDataTable" msprop:Generator_TableVarName="tablevHBCChallanDetail" msprop:Generator_TablePropName="vHBCChallanDetail" msprop:Generator_RowDeletingName="vHBCChallanDetailRowDeleting" msprop:Generator_RowChangingName="vHBCChallanDetailRowChanging" msprop:Generator_RowEvHandlerName="vHBCChallanDetailRowChangeEventHandler" msprop:Generator_RowDeletedName="vHBCChallanDetailRowDeleted" msprop:Generator_UserTableName="vHBCChallanDetail" msprop:Generator_RowChangedName="vHBCChallanDetailRowChanged" msprop:Generator_RowEvArgName="vHBCChallanDetailRowChangeEvent" msprop:Generator_RowClassName="vHBCChallanDetailRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Challan_Id" msprop:Generator_ColumnVarNameInTable="columnChallan_Id" msprop:Generator_ColumnPropNameInRow="Challan_Id" msprop:Generator_ColumnPropNameInTable="Challan_IdColumn" msprop:Generator_UserColumnName="Challan_Id" type="xs:int" minOccurs="0" />
+              <xs:element name="ItemId" msprop:Generator_ColumnVarNameInTable="columnItemId" msprop:Generator_ColumnPropNameInRow="ItemId" msprop:Generator_ColumnPropNameInTable="ItemIdColumn" msprop:Generator_UserColumnName="ItemId" type="xs:int" />
+              <xs:element name="ModelNo" msprop:Generator_ColumnVarNameInTable="columnModelNo" msprop:Generator_ColumnPropNameInRow="ModelNo" msprop:Generator_ColumnPropNameInTable="ModelNoColumn" msprop:Generator_UserColumnName="ModelNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Title" msprop:Generator_ColumnVarNameInTable="columnTitle" msprop:Generator_ColumnPropNameInRow="Title" msprop:Generator_ColumnPropNameInTable="TitleColumn" msprop:Generator_UserColumnName="Title" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Qty" msprop:Generator_ColumnVarNameInTable="columnQty" msprop:Generator_ColumnPropNameInRow="Qty" msprop:Generator_ColumnPropNameInTable="QtyColumn" msprop:Generator_UserColumnName="Qty" type="xs:int" minOccurs="0" />
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Server_Id" msprop:Generator_ColumnVarNameInTable="columnServer_Id" msprop:Generator_ColumnPropNameInRow="Server_Id" msprop:Generator_ColumnPropNameInTable="Server_IdColumn" msprop:Generator_UserColumnName="Server_Id" type="xs:int" minOccurs="0" />
+              <xs:element name="Date" msprop:Generator_ColumnVarNameInTable="columnDate" msprop:Generator_ColumnPropNameInRow="Date" msprop:Generator_ColumnPropNameInTable="DateColumn" msprop:Generator_UserColumnName="Date" type="xs:dateTime" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vHBCChallanDetail" />
+      <xs:field xpath="mstns:ItemId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

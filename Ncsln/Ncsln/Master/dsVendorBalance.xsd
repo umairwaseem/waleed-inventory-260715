@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsVendorBalance" targetNamespace="http://tempuri.org/dsVendorBalance.xsd" xmlns:mstns="http://tempuri.org/dsVendorBalance.xsd" xmlns="http://tempuri.org/dsVendorBalance.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsVendorBalance" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsVendorBalance" msprop:Generator_UserDSName="dsVendorBalance">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="spVendorBalance" msprop:Generator_TableClassName="spVendorBalanceDataTable" msprop:Generator_TableVarName="tablespVendorBalance" msprop:Generator_TablePropName="spVendorBalance" msprop:Generator_RowDeletingName="spVendorBalanceRowDeleting" msprop:Generator_RowChangingName="spVendorBalanceRowChanging" msprop:Generator_RowEvHandlerName="spVendorBalanceRowChangeEventHandler" msprop:Generator_RowDeletedName="spVendorBalanceRowDeleted" msprop:Generator_UserTableName="spVendorBalance" msprop:Generator_RowChangedName="spVendorBalanceRowChanged" msprop:Generator_RowEvArgName="spVendorBalanceRowChangeEvent" msprop:Generator_RowClassName="spVendorBalanceRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="VendorId" msprop:Generator_ColumnVarNameInTable="columnVendorId" msprop:Generator_ColumnPropNameInRow="VendorId" msprop:Generator_ColumnPropNameInTable="VendorIdColumn" msprop:Generator_UserColumnName="VendorId" type="xs:int" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Balance" msprop:Generator_ColumnVarNameInTable="columnBalance" msprop:Generator_ColumnPropNameInRow="Balance" msprop:Generator_ColumnPropNameInTable="BalanceColumn" msprop:Generator_UserColumnName="Balance" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Payment" msprop:Generator_ColumnVarNameInTable="columnPayment" msprop:Generator_ColumnPropNameInRow="Payment" msprop:Generator_ColumnPropNameInTable="PaymentColumn" msprop:Generator_UserColumnName="Payment" type="xs:decimal" minOccurs="0" />
+              <xs:element name="FinalBalance" msprop:Generator_ColumnVarNameInTable="columnFinalBalance" msprop:Generator_ColumnPropNameInRow="FinalBalance" msprop:Generator_ColumnPropNameInTable="FinalBalanceColumn" msprop:Generator_UserColumnName="FinalBalance" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

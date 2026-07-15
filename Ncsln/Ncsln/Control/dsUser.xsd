@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsUser" targetNamespace="http://tempuri.org/dsUser.xsd" xmlns:mstns="http://tempuri.org/dsUser.xsd" xmlns="http://tempuri.org/dsUser.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsUser" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsUser" msprop:Generator_UserDSName="dsUser">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vUser" msprop:Generator_TableClassName="vUserDataTable" msprop:Generator_TableVarName="tablevUser" msprop:Generator_TablePropName="vUser" msprop:Generator_RowDeletingName="vUserRowDeleting" msprop:Generator_RowChangingName="vUserRowChanging" msprop:Generator_RowEvHandlerName="vUserRowChangeEventHandler" msprop:Generator_RowDeletedName="vUserRowDeleted" msprop:Generator_UserTableName="vUser" msprop:Generator_RowChangedName="vUserRowChanged" msprop:Generator_RowEvArgName="vUserRowChangeEvent" msprop:Generator_RowClassName="vUserRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="UserId" msprop:Generator_ColumnVarNameInTable="columnUserId" msprop:Generator_ColumnPropNameInRow="UserId" msprop:Generator_ColumnPropNameInTable="UserIdColumn" msprop:Generator_UserColumnName="UserId" type="xs:decimal" />
+              <xs:element name="UserLoginId" msprop:Generator_ColumnVarNameInTable="columnUserLoginId" msprop:Generator_ColumnPropNameInRow="UserLoginId" msprop:Generator_ColumnPropNameInTable="UserLoginIdColumn" msprop:Generator_UserColumnName="UserLoginId" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UserName" msprop:Generator_ColumnVarNameInTable="columnUserName" msprop:Generator_ColumnPropNameInRow="UserName" msprop:Generator_ColumnPropNameInTable="UserNameColumn" msprop:Generator_UserColumnName="UserName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="UserPassword" msprop:Generator_ColumnVarNameInTable="columnUserPassword" msprop:Generator_ColumnPropNameInRow="UserPassword" msprop:Generator_ColumnPropNameInTable="UserPasswordColumn" msprop:Generator_UserColumnName="UserPassword" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Active" msprop:Generator_ColumnVarNameInTable="columnActive" msprop:Generator_ColumnPropNameInRow="Active" msprop:Generator_ColumnPropNameInTable="ActiveColumn" msprop:Generator_UserColumnName="Active" type="xs:boolean" minOccurs="0" />
+              <xs:element name="DefaultEntry" msprop:Generator_ColumnVarNameInTable="columnDefaultEntry" msprop:Generator_ColumnPropNameInRow="DefaultEntry" msprop:Generator_ColumnPropNameInTable="DefaultEntryColumn" msprop:Generator_UserColumnName="DefaultEntry" type="xs:boolean" minOccurs="0" />
+              <xs:element name="Group_Id" msprop:Generator_ColumnVarNameInTable="columnGroup_Id" msprop:Generator_ColumnPropNameInRow="Group_Id" msprop:Generator_ColumnPropNameInTable="Group_IdColumn" msprop:Generator_UserColumnName="Group_Id" type="xs:int" minOccurs="0" />
+              <xs:element name="GroupName" msprop:Generator_ColumnVarNameInTable="columnGroupName" msprop:Generator_ColumnPropNameInRow="GroupName" msprop:Generator_ColumnPropNameInTable="GroupNameColumn" msprop:Generator_UserColumnName="GroupName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vUser" />
+      <xs:field xpath="mstns:UserId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

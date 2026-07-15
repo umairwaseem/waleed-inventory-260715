@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="77bae4b4e8154e7fa912d1aea15708df" Name="Diagram1">
+        <EntityTypeShape EntityType="InventoryModel.AISY" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Item" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryModel.Client" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="InventoryModel.Vendor" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="InventoryModel.Order" Width="1.5" PointX="5.375" PointY="1" />
+        <EntityTypeShape EntityType="InventoryModel.OrdersDetail" Width="1.5" PointX="7.625" PointY="1" />
+        <AssociationConnector Association="InventoryModel.FK_OrdersDetail_Orders" />
+        <EntityTypeShape EntityType="InventoryModel.sysdiagram" Width="1.5" PointX="5.375" PointY="4.75" />
+        <EntityTypeShape EntityType="InventoryModel.vOrder" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="InventoryModel.Purchase" Width="1.5" PointX="3.375" PointY="8" />
+        <EntityTypeShape EntityType="InventoryModel.PurchaseDetail" Width="1.5" PointX="5.625" PointY="8" />
+        <AssociationConnector Association="InventoryModel.FK_PurchaseDetail_Purchase" />
+        <EntityTypeShape EntityType="InventoryModel.Sale" Width="1.5" PointX="8.375" PointY="5" />
+        <EntityTypeShape EntityType="InventoryModel.SaleDetail" Width="1.5" PointX="10.625" PointY="5" />
+        <EntityTypeShape EntityType="InventoryModel.vPurchase" Width="1.5" PointX="8.375" PointY="8.75" />
+        <EntityTypeShape EntityType="InventoryModel.vSale" Width="1.5" PointX="10.375" PointY="0.75" />
+        <AssociationConnector Association="InventoryModel.FK_SaleDetail_Sale" />
+        <EntityTypeShape EntityType="InventoryModel.Expense" Width="1.5" PointX="1.5" PointY="11.625" />
+        <EntityTypeShape EntityType="InventoryModel.ExpenseVoucher" Width="1.5" PointX="3.75" PointY="11.25" />
+        <AssociationConnector Association="InventoryModel.FK_ExpenseVoucher_Expense" />
+        <EntityTypeShape EntityType="InventoryModel.vExpense" Width="1.5" PointX="10.375" PointY="11.75" />
+        <EntityTypeShape EntityType="InventoryModel.SaleReceive" Width="1.5" PointX="5.875" PointY="11.125" />
+        <EntityTypeShape EntityType="InventoryModel.ItemStock" Width="1.5" PointX="10.375" PointY="8.75" />
+        <EntityTypeShape EntityType="InventoryModel.OrderReceive" Width="1.5" PointX="12.375" PointY="0.75" />
+        <EntityTypeShape EntityType="InventoryModel.vItem" Width="1.5" PointX="12.375" PointY="8.75" />
+        <EntityTypeShape EntityType="InventoryModel.OwnerAccount" Width="1.5" PointX="12.75" PointY="12.75" />
+        <EntityTypeShape EntityType="InventoryModel.vOrderDetail" Width="1.5" PointX="14.75" PointY="0.75" />
+        <EntityTypeShape EntityType="InventoryModel.vOrderReceive" Width="1.5" PointX="0.75" PointY="14.75" />
+        <EntityTypeShape EntityType="InventoryModel.vPurchaseDetail" Width="1.5" PointX="2.75" PointY="14.75" />
+        <EntityTypeShape EntityType="InventoryModel.vSaleDetail" Width="1.5" PointX="4.75" PointY="14.75" />
+        <EntityTypeShape EntityType="InventoryModel.vItemStock" Width="1.5" PointX="14.375" PointY="6.75" />
+        <EntityTypeShape EntityType="InventoryModel.UserGroup" Width="1.5" PointX="0.75" PointY="21.125" />
+        <AssociationConnector Association="InventoryModel.FK_AISYS_UserGroups" />
+        <EntityTypeShape EntityType="InventoryModel.vUserGroupRight" Width="1.5" PointX="7.75" PointY="14.75" />
+        <EntityTypeShape EntityType="InventoryModel.UserForm" Width="1.5" PointX="0.75" PointY="24.375" />
+        <EntityTypeShape EntityType="InventoryModel.UserGroupRight" Width="1.5" PointX="3" PointY="20.75" />
+        <AssociationConnector Association="InventoryModel.FK_UserGroupRight_Forms" />
+        <AssociationConnector Association="InventoryModel.FK_UserGroupRight_UserGroups" />
+        <EntityTypeShape EntityType="InventoryModel.vClientSale" Width="1.5" PointX="15.375" PointY="11.75" />
+        <EntityTypeShape EntityType="InventoryModel.vUser" Width="1.5" PointX="16.375" PointY="7.75" />
+        <EntityTypeShape EntityType="InventoryModel.InternalStock" Width="1.5" PointX="10.375" PointY="16.75" />
+        <EntityTypeShape EntityType="InventoryModel.vInternalStock" Width="1.5" PointX="12.375" PointY="16.75" />
+        <EntityTypeShape EntityType="InventoryModel.PRInvoice" Width="1.5" PointX="17.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

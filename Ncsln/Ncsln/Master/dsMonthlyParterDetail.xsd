@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsMonthlyParterDetail" targetNamespace="http://tempuri.org/dsMonthlyParterDetail.xsd" xmlns:mstns="http://tempuri.org/dsMonthlyParterDetail.xsd" xmlns="http://tempuri.org/dsMonthlyParterDetail.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsMonthlyParterDetail" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsMonthlyParterDetail" msprop:Generator_UserDSName="dsMonthlyParterDetail">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vPartnerProfitDetail" msprop:Generator_TableClassName="vPartnerProfitDetailDataTable" msprop:Generator_TableVarName="tablevPartnerProfitDetail" msprop:Generator_TablePropName="vPartnerProfitDetail" msprop:Generator_RowDeletingName="vPartnerProfitDetailRowDeleting" msprop:Generator_RowChangingName="vPartnerProfitDetailRowChanging" msprop:Generator_RowEvHandlerName="vPartnerProfitDetailRowChangeEventHandler" msprop:Generator_RowDeletedName="vPartnerProfitDetailRowDeleted" msprop:Generator_UserTableName="vPartnerProfitDetail" msprop:Generator_RowChangedName="vPartnerProfitDetailRowChanged" msprop:Generator_RowEvArgName="vPartnerProfitDetailRowChangeEvent" msprop:Generator_RowClassName="vPartnerProfitDetailRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="ProfitDate" msprop:Generator_ColumnVarNameInTable="columnProfitDate" msprop:Generator_ColumnPropNameInRow="ProfitDate" msprop:Generator_ColumnPropNameInTable="ProfitDateColumn" msprop:Generator_UserColumnName="ProfitDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TotalPay" msprop:Generator_ColumnVarNameInTable="columnTotalPay" msprop:Generator_ColumnPropNameInRow="TotalPay" msprop:Generator_ColumnPropNameInTable="TotalPayColumn" msprop:Generator_UserColumnName="TotalPay" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Description" msprop:Generator_ColumnVarNameInTable="columnDescription" msprop:Generator_ColumnPropNameInRow="Description" msprop:Generator_ColumnPropNameInTable="DescriptionColumn" msprop:Generator_UserColumnName="Description" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Remaining" msprop:Generator_ColumnVarNameInTable="columnRemaining" msprop:Generator_ColumnPropNameInRow="Remaining" msprop:Generator_ColumnPropNameInTable="RemainingColumn" msprop:Generator_UserColumnName="Remaining" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Partner_Id" msprop:Generator_ColumnVarNameInTable="columnPartner_Id" msprop:Generator_ColumnPropNameInRow="Partner_Id" msprop:Generator_ColumnPropNameInTable="Partner_IdColumn" msprop:Generator_UserColumnName="Partner_Id" type="xs:int" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PhoneNo" msprop:Generator_ColumnVarNameInTable="columnPhoneNo" msprop:Generator_ColumnPropNameInRow="PhoneNo" msprop:Generator_ColumnPropNameInTable="PhoneNoColumn" msprop:Generator_UserColumnName="PhoneNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Percentage" msprop:Generator_ColumnVarNameInTable="columnPercentage" msprop:Generator_ColumnPropNameInRow="Percentage" msprop:Generator_ColumnPropNameInTable="PercentageColumn" msprop:Generator_UserColumnName="Percentage" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PercentAmount" msprop:Generator_ColumnVarNameInTable="columnPercentAmount" msprop:Generator_ColumnPropNameInRow="PercentAmount" msprop:Generator_ColumnPropNameInTable="PercentAmountColumn" msprop:Generator_UserColumnName="PercentAmount" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vPartnerProfitDetail" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

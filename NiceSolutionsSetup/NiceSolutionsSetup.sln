@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "NiceSolutionsSetup", "NiceSolutionsSetup.vdproj", "{BB2FB147-0352-4C74-B31E-288AFBDC05BC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Default = Debug|Default
+		Release|Default = Release|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB2FB147-0352-4C74-B31E-288AFBDC05BC}.Debug|Default.ActiveCfg = Debug
+		{BB2FB147-0352-4C74-B31E-288AFBDC05BC}.Debug|Default.Build.0 = Debug
+		{BB2FB147-0352-4C74-B31E-288AFBDC05BC}.Release|Default.ActiveCfg = Release
+		{BB2FB147-0352-4C74-B31E-288AFBDC05BC}.Release|Default.Build.0 = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

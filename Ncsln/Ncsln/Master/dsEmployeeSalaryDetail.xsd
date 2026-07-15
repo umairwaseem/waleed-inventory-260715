@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsEmployeeSalaryDetail" targetNamespace="http://tempuri.org/dsEmployeeSalaryDetail.xsd" xmlns:mstns="http://tempuri.org/dsEmployeeSalaryDetail.xsd" xmlns="http://tempuri.org/dsEmployeeSalaryDetail.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsEmployeeSalaryDetail" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsEmployeeSalaryDetail" msprop:Generator_UserDSName="dsEmployeeSalaryDetail">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="EmployeeSalaryDetail" msprop:Generator_TableClassName="EmployeeSalaryDetailDataTable" msprop:Generator_TableVarName="tableEmployeeSalaryDetail" msprop:Generator_RowChangedName="EmployeeSalaryDetailRowChanged" msprop:Generator_TablePropName="EmployeeSalaryDetail" msprop:Generator_RowDeletingName="EmployeeSalaryDetailRowDeleting" msprop:Generator_RowChangingName="EmployeeSalaryDetailRowChanging" msprop:Generator_RowEvHandlerName="EmployeeSalaryDetailRowChangeEventHandler" msprop:Generator_RowDeletedName="EmployeeSalaryDetailRowDeleted" msprop:Generator_RowClassName="EmployeeSalaryDetailRow" msprop:Generator_UserTableName="EmployeeSalaryDetail" msprop:Generator_RowEvArgName="EmployeeSalaryDetailRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="Employee_Id" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnEmployee_Id" msprop:Generator_ColumnPropNameInRow="Employee_Id" msprop:Generator_ColumnPropNameInTable="Employee_IdColumn" msprop:Generator_UserColumnName="Employee_Id" type="xs:int" minOccurs="0" />
+              <xs:element name="Salary" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnSalary" msprop:Generator_ColumnPropNameInRow="Salary" msprop:Generator_ColumnPropNameInTable="SalaryColumn" msprop:Generator_UserColumnName="Salary" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Percentage" msprop:Generator_ColumnVarNameInTable="columnPercentage" msprop:Generator_ColumnPropNameInRow="Percentage" msprop:Generator_ColumnPropNameInTable="PercentageColumn" msprop:Generator_UserColumnName="Percentage" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PercentAmount" msprop:Generator_ColumnVarNameInTable="columnPercentAmount" msprop:Generator_ColumnPropNameInRow="PercentAmount" msprop:Generator_ColumnPropNameInTable="PercentAmountColumn" msprop:Generator_UserColumnName="PercentAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="GrowsAmount" msprop:Generator_ColumnVarNameInTable="columnGrowsAmount" msprop:Generator_ColumnPropNameInRow="GrowsAmount" msprop:Generator_ColumnPropNameInTable="GrowsAmountColumn" msprop:Generator_UserColumnName="GrowsAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="AbsentDays" msprop:Generator_ColumnVarNameInTable="columnAbsentDays" msprop:Generator_ColumnPropNameInRow="AbsentDays" msprop:Generator_ColumnPropNameInTable="AbsentDaysColumn" msprop:Generator_UserColumnName="AbsentDays" type="xs:int" minOccurs="0" />
+              <xs:element name="AbsentAmount" msprop:Generator_ColumnVarNameInTable="columnAbsentAmount" msprop:Generator_ColumnPropNameInRow="AbsentAmount" msprop:Generator_ColumnPropNameInTable="AbsentAmountColumn" msprop:Generator_UserColumnName="AbsentAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="FinalAmount" msprop:Generator_ColumnVarNameInTable="columnFinalAmount" msprop:Generator_ColumnPropNameInRow="FinalAmount" msprop:Generator_ColumnPropNameInTable="FinalAmountColumn" msprop:Generator_UserColumnName="FinalAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Branch_Id" msprop:Generator_ColumnVarNameInTable="columnBranch_Id" msprop:Generator_ColumnPropNameInRow="Branch_Id" msprop:Generator_ColumnPropNameInTable="Branch_IdColumn" msprop:Generator_UserColumnName="Branch_Id" type="xs:int" minOccurs="0" />
+              <xs:element name="EmployeeSalary_Id" msprop:Generator_ColumnVarNameInTable="columnEmployeeSalary_Id" msprop:Generator_ColumnPropNameInRow="EmployeeSalary_Id" msprop:Generator_ColumnPropNameInTable="EmployeeSalary_IdColumn" msprop:Generator_UserColumnName="EmployeeSalary_Id" type="xs:int" minOccurs="0" />
+              <xs:element name="Bonus" msprop:Generator_ColumnVarNameInTable="columnBonus" msprop:Generator_ColumnPropNameInRow="Bonus" msprop:Generator_ColumnPropNameInTable="BonusColumn" msprop:Generator_UserColumnName="Bonus" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:EmployeeSalaryDetail" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

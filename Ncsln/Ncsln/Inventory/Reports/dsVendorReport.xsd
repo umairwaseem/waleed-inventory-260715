@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsVendorReport" targetNamespace="http://tempuri.org/dsVendorReport.xsd" xmlns:mstns="http://tempuri.org/dsVendorReport.xsd" xmlns="http://tempuri.org/dsVendorReport.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsVendorReport" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsVendorReport" msprop:Generator_UserDSName="dsVendorReport">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="vVendorReport" msprop:Generator_TableClassName="vVendorReportDataTable" msprop:Generator_TableVarName="tablevVendorReport" msprop:Generator_TablePropName="vVendorReport" msprop:Generator_RowDeletingName="vVendorReportRowDeleting" msprop:Generator_RowChangingName="vVendorReportRowChanging" msprop:Generator_RowEvHandlerName="vVendorReportRowChangeEventHandler" msprop:Generator_RowDeletedName="vVendorReportRowDeleted" msprop:Generator_UserTableName="vVendorReport" msprop:Generator_RowChangedName="vVendorReportRowChanged" msprop:Generator_RowEvArgName="vVendorReportRowChangeEvent" msprop:Generator_RowClassName="vVendorReportRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Vendor_Id" msprop:Generator_ColumnVarNameInTable="columnVendor_Id" msprop:Generator_ColumnPropNameInRow="Vendor_Id" msprop:Generator_ColumnPropNameInTable="Vendor_IdColumn" msprop:Generator_UserColumnName="Vendor_Id" type="xs:int" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PhoneNo" msprop:Generator_ColumnVarNameInTable="columnPhoneNo" msprop:Generator_ColumnPropNameInRow="PhoneNo" msprop:Generator_ColumnPropNameInTable="PhoneNoColumn" msprop:Generator_UserColumnName="PhoneNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Email" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_UserColumnName="Email" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TranDate" msprop:Generator_ColumnVarNameInTable="columnTranDate" msprop:Generator_ColumnPropNameInRow="TranDate" msprop:Generator_ColumnPropNameInTable="TranDateColumn" msprop:Generator_UserColumnName="TranDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="TranType" msprop:Generator_ColumnVarNameInTable="columnTranType" msprop:Generator_ColumnPropNameInRow="TranType" msprop:Generator_ColumnPropNameInTable="TranTypeColumn" msprop:Generator_UserColumnName="TranType" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Branch_Id" msprop:Generator_ColumnVarNameInTable="columnBranch_Id" msprop:Generator_ColumnPropNameInRow="Branch_Id" msprop:Generator_ColumnPropNameInTable="Branch_IdColumn" msprop:Generator_UserColumnName="Branch_Id" type="xs:int" minOccurs="0" />
+              <xs:element name="Purchase" msprop:Generator_ColumnVarNameInTable="columnPurchase" msprop:Generator_ColumnPropNameInRow="Purchase" msprop:Generator_ColumnPropNameInTable="PurchaseColumn" msprop:Generator_UserColumnName="Purchase" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Payment" msprop:Generator_ColumnVarNameInTable="columnPayment" msprop:Generator_ColumnPropNameInRow="Payment" msprop:Generator_ColumnPropNameInTable="PaymentColumn" msprop:Generator_UserColumnName="Payment" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TranNo" msprop:Generator_ColumnVarNameInTable="columnTranNo" msprop:Generator_ColumnPropNameInRow="TranNo" msprop:Generator_ColumnPropNameInTable="TranNoColumn" msprop:Generator_UserColumnName="TranNo" type="xs:string" minOccurs="0" />
+              <xs:element name="BranchName" msprop:Generator_ColumnVarNameInTable="columnBranchName" msprop:Generator_ColumnPropNameInRow="BranchName" msprop:Generator_ColumnPropNameInTable="BranchNameColumn" msprop:Generator_UserColumnName="BranchName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="balance" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnbalance" msprop:Generator_ColumnPropNameInRow="balance" msprop:Generator_ColumnPropNameInTable="balanceColumn" msprop:Generator_UserColumnName="balance" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

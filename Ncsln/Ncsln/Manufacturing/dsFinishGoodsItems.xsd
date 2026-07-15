@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsFinishGoodsItems" targetNamespace="http://tempuri.org/dsFinishGoodsItems.xsd" xmlns:mstns="http://tempuri.org/dsFinishGoodsItems.xsd" xmlns="http://tempuri.org/dsFinishGoodsItems.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="dsFinishGoodsItems" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="dsFinishGoodsItems" msprop:Generator_UserDSName="dsFinishGoodsItems">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="MFinishGoodsDetail" msprop:Generator_TableClassName="MFinishGoodsDetailDataTable" msprop:Generator_TableVarName="tableMFinishGoodsDetail" msprop:Generator_TablePropName="MFinishGoodsDetail" msprop:Generator_RowDeletingName="MFinishGoodsDetailRowDeleting" msprop:Generator_RowChangingName="MFinishGoodsDetailRowChanging" msprop:Generator_RowEvHandlerName="MFinishGoodsDetailRowChangeEventHandler" msprop:Generator_RowDeletedName="MFinishGoodsDetailRowDeleted" msprop:Generator_UserTableName="MFinishGoodsDetail" msprop:Generator_RowChangedName="MFinishGoodsDetailRowChanged" msprop:Generator_RowEvArgName="MFinishGoodsDetailRowChangeEvent" msprop:Generator_RowClassName="MFinishGoodsDetailRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
+              <xs:element name="FinishGoods_Id" msprop:Generator_ColumnVarNameInTable="columnFinishGoods_Id" msprop:Generator_ColumnPropNameInRow="FinishGoods_Id" msprop:Generator_ColumnPropNameInTable="FinishGoods_IdColumn" msprop:Generator_UserColumnName="FinishGoods_Id" type="xs:int" minOccurs="0" />
+              <xs:element name="Item_Id" msprop:Generator_ColumnVarNameInTable="columnItem_Id" msprop:Generator_ColumnPropNameInRow="Item_Id" msprop:Generator_ColumnPropNameInTable="Item_IdColumn" msprop:Generator_UserColumnName="Item_Id" type="xs:int" minOccurs="0" />
+              <xs:element name="Qty" msprop:Generator_ColumnVarNameInTable="columnQty" msprop:Generator_ColumnPropNameInRow="Qty" msprop:Generator_ColumnPropNameInTable="QtyColumn" msprop:Generator_UserColumnName="Qty" type="xs:int" minOccurs="0" />
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Total" msprop:Generator_ColumnVarNameInTable="columnTotal" msprop:Generator_ColumnPropNameInRow="Total" msprop:Generator_ColumnPropNameInTable="TotalColumn" msprop:Generator_UserColumnName="Total" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ModelNo" msprop:Generator_ColumnVarNameInTable="columnModelNo" msprop:Generator_ColumnPropNameInRow="ModelNo" msprop:Generator_ColumnPropNameInTable="ModelNoColumn" msprop:Generator_UserColumnName="ModelNo" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:MFinishGoodsDetail" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
