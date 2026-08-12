@@ -1202,6 +1202,51 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>dsExpenseList.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Master\dsAdditionalAccount.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsAdditionalAccount.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Master\dsAdditionalAccountTransaction.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsAdditionalAccountTransaction.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Master\dsAdditionalAccountLedger.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsAdditionalAccountLedger.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Master\dsBalanceDetail.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsBalanceDetail.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Master\dsBalanceDetailTransaction.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsBalanceDetailTransaction.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Master\dsBalanceDetailSummary.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsBalanceDetailSummary.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Master\dsWorkshopAccount.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsWorkshopAccount.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Master\dsWorkshopTransaction.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsWorkshopTransaction.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Master\dsWorkshopLedger.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsWorkshopLedger.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Master\dsExpenseOther.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1316,6 +1361,60 @@
     </Compile>
     <Compile Include="Master\frmExpenseOther.Designer.cs">
       <DependentUpon>frmExpenseOther.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\frmAdditionalAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmAdditionalAccount.Designer.cs">
+      <DependentUpon>frmAdditionalAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\frmAdditionalAccountTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmAdditionalAccountTransaction.Designer.cs">
+      <DependentUpon>frmAdditionalAccountTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\frmRptAdditionalAccountLedger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmRptAdditionalAccountLedger.Designer.cs">
+      <DependentUpon>frmRptAdditionalAccountLedger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\frmBalanceDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmBalanceDetail.Designer.cs">
+      <DependentUpon>frmBalanceDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\frmBalanceDetailTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmBalanceDetailTransaction.Designer.cs">
+      <DependentUpon>frmBalanceDetailTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\frmRptBalanceDetailSummary.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmRptBalanceDetailSummary.Designer.cs">
+      <DependentUpon>frmRptBalanceDetailSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\frmWorkshopAccount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmWorkshopAccount.Designer.cs">
+      <DependentUpon>frmWorkshopAccount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\frmWorkshopTransaction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmWorkshopTransaction.Designer.cs">
+      <DependentUpon>frmWorkshopTransaction.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Master\frmRptWorkshopLedger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Master\frmRptWorkshopLedger.Designer.cs">
+      <DependentUpon>frmRptWorkshopLedger.cs</DependentUpon>
     </Compile>
     <Compile Include="Master\frmOffers.cs">
       <SubType>Form</SubType>
@@ -2011,6 +2110,33 @@
     <EmbeddedResource Include="Master\frmExpenseOther.resx">
       <DependentUpon>frmExpenseOther.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmAdditionalAccount.resx">
+      <DependentUpon>frmAdditionalAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmAdditionalAccountTransaction.resx">
+      <DependentUpon>frmAdditionalAccountTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmRptAdditionalAccountLedger.resx">
+      <DependentUpon>frmRptAdditionalAccountLedger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmBalanceDetail.resx">
+      <DependentUpon>frmBalanceDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmBalanceDetailTransaction.resx">
+      <DependentUpon>frmBalanceDetailTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmRptBalanceDetailSummary.resx">
+      <DependentUpon>frmRptBalanceDetailSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmWorkshopAccount.resx">
+      <DependentUpon>frmWorkshopAccount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmWorkshopTransaction.resx">
+      <DependentUpon>frmWorkshopTransaction.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Master\frmRptWorkshopLedger.resx">
+      <DependentUpon>frmRptWorkshopLedger.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Master\frmOffers.resx">
       <DependentUpon>frmOffers.cs</DependentUpon>
     </EmbeddedResource>
@@ -2549,6 +2675,51 @@
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>dsExpenseList.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Master\dsAdditionalAccount.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsAdditionalAccount.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Master\dsAdditionalAccountTransaction.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsAdditionalAccountTransaction.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Master\dsAdditionalAccountLedger.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsAdditionalAccountLedger.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Master\dsBalanceDetail.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsBalanceDetail.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Master\dsBalanceDetailTransaction.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsBalanceDetailTransaction.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Master\dsBalanceDetailSummary.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsBalanceDetailSummary.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Master\dsWorkshopAccount.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsWorkshopAccount.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Master\dsWorkshopTransaction.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsWorkshopTransaction.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Master\dsWorkshopLedger.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsWorkshopLedger.Designer.cs</LastGenOutput>
     </None>
     <None Include="Master\dsExpenseList.xss">
       <DependentUpon>dsExpenseList.xsd</DependentUpon>

@@ -93,6 +93,15 @@
             this.cashReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.expenseListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.expenseToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.additionalAccountListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.additionalBankingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.additionalAccountLedgerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.balanceDetailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.balanceDetailTransactionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.balanceDetailSummaryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.workshopAccountListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.workshopTransactionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.workshopLedgerToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.promotionalItemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.inventoryToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
@@ -679,7 +688,16 @@
             this.cashToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cashReportToolStripMenuItem,
             this.expenseListToolStripMenuItem,
-            this.expenseToolStripMenuItem1});
+            this.expenseToolStripMenuItem1,
+            this.additionalAccountListToolStripMenuItem,
+            this.additionalBankingToolStripMenuItem,
+            this.additionalAccountLedgerToolStripMenuItem,
+            this.balanceDetailToolStripMenuItem,
+            this.balanceDetailTransactionToolStripMenuItem,
+            this.balanceDetailSummaryToolStripMenuItem,
+            this.workshopAccountListToolStripMenuItem,
+            this.workshopTransactionToolStripMenuItem,
+            this.workshopLedgerToolStripMenuItem});
             this.cashToolStripMenuItem.Name = "cashToolStripMenuItem";
             this.cashToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.cashToolStripMenuItem.Text = "Presonal ";
@@ -704,6 +722,69 @@
             this.expenseToolStripMenuItem1.Size = new System.Drawing.Size(203, 22);
             this.expenseToolStripMenuItem1.Text = "Presonal Banking";
             this.expenseToolStripMenuItem1.Click += new System.EventHandler(this.expenseToolStripMenuItem1_Click);
+            //
+            // additionalAccountListToolStripMenuItem
+            //
+            this.additionalAccountListToolStripMenuItem.Name = "additionalAccountListToolStripMenuItem";
+            this.additionalAccountListToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.additionalAccountListToolStripMenuItem.Text = "Additional Account List";
+            this.additionalAccountListToolStripMenuItem.Click += new System.EventHandler(this.additionalAccountListToolStripMenuItem_Click);
+            //
+            // additionalBankingToolStripMenuItem
+            //
+            this.additionalBankingToolStripMenuItem.Name = "additionalBankingToolStripMenuItem";
+            this.additionalBankingToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.additionalBankingToolStripMenuItem.Text = "Additional Banking";
+            this.additionalBankingToolStripMenuItem.Click += new System.EventHandler(this.additionalBankingToolStripMenuItem_Click);
+            //
+            // additionalAccountLedgerToolStripMenuItem
+            //
+            this.additionalAccountLedgerToolStripMenuItem.Name = "additionalAccountLedgerToolStripMenuItem";
+            this.additionalAccountLedgerToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.additionalAccountLedgerToolStripMenuItem.Text = "Additional Account Ledger";
+            this.additionalAccountLedgerToolStripMenuItem.Click += new System.EventHandler(this.additionalAccountLedgerToolStripMenuItem_Click);
+            //
+            // balanceDetailToolStripMenuItem
+            //
+            this.balanceDetailToolStripMenuItem.Name = "balanceDetailToolStripMenuItem";
+            this.balanceDetailToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.balanceDetailToolStripMenuItem.Text = "Balance Detail";
+            this.balanceDetailToolStripMenuItem.Click += new System.EventHandler(this.balanceDetailToolStripMenuItem_Click);
+            //
+            // balanceDetailTransactionToolStripMenuItem
+            //
+            this.balanceDetailTransactionToolStripMenuItem.Name = "balanceDetailTransactionToolStripMenuItem";
+            this.balanceDetailTransactionToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.balanceDetailTransactionToolStripMenuItem.Text = "Balance Detail Transaction";
+            this.balanceDetailTransactionToolStripMenuItem.Click += new System.EventHandler(this.balanceDetailTransactionToolStripMenuItem_Click);
+            //
+            // balanceDetailSummaryToolStripMenuItem
+            //
+            this.balanceDetailSummaryToolStripMenuItem.Name = "balanceDetailSummaryToolStripMenuItem";
+            this.balanceDetailSummaryToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.balanceDetailSummaryToolStripMenuItem.Text = "Balance Detail Summary";
+            this.balanceDetailSummaryToolStripMenuItem.Click += new System.EventHandler(this.balanceDetailSummaryToolStripMenuItem_Click);
+            //
+            // workshopAccountListToolStripMenuItem
+            //
+            this.workshopAccountListToolStripMenuItem.Name = "workshopAccountListToolStripMenuItem";
+            this.workshopAccountListToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.workshopAccountListToolStripMenuItem.Text = "Workshop Account List";
+            this.workshopAccountListToolStripMenuItem.Click += new System.EventHandler(this.workshopAccountListToolStripMenuItem_Click);
+            //
+            // workshopTransactionToolStripMenuItem
+            //
+            this.workshopTransactionToolStripMenuItem.Name = "workshopTransactionToolStripMenuItem";
+            this.workshopTransactionToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.workshopTransactionToolStripMenuItem.Text = "Workshop Transaction";
+            this.workshopTransactionToolStripMenuItem.Click += new System.EventHandler(this.workshopTransactionToolStripMenuItem_Click);
+            //
+            // workshopLedgerToolStripMenuItem
+            //
+            this.workshopLedgerToolStripMenuItem.Name = "workshopLedgerToolStripMenuItem";
+            this.workshopLedgerToolStripMenuItem.Size = new System.Drawing.Size(203, 22);
+            this.workshopLedgerToolStripMenuItem.Text = "Workshop Ledger";
+            this.workshopLedgerToolStripMenuItem.Click += new System.EventHandler(this.workshopLedgerToolStripMenuItem_Click);
             // 
             // promotionalItemToolStripMenuItem
             // 
@@ -1454,6 +1535,15 @@
         private System.Windows.Forms.ToolStripMenuItem generalVendorEntryToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem generalVendorInvoiceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem expenseListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem additionalAccountListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem additionalBankingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem additionalAccountLedgerToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem balanceDetailToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem balanceDetailTransactionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem balanceDetailSummaryToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem workshopAccountListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem workshopTransactionToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem workshopLedgerToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem branchesDailyCashToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem negativeStockToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem banksToolStripMenuItem;

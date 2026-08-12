@@ -153,7 +153,12 @@ namespace Ncsln.Forms
             this.expenseToolStripMenuItem1.Visible = this.objCore.getUserRight(57, "CanView", this.objCore.getHBCConnectionString());
             this.cashReportToolStripMenuItem.Visible = this.objCore.getUserRight(58, "CanView", this.objCore.getHBCConnectionString());
 
-            this.cashToolStripMenuItem.Visible = this.objCore.getUserRight(58, "CanView", this.objCore.getHBCConnectionString());
+            this.additionalAccountListToolStripMenuItem.Visible = this.objCore.getUserRight("Additional Account List", "CanView", this.objCore.getHBCConnectionString());
+            this.additionalBankingToolStripMenuItem.Visible = this.objCore.getUserRight("Additional Banking", "CanView", this.objCore.getHBCConnectionString());
+            this.balanceDetailToolStripMenuItem.Visible = this.objCore.getUserRight("Balance Detail", "CanView", this.objCore.getHBCConnectionString());
+            this.balanceDetailTransactionToolStripMenuItem.Visible = this.objCore.getUserRight("Balance Detail Transaction", "CanView", this.objCore.getHBCConnectionString());
+            this.balanceDetailSummaryToolStripMenuItem.Visible = this.objCore.getUserRight("Balance Detail Summary", "CanView", this.objCore.getHBCConnectionString());
+            this.cashToolStripMenuItem.Visible = true;
             this.pRToolStripMenuItem.Visible = this.objCore.getUserRight(59, "CanView", this.objCore.getHBCConnectionString());
             this.finalReportToolStripMenuItem.Visible = this.objCore.getUserRight(60, "CanView", this.objCore.getHBCConnectionString());
             this.employeeToolStripMenuItem.Visible = this.objCore.getUserRight(61, "CanView", this.objCore.getHBCConnectionString());
@@ -1063,6 +1068,78 @@ namespace Ncsln.Forms
         private void expenseListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Master.frmExpenseList obj = new Master.frmExpenseList();
+            obj.WindowState = FormWindowState.Maximized;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void additionalAccountListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Master.frmAdditionalAccount obj = new Master.frmAdditionalAccount();
+            obj.WindowState = FormWindowState.Maximized;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void additionalBankingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Master.frmAdditionalAccountTransaction obj = new Master.frmAdditionalAccountTransaction();
+            obj.WindowState = FormWindowState.Maximized;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void additionalAccountLedgerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Master.frmRptAdditionalAccountLedger obj = new Master.frmRptAdditionalAccountLedger();
+            obj.WindowState = FormWindowState.Maximized;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void balanceDetailToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Master.frmBalanceDetail obj = new Master.frmBalanceDetail();
+            obj.WindowState = FormWindowState.Maximized;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void balanceDetailTransactionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Master.frmBalanceDetailTransaction obj = new Master.frmBalanceDetailTransaction();
+            obj.WindowState = FormWindowState.Maximized;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void balanceDetailSummaryToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Master.frmRptBalanceDetailSummary obj = new Master.frmRptBalanceDetailSummary();
+            obj.WindowState = FormWindowState.Maximized;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void workshopAccountListToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Master.frmWorkshopAccount obj = new Master.frmWorkshopAccount();
+            obj.WindowState = FormWindowState.Maximized;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void workshopTransactionToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Master.frmWorkshopTransaction obj = new Master.frmWorkshopTransaction();
+            obj.WindowState = FormWindowState.Maximized;
+            obj.MdiParent = this;
+            obj.Show();
+        }
+
+        private void workshopLedgerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Master.frmRptWorkshopLedger obj = new Master.frmRptWorkshopLedger();
             obj.WindowState = FormWindowState.Maximized;
             obj.MdiParent = this;
             obj.Show();

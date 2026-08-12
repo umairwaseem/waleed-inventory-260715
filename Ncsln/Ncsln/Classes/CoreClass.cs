@@ -314,6 +314,33 @@ namespace Ncsln.Classes
             return right;
         }
 
+        public int getFormId(string formName, string conString)
+        {
+            if (string.IsNullOrWhiteSpace(formName)) return -1;
+
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(conString))
+                using (SqlCommand command = new SqlCommand("SELECT TOP 1 Id FROM UserForms WHERE FromName = @FromName", connection))
+                {
+                    command.Parameters.Add("@FromName", SqlDbType.NVarChar, 200).Value = formName.Trim();
+                    connection.Open();
+                    object value = command.ExecuteScalar();
+                    return value == null || value == DBNull.Value ? -1 : Convert.ToInt32(value);
+                }
+            }
+            catch (Exception)
+            {
+                return -1;
+            }
+        }
+
+        public bool getUserRight(string formName, string rightName, string conString)
+        {
+            int formId = this.getFormId(formName, conString);
+            return formId > 0 && this.getUserRight(formId, rightName, conString);
+        }
+
         public bool CheckRight(int Form_Id, int DataId, bool delete = false)
         {
             bool right = false;
@@ -385,6 +412,17 @@ namespace Ncsln.Classes
                 }
             }
 
+            return right;
+        }
+
+        public bool CheckRightServer(string formName, int dataId, bool delete = false)
+        {
+            string rightName = delete ? "CanDelete" : (dataId == -1 ? "CanAdd" : "CanUpdate");
+            bool right = this.getUserRight(formName, rightName, this.getHBCConnectionString());
+            if (!right)
+            {
+                MessageBox.Show("You have no right to " + rightName.Substring(3), "Alert", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
             return right;
         }
 

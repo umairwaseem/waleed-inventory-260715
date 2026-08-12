@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsWorkshopLedger" targetNamespace="http://tempuri.org/dsWorkshopLedger.xsd" xmlns:mstns="http://tempuri.org/dsWorkshopLedger.xsd" xmlns="http://tempuri.org/dsWorkshopLedger.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" elementFormDefault="qualified">
+  <xs:element name="dsWorkshopLedger" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType><xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="WorkshopLedger"><xs:complexType><xs:sequence>
+        <xs:element name="SrNo" type="xs:int" />
+        <xs:element name="TranDate" type="xs:dateTime" minOccurs="0" />
+        <xs:element name="RowType" type="xs:string" />
+        <xs:element name="ReferenceId" type="xs:int" minOccurs="0" />
+        <xs:element name="AccountName" type="xs:string" minOccurs="0" />
+        <xs:element name="Detail" type="xs:string" minOccurs="0" />
+        <xs:element name="Amount" type="xs:decimal" />
+      </xs:sequence></xs:complexType></xs:element>
+    </xs:choice></xs:complexType>
+  </xs:element>
+</xs:schema>

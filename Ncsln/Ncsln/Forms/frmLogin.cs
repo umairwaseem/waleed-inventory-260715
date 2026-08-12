@@ -21,14 +21,40 @@ namespace Ncsln.Forms
         public frmLogin()
         {
             InitializeComponent();
+            this.ApplyModernLoginEffects();
             this.Relogin = false;
             this.ReLoginSuccess = false;
+        }
+
+        private void ApplyModernLoginEffects()
+        {
+            this.pnlBrand.Paint += this.pnlBrand_Paint;
+            this.pnlCard.Paint += this.pnlCard_Paint;
+        }
+
+        private void pnlBrand_Paint(object sender, PaintEventArgs e)
+        {
+            using (LinearGradientBrush brush = new LinearGradientBrush(this.pnlBrand.ClientRectangle, Color.FromArgb(185, 15, 23, 42), Color.FromArgb(115, 37, 99, 235), LinearGradientMode.Vertical))
+            {
+                e.Graphics.FillRectangle(brush, this.pnlBrand.ClientRectangle);
+            }
+        }
+
+        private void pnlCard_Paint(object sender, PaintEventArgs e)
+        {
+            using (Pen pen = new Pen(Color.FromArgb(203, 213, 225)))
+            {
+                Rectangle border = this.pnlCard.ClientRectangle;
+                border.Width -= 1;
+                border.Height -= 1;
+                e.Graphics.DrawRectangle(pen, border);
+            }
         }
 
         private void onEnterTextBox(Object sender, EventArgs e)
         {
             TextBox txtBox = sender as TextBox;
-            txtBox.BackColor = Color.GhostWhite;
+            txtBox.BackColor = Color.FromArgb(248, 250, 252);
         }
 
         private void onLeaveTextBox(Object sender, EventArgs e)

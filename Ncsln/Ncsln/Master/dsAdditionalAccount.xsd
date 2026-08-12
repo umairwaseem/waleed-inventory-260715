@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="dsAdditionalAccount" targetNamespace="http://tempuri.org/dsAdditionalAccount.xsd" xmlns:mstns="http://tempuri.org/dsAdditionalAccount.xsd" xmlns="http://tempuri.org/dsAdditionalAccount.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" elementFormDefault="qualified">
+  <xs:element name="dsAdditionalAccount" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType><xs:choice minOccurs="0" maxOccurs="unbounded">
+      <xs:element name="AdditionalAccount"><xs:complexType><xs:sequence>
+        <xs:element name="Id" type="xs:int" />
+        <xs:element name="AccountName" type="xs:string" />
+        <xs:element name="Notes" type="xs:string" minOccurs="0" />
+      </xs:sequence></xs:complexType></xs:element>
+    </xs:choice></xs:complexType>
+  </xs:element>
+</xs:schema>

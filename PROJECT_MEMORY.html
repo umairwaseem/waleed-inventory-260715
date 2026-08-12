@@ -1,0 +1,446 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Waleed Inventory — Project Memory Guide</title>
+  <style>
+    :root{--ink:#14231f;--muted:#60706a;--paper:#f7f5ef;--card:#fffdf8;--line:#d8ded8;--green:#174d3c;--mint:#d9eadf;--amber:#b66a16;--red:#a93a32;--blue:#275a79;--shadow:0 8px 28px rgba(20,35,31,.08)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif}
+    a{color:var(--green)}code{font:12px/1.45 ui-monospace,SFMono-Regular,Consolas,monospace;background:#eef1ed;border:1px solid #dde3de;border-radius:5px;padding:.1rem .35rem;overflow-wrap:anywhere}
+    .shell{display:grid;grid-template-columns:260px minmax(0,1fr);min-height:100vh}.side{position:sticky;top:0;height:100vh;padding:28px 22px;background:var(--ink);color:#edf5f0;overflow:auto}.side h1{font:700 20px/1.2 Georgia,serif;margin:0 0 5px}.side small{color:#9fb5ab}.side nav{margin-top:28px}.side a{display:block;color:#d8e6df;text-decoration:none;padding:7px 9px;border-radius:7px}.side a:hover{background:#294239;color:white}.side .legend{margin-top:25px;padding-top:18px;border-top:1px solid #355047;font-size:12px;color:#aec1b8}
+    main{padding:44px clamp(22px,5vw,72px) 90px;max-width:1500px}.hero{background:linear-gradient(135deg,#173e33,#22624d);color:white;padding:38px;border-radius:18px;box-shadow:var(--shadow)}.eyebrow{text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:800;color:#bdd7ca}.hero h2{font:700 clamp(30px,5vw,54px)/1.02 Georgia,serif;margin:10px 0 14px;max-width:850px}.hero p{max-width:800px;color:#dcebe4;font-size:17px}.stamp{font-size:12px;color:#bcd0c7;margin-top:22px}
+    section{scroll-margin-top:24px;margin-top:48px}h2{font:700 30px/1.2 Georgia,serif;margin:0 0 10px}h3{font-size:18px;margin:0 0 8px}.lede{color:var(--muted);max-width:900px;margin-top:0}.stats,.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}.stat,.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:0 3px 14px rgba(20,35,31,.04)}.stat b{font:700 32px/1 Georgia,serif;color:var(--green);display:block}.stat span{color:var(--muted);font-size:13px}.card p{margin:.4rem 0;color:var(--muted)}.card ul{padding-left:18px;margin:.5rem 0}.flow{display:flex;align-items:stretch;gap:8px;overflow:auto;padding:4px 0}.flow .node{min-width:180px;flex:1;background:var(--card);border:1px solid var(--line);border-top:4px solid var(--green);border-radius:10px;padding:14px}.arrow{align-self:center;color:var(--muted);font-size:22px}.callout{border-left:5px solid var(--amber);background:#fff6e8;padding:16px 18px;border-radius:8px;margin:15px 0}.callout.danger{border-color:var(--red);background:#fff0ed}.callout strong{display:block;margin-bottom:4px}
+    .toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0}.toolbar input,.toolbar select{background:white;border:1px solid #bfc9c2;border-radius:8px;padding:10px 12px;color:var(--ink);min-width:210px}.count{color:var(--muted);font-size:13px;align-self:center}.table-wrap{overflow:auto;background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow)}table{width:100%;border-collapse:collapse;min-width:760px}th,td{text-align:left;vertical-align:top;padding:11px 13px;border-bottom:1px solid #e4e8e3}th{position:sticky;top:0;background:#edf3ee;color:#29443a;font-size:12px;text-transform:uppercase;letter-spacing:.05em}tbody tr:hover{background:#fbf7ec}td:first-child{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px}.pill{display:inline-block;border-radius:99px;padding:2px 8px;background:var(--mint);color:var(--green);font-size:11px;font-weight:700;margin:1px 3px 1px 0}.pill.report{background:#e4edf4;color:var(--blue)}.pill.warn{background:#f9e7cf;color:#8c510f}.muted{color:var(--muted)}details{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:10px 0;padding:12px 15px}summary{font-weight:700;cursor:pointer}.cols{font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12px;color:#41534c;margin-top:8px;overflow-wrap:anywhere}.module{border-top:4px solid var(--green)}footer{margin-top:65px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+    @media(max-width:850px){.shell{display:block}.side{position:relative;height:auto}.side nav{columns:2}main{padding-top:24px}.flow{display:grid}.arrow{transform:rotate(90deg);justify-self:center}}
+    @media print{.side,.toolbar{display:none}.shell{display:block}main{padding:0;max-width:none}.hero{box-shadow:none}section{break-inside:avoid}.table-wrap{box-shadow:none;overflow:visible}table{min-width:0;font-size:10px}th{position:static}}
+  </style>
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <h1>Project Memory</h1><small>Waleed Inventory / Ncsln</small>
+    <nav>
+      <a href="#overview">01 · Overview</a><a href="#architecture">02 · Architecture</a><a href="#modules">03 · Modules</a><a href="#workflows">04 · Workflows</a><a href="#forms">05 · Forms</a><a href="#reports">06 · Crystal Reports</a><a href="#datasets">07 · Typed datasets</a><a href="#database">08 · EF / database</a><a href="#operations">09 · Build & operations</a><a href="#risks">10 · Risks & clues</a>
+    </nav>
+    <div class="legend">Generated from the repository on 15 July 2026. Search tables by filename, screen title, dataset, table, column, or report.</div>
+  </aside>
+  <main>
+    <header class="hero"><div class="eyebrow">Repository field guide</div><h2>How the current inventory application fits together</h2><p>A memory aid for navigating screens, typed datasets, SAP Crystal Reports, Entity Framework entities, and the operational seams between them.</p><div class="stamp">Source root: <code>Ncsln/Ncsln</code> · Main solution: <code>Ncsln/Ncsln.sln</code> · Startup: <code>Program.cs → Forms.frmLogin</code></div></header>
+
+    <section id="overview"><h2>At a glance</h2><p class="lede">A .NET Framework Windows desktop application covering branch inventory, orders, purchases, sales, accounts, manufacturing, stock movement, employees, partners, and reporting.</p>
+      <div class="stats"><div class="stat"><b>107</b><span>WinForms screens / dialogs</span></div><div class="stat"><b>110</b><span>typed XSD datasets</span></div><div class="stat"><b>42</b><span>Crystal Report .rpt files</span></div><div class="stat"><b>36</b><span>EF DbSet mappings</span></div><div class="stat"><b>7</b><span>functional areas</span></div></div>
+      <div class="callout danger"><strong>Security finding</strong><code>app.config</code> contains remote SQL Server credentials in plaintext. This guide deliberately omits the values. Rotate the exposed password, move secrets out of source control, and review Git history.</div>
+    </section>
+
+    <section id="architecture"><h2>Architecture memory map</h2><div class="flow"><div class="node"><b>WinForms UI</b><br><span class="muted"><code>frm*.cs</code> + Designer + RESX</span></div><div class="arrow">→</div><div class="node"><b>Typed DataSets</b><br><span class="muted"><code>ds*.xsd</code> + generated Designer</span></div><div class="arrow">→</div><div class="node"><b>Data layer</b><br><span class="muted">EF6 database-first + stored procedures</span></div><div class="arrow">→</div><div class="node"><b>SQL Server</b><br><span class="muted">branch-specific Inventory databases</span></div></div>
+      <div class="flow" style="margin-top:12px"><div class="node"><b>Report filter form</b><br><span class="muted"><code>frmRpt*.cs</code></span></div><div class="arrow">→</div><div class="node"><b>Report dataset</b><br><span class="muted">filled from EF/query results</span></div><div class="arrow">→</div><div class="node"><b>Crystal class</b><br><span class="muted"><code>doc*.cs</code> wrapping <code>.rpt</code></span></div><div class="arrow">→</div><div class="node"><b>Crystal viewer</b><br><span class="muted">preview / print / export</span></div></div>
+      <div class="grid" style="margin-top:14px"><div class="card"><h3>Platform</h3><p>C# WinForms, .NET Framework 4.8.1. Debug is AnyCPU; Release targets x86.</p></div><div class="card"><h3>Key libraries</h3><p>Entity Framework 6.0, SAP Crystal Reports 13.0.4000, ReportViewer 10, System.Data and WinForms.</p></div><div class="card"><h3>Entry and shell</h3><p><code>Program.Main</code> launches <code>frmLogin</code>; successful login leads to MDI shell <code>frmCenter</code> and dashboard.</p></div><div class="card"><h3>Variants</h3><p><code>SoftwareType</code>: Master, OfficeMaster, WorldStyle, OfficenOffice, OfficeEmpire. <code>SetupVersions</code>: Full, HBC, Manufacturing.</p></div></div>
+    </section>
+
+    <section id="modules"><h2>Functional modules</h2><div class="grid">
+      <div class="card module"><h3>Inventory</h3><p>38 forms · 45 datasets · 18 reports</p><p>Items, clients/vendors, orders, purchases, sales, receipts, branch/HBC movements, rectification, invoices and operational reports. Count includes <code>AboutBox1</code>.</p></div>
+      <div class="card module"><h3>Master</h3><p>32 forms · 32 datasets · 9 Crystal reports</p><p>Banks, employees/salary, general vendors, personal and additional account ledgers, expenses, partners/profit, offers, branch reporting and final financial summaries.</p></div>
+      <div class="card module"><h3>Stock</h3><p>11 forms · 13 datasets · 5 reports</p><p>HBC item list, stock in/out, reverse and rectify operations, invoices, stock balance and ledger.</p></div>
+      <div class="card module"><h3>Manufacturing</h3><p>9 forms · 12 datasets · 5 reports</p><p>Raw items, stock-in, finished goods, branch output and manufacturing stock reports.</p></div>
+      <div class="card module"><h3>Accounts</h3><p>5 forms · 5 datasets · 2 reports</p><p>Expense accounts/vouchers, withdrawals and daily banking/expense voucher printing.</p></div>
+      <div class="card module"><h3>Control</h3><p>4 forms · 2 datasets</p><p>Users, groups, rights and backup.</p></div>
+      <div class="card module"><h3>Forms / shell</h3><p>8 forms</p><p>Login, registration, server/client selection, security confirmation, dashboard, MDI center and query test utility.</p></div>
+    </div></section>
+
+    <section id="workflows"><h2>Core business workflows</h2><div class="grid">
+      <div class="card"><h3>Order → receipt → invoice</h3><p><code>frmOrder</code> uses <code>dsOrder</code>/<code>dsOrderSearch</code> and order stored procedures. <code>frmOrderReceive</code> records receipts. <code>frmSaleInvoice</code> renders <code>docSaleInvoice</code> or <code>docSaleDelivered</code> from <code>dsSaleInvoice</code>.</p></div>
+      <div class="card"><h3>Purchase → stock</h3><p><code>frmPurchase</code> uses purchase detail/search datasets and <code>spCreate/Update/DeletePurchase</code>. Purchase detail reporting flows through <code>dsDetailPurchase → docDetailPurchase</code>.</p></div>
+      <div class="card"><h3>Branch / HBC stock</h3><p>HBC challans, stock-in/out, reverse and rectification live across Inventory and Stock. Ledger reporting uses <code>dsStockLedger → docStockLedger</code>.</p></div>
+      <div class="card"><h3>Manufacturing</h3><p>Raw items and stock-in feed manufacturing/finished-goods screens. Separate typed datasets and reports track raw branch goods, finished output and item stock.</p></div>
+      <div class="card"><h3>Daily financial picture</h3><p><code>frmDailyReport</code> combines sales, receipts, expenses, PR invoices, internal/manufacturing stock and HBC activity into <code>docDailyReport</code> with totals passed as Crystal parameters.</p></div>
+      <div class="card"><h3>Security / permissions</h3><p>Users belong to groups; group rights map user forms. <code>frmCenter</code> also changes menu visibility based on setup/software type, with extra <code>frmSecurity</code> prompts around sensitive actions.</p></div>
+    </div></section>
+
+    <section id="forms"><h2>Forms catalog</h2><p class="lede">The “data / report links” column is derived from source references. A blank cell means the form either uses EF directly, is navigational, or has no typed dataset/report reference detectable in its code-behind.</p><div class="toolbar"><input id="formSearch" placeholder="Search forms…"><select id="formModule"><option value="">All modules</option></select><span class="count" id="formCount"></span></div><div class="table-wrap"><table><thead><tr><th>Source form</th><th>Window title</th><th>Module</th><th>Data / report links</th></tr></thead><tbody id="formRows"></tbody></table></div></section>
+
+    <section id="reports"><h2>SAP Crystal Reports catalog</h2><p class="lede">The active path is usually preview form → populated typed dataset → generated Crystal class → binary <code>.rpt</code>. “No direct launcher found” may mean a base/header artifact, an unused report, or a historical file.</p><div class="toolbar"><input id="reportSearch" placeholder="Search reports…"><select id="reportModule"><option value="">All modules</option></select><span class="count" id="reportCount"></span></div><div class="table-wrap"><table><thead><tr><th>.rpt artifact</th><th>Launcher / purpose</th><th>Dataset(s)</th><th>Crystal parameters found</th></tr></thead><tbody id="reportRows"></tbody></table></div></section>
+
+    <section id="datasets"><h2>Typed dataset catalog</h2><p class="lede">Every XSD is listed with its DataTable and columns. These schemas are the quickest way to understand the shape expected by grids and Crystal Reports. Spelling is preserved exactly because generated code and report bindings depend on it.</p><div class="toolbar"><input id="datasetSearch" placeholder="Search dataset, table, or column…"><select id="datasetModule"><option value="">All modules</option></select><span class="count" id="datasetCount"></span></div><div id="datasetRows"></div></section>
+
+    <section id="database"><h2>Entity Framework & database surface</h2><div class="grid"><div class="card"><h3>DbContext</h3><p><code>DBModel/InventortModel.Context.cs</code> defines <code>InventoryEntities(string connectionString)</code> and calls <code>base("name=" + connectionString)</code>. It is database-first; <code>OnModelCreating</code> rejects Code First.</p></div><div class="card"><h3>Connection selection</h3><p>Named EF connections represent software/branch databases. User settings also store connection name/string, server, branch, invoice code and user name. Do not put new passwords in these settings or source files.</p></div></div>
+      <h3 style="margin-top:24px">Mapped sets</h3><div id="entityPills"></div>
+      <h3 style="margin-top:24px">Application stored procedures</h3><div id="procPills"></div>
+      <div class="callout"><strong>Database-first regeneration warning</strong>Files under <code>DBModel</code> and <code>*.Designer.cs</code> dataset files are generated. Put custom behavior in partial classes or separate services; regenerate from the EDMX/XSD rather than hand-editing generated output.</div>
+    </section>
+
+    <section id="operations"><h2>Build & operational notes</h2><div class="grid"><div class="card"><h3>Build</h3><ul><li>Open <code>Ncsln/Ncsln.sln</code>.</li><li>Target .NET Framework 4.8.1.</li><li>Release is x86; match the Crystal runtime bitness.</li><li>Restore EntityFramework 6.0 package references.</li></ul></div><div class="card"><h3>Run</h3><ul><li>Startup object is <code>Program.Main</code>.</li><li>Initial screen is <code>Forms.frmLogin</code>.</li><li>SQL Server connectivity and a valid named connection are prerequisites.</li><li>Crystal Reports runtime 13.x is required for preview/print.</li></ul></div><div class="card"><h3>Setup projects</h3><p>The repository includes <code>NiceSolutionsSetup</code> and <code>PrerequisitesInstaller</code>. Review their bundled runtimes and connection/config transforms before shipping.</p></div><div class="card"><h3>Supporting projects</h3><p><code>CControl</code> provides a numeric textbox. <code>Library/Core/CoreControl</code> is a separate library/solution. The main application also includes barcode Code 128 helpers.</p></div></div></section>
+
+    <section id="risks"><h2>Maintenance risks & memory clues</h2><div class="grid"><div class="card"><h3>Secrets</h3><p>Plaintext remote DB credentials are committed in <code>app.config</code> and connection text files exist at repository root. Treat as compromised; rotate and externalize.</p></div><div class="card"><h3>Naming drift</h3><p>Names include historical misspellings such as <code>InventortModel</code>, <code>dsIntenalStock</code>, <code>dsItemDetialStock</code>, <code>dsStockReveseReport</code>, <code>docMFinsihGoods</code>, and <code>Expance</code>. Avoid “fixing” names without updating bindings.</p></div><div class="card"><h3>Historical artifacts</h3><p><code>docSaleInvoice-bak2102.14.rpt</code>, backup stored procedures, Debug ZIPs and compiled binaries are present. Confirm whether they are deployable, reference-only, or removable.</p></div><div class="card"><h3>Mixed data access</h3><p>Forms combine EF entities/stored procedures with manually filled typed datasets. When debugging, follow the form event → query → DataTable fill → report <code>SetDataSource</code> chain.</p></div><div class="card"><h3>Menu visibility</h3><p><code>frmCenter</code> hides/shows modules according to setup/software type and contains commented-out launch paths. A form existing on disk does not guarantee it is reachable in every deployment.</p></div><div class="card"><h3>Report reuse</h3><p><code>docTrend</code> is reused by trend, negative-stock and user-log screens; <code>docCashBankingPayment</code> is reused by banking/cash/vendor detail paths. Check dataset compatibility before modifying shared layouts.</p></div></div></section>
+    <footer>This document is a source-derived memory guide, not a database truth source. Re-run the inventory after adding/removing forms, XSDs, reports, or EDMX mappings.</footer>
+  </main>
+</div>
+<script>
+const forms=`Accounts/frmExpenseAccount.cs|Expense Account
+Accounts/frmExpenseVoucher.cs|Expense Voucher
+Accounts/frmWithdraw.cs|Withdraw
+Accounts/Reports/frmRptDailyBanking.cs|Daily banking Voucher
+Accounts/Reports/frmRptExpenseVoucher.cs|Expense Voucher
+Control/frmBackup.cs|Backup
+Control/frmUser.cs|User
+Control/frmUserGroup.cs|User Group
+Control/frmUserGroupRights.cs|User Group Rights
+Forms/frmCenter.cs|Inventory
+Forms/frmDashboard.cs|Dashboard
+Forms/frmGetKey.cs|Key
+Forms/frmGetVerify.cs|Registration
+Forms/frmLogin.cs|Login
+Forms/frmSecurity.cs|Security
+Forms/frmSelectClient.cs|Select Client
+Forms/frmTestQueries.cs|frmTestQueries
+Inventory/AboutBox1.cs|AboutBox1
+Inventory/frmClient.cs|Client
+Inventory/frmHBCStock.cs|HBC Stock
+Inventory/frmHBCStockChallan.cs|HBC Challan
+Inventory/frmInternalStock.cs|Internal Stock
+Inventory/frmItem.cs|Item
+Inventory/frmItemSearch.cs|Item Search
+Inventory/frmOrder.cs|Order
+Inventory/frmOrderReceive.cs|Order Receive
+Inventory/frmPRInvoice.cs|PR Invoice
+Inventory/frmPurchase.cs|Purchase
+Inventory/frmRectifyItems.cs|Rectify Items
+Inventory/frmSale.cs|Vendor Invoice
+Inventory/frmSaleReceive.cs|Sale Receive
+Inventory/frmServerItemMatching.cs|Server Item Matching
+Inventory/frmStockRectify.cs|Branch Stock Rectify
+Inventory/frmUpdateItem.cs|Update Item
+Inventory/frmVendor.cs|Vendor
+Inventory/frmVendorBranchReport.cs|Vendor Report
+Inventory/frmVendorPayments.cs|Vendor Payments
+Inventory/frmVendorReport.cs|Vendor Report
+Inventory/Reports/frmDailyReport.cs|Daily Sale Sheet
+Inventory/Reports/frmInvoices.cs|Invoice
+Inventory/Reports/frmItemDetailStock.cs|Item Detail Stock
+Inventory/Reports/frmItemStock.cs|Item Stock
+Inventory/Reports/frmOrderPaymentDetail.cs|Order Payment Detail
+Inventory/Reports/frmRptBanking.cs|Banking
+Inventory/Reports/frmRptBranchesDailyCash.cs|Branches Daily Cash
+Inventory/Reports/frmRptClientSale.cs|Client Sale Report
+Inventory/Reports/frmRptHBCChallan.cs|HBC Challan
+Inventory/Reports/frmRptLogs.cs|User Logs
+Inventory/Reports/frmRptNegative.cs|Item Negative Stock
+Inventory/Reports/frmRptPurchaseDetail.cs|Purchase Detail
+Inventory/Reports/frmRptStockAlert.cs|Item Stock Alert
+Inventory/Reports/frmRptTrend.cs|Purchase Detail
+Inventory/Reports/frmRptVendorPurchaseDetail.cs|Vendor Purchase Detail
+Inventory/Reports/frmRptVendorReport.cs|Vendor Report
+Inventory/Reports/frmSaleInvoice.cs|Invoice
+Manufacturing/frmFinishGoodStockOut.cs|Manufacturing Items
+Manufacturing/frmItems.cs|Manufacturing Items
+Manufacturing/frmManufacturing.cs|Manufacturing
+Manufacturing/frmSearchControl.cs|Search Control
+Manufacturing/frmStockIn.cs|Stock In
+Manufacturing/Reports/frmRptBranchRowGoods.cs|Branch Row Goods
+Manufacturing/Reports/frmRptFinishGoodStock.cs|Finish Good Report
+Manufacturing/Reports/frmRptItemsStock.cs|Item Stock
+Manufacturing/Reports/frmRptPrint.cs|Stock IN
+Master/frmBanks.cs|Add/Edit Banks
+Master/frmAdditionalAccount.cs|Additional Account List
+Master/frmAdditionalAccountTransaction.cs|Additional Banking
+Master/frmRptAdditionalAccountLedger.cs|Additional Account Ledger
+Master/frmBranchItems.cs|Items Stock Report
+Master/frmEmployee.cs|Employee
+Master/frmEmployeeDocument.cs|Employee Document
+Master/frmEmployeeSalary.cs|Employee Salary
+Master/frmEmployeeSalaryHistory.cs|Employee Salary History
+Master/frmExpenseList.cs|Expance List
+Master/frmExpenseOther.cs|Personal Payment/Receipt
+Master/frmExpensePayment.cs|Expense Payment
+Master/frmOffers.cs|Promotional Item
+Master/frmPartner.cs|Partner
+Master/frmPartnerProfit.cs|Partner Profit
+Master/frmPartnerProfitHistory.cs|Partner Profit
+Master/frmPicture.cs|Photo
+Master/frmProfitMargin.cs|Margins Of Branches
+Master/frmRptBankLedger.cs|Bank Ledger
+Master/frmRptBranchesPRReport.cs|PR Report
+Master/frmRptCashReport.cs|Personal Banking Report
+Master/frmRptEmployeeSalarySheet.cs|Salary Sheet
+Master/frmRptFinalReport.cs|Final Report
+Master/frmRptMonthlyFinalReport.cs|Monthly Final Report
+Master/frmRptOfferItems.cs|Offer Item Report
+Master/frmRptPartnerPay.cs|Partner Payment History
+Master/frmRptVendorBalance.cs|Vendor Balance
+Master/frmRptVendorDetailReport.cs|Vendor Detail Report
+Master/frmRptVendorLedger.cs|General Vendor Ledger
+Master/frmVendorG.cs|General Vendor
+Master/frmVendorGLiability.cs|Vendor Liability
+Master/frmVendorGPayments.cs|General Vendor Payments
+Stock/frmSearchControl.cs|Search Control
+Stock/frmSItems.cs|Stock Items
+Stock/frmSStockIn.cs|HBC Stock In
+Stock/frmSStockOut.cs|HBC Stock Out
+Stock/frmStockRectify.cs|Stock Rectify
+Stock/frmStockReverse.cs|Stock Reverse
+Stock/Reports/frmRptItemStock.cs|Item Stock
+Stock/Reports/frmRptStockInInvoice.cs|Stock In Invoice
+Stock/Reports/frmRptStockInOut.cs|Stock Ledger
+Stock/Reports/frmRptStockOutInvoice.cs|Stock Out Invoice
+Stock/Reports/frmRptStockReverse.cs|Stock Reverse to HBC`.split('\n').map(x=>{const [path,title]=x.split('|');return {path,title,module:path.split('/')[0]}});
+
+const formLinks=`Accounts/frmExpenseAccount.cs|dsExpense
+Accounts/frmExpenseVoucher.cs|dsExpenseVoucher
+Accounts/frmWithdraw.cs|dsWithdraw
+Accounts/Reports/frmRptDailyBanking.cs|dsDailyBanking; docDailyBanking
+Accounts/Reports/frmRptExpenseVoucher.cs|dsExpenseVoucher; docExpenseVoucher
+Control/frmUser.cs|dsUser
+Control/frmUserGroup.cs|dsUserGroup
+Forms/frmDashboard.cs|dsDailyExpense; dsDailyOrderReceive; dsDailySale; dsInternalStock; dsPRInvoice; docDailyReport
+Inventory/frmClient.cs|dsClient
+Inventory/frmHBCStockChallan.cs|dsHBCChallanItems; dsHBCChallanShow
+Inventory/frmInternalStock.cs|dsIntenalStock
+Inventory/frmItem.cs|dsItems
+Inventory/frmItemSearch.cs|dsItemSearch
+Inventory/frmOrder.cs|dsOrder; dsOrderSearch
+Inventory/frmOrderReceive.cs|dsOrderReceive
+Inventory/frmPRInvoice.cs|dsPRInvoice
+Inventory/frmPurchase.cs|dsPurchase; dsPurchaseSearch
+Inventory/frmRectifyItems.cs|dsRLocalItems; dsRServerItems
+Inventory/frmSale.cs|dsSale; dsSaleSearch
+Inventory/frmSaleReceive.cs|dsSaleReceive
+Inventory/frmServerItemMatching.cs|dsServerItemMatching
+Inventory/frmStockRectify.cs|dsSItems; dsStockRectify
+Inventory/frmVendor.cs|dsVendor
+Inventory/frmVendorBranchReport.cs|dsVendorBranchStock; docVendorBranchStockBalance
+Inventory/frmVendorPayments.cs|dsVendorPayment
+Inventory/Reports/frmDailyReport.cs|dsDailyExpense; dsDailyOrderReceive; dsDailySale; dsHBCChallanDetail; dsHBCReverse; dsInternalStock; dsManufacturingStock; dsPRInvoice; docDailyReport
+Inventory/Reports/frmInvoices.cs|dsInvoice; docInvoice
+Inventory/Reports/frmItemDetailStock.cs|dsItemDetialStock; docItemDetailStock; docV10Report
+Inventory/Reports/frmItemStock.cs|dsItemStock; docItemReport
+Inventory/Reports/frmOrderPaymentDetail.cs|dsOrderReceiveDetail; docOrderPaymentDetail
+Inventory/Reports/frmRptBanking.cs|dsCashBanking; docCashBankingPayment
+Inventory/Reports/frmRptBranchesDailyCash.cs|dsBranchesDailyCash
+Inventory/Reports/frmRptClientSale.cs|dsClientSale; docClientSale
+Inventory/Reports/frmRptHBCChallan.cs|dsHBCChallan; docHBCChallan
+Inventory/Reports/frmRptLogs.cs|dsUserLogs; docTrend
+Inventory/Reports/frmRptNegative.cs|dsItemNegativeStock; docTrend
+Inventory/Reports/frmRptPurchaseDetail.cs|dsDetailPurchase; docDetailPurchase
+Inventory/Reports/frmRptStockAlert.cs|dsItemStockAlert; docItemStockAlert
+Inventory/Reports/frmRptTrend.cs|dsItemTrend; docTrend
+Inventory/Reports/frmRptVendorReport.cs|dsVendorReport; docVendorReport
+Inventory/Reports/frmSaleInvoice.cs|dsSaleInvoice; docSaleInvoice; docSaleDelivered
+Manufacturing/frmFinishGoodStockOut.cs|dsMStockOut
+Manufacturing/frmItems.cs|dsMItems
+Manufacturing/frmManufacturing.cs|dsFinishGoodsItems; dsMFinishGoodsShow
+Manufacturing/frmSearchControl.cs|dsItemSearch
+Manufacturing/frmStockIn.cs|dsStockIN; dsStockInItems
+Manufacturing/Reports/frmRptBranchRowGoods.cs|dsMItemsStock; dsRowBranchGoods; docMItemsStock; docRowBranchGoods
+Manufacturing/Reports/frmRptFinishGoodStock.cs|dsMFinishGoods; dsMFinishGoodsOut; docMFinsihGoods; docMFinishGoodOut
+Manufacturing/Reports/frmRptItemsStock.cs|dsMItemsStock; docMItemsStock
+Manufacturing/Reports/frmRptPrint.cs|dsMStockInDetail; docMStockInDetail
+Master/frmBanks.cs|dsBanks
+Master/frmAdditionalAccount.cs|dsAdditionalAccount
+Master/frmAdditionalAccountTransaction.cs|dsAdditionalAccountTransaction
+Master/frmRptAdditionalAccountLedger.cs|dsAdditionalAccountLedger
+Master/frmEmployee.cs|dsEmployee
+Master/frmEmployeeDocument.cs|dsEmployeeDocuments
+Master/frmEmployeeSalary.cs|dsEmployeeSalaryDetail
+Master/frmEmployeeSalaryHistory.cs|dsEmployeeSalaryHistory
+Master/frmExpenseList.cs|dsExpenseList
+Master/frmExpenseOther.cs|dsExpenseOther
+Master/frmExpensePayment.cs|dsExpensePayment
+Master/frmOffers.cs|dsOfferItem
+Master/frmPartner.cs|dsPartner
+Master/frmPartnerProfit.cs|dsPartnerProfitDetail
+Master/frmPartnerProfitHistory.cs|dsPartnerProfitHistory
+Master/frmProfitMargin.cs|dsProfitMargin
+Master/frmRptBankLedger.cs|dsBankLedger
+Master/frmRptBranchesPRReport.cs|dsPRReport; docRRReport
+Master/frmRptCashReport.cs|dsCashReport; docCashBankingPayment
+Master/frmRptEmployeeSalarySheet.cs|dsEmployeeSalarySheet; docEmployeeSalarySheet
+Master/frmRptFinalReport.cs|dsFinalReport; dsVendorDetialReport; docFinalReport; docVendorDetail
+Master/frmRptMonthlyFinalReport.cs|dsMonthlyFinalReportBranches; dsMonthlyParterDetail; docMonthlyFinalReport
+Master/frmRptOfferItems.cs|dsOfferItemReport; docOfferItemList
+Master/frmRptPartnerPay.cs|dsPartnerHistory; docPartnerHistory
+Master/frmRptVendorBalance.cs|dsVendorBalance; docVendorBalance
+Master/frmRptVendorDetailReport.cs|dsVendorDetialReport; docVendorDetail; docCashBankingPayment
+Master/frmRptVendorLedger.cs|dsVendorLedger; docVendorLedger
+Master/frmVendorG.cs|dsVendorG
+Master/frmVendorGLiability.cs|dsVendorLiability; dsVendorPayment
+Master/frmVendorGPayments.cs|dsVendorGPayment; dsVendorPayment
+Stock/frmSearchControl.cs|dsItemSearch
+Stock/frmSItems.cs|dsSItems
+Stock/frmSStockIn.cs|dsSStockItems; dsSStockShow
+Stock/frmSStockOut.cs|dsSStockOut; dsSStockOutItems
+Stock/frmStockRectify.cs|dsSItems; dsStockRectify
+Stock/frmStockReverse.cs|dsStockReverse
+Stock/Reports/frmRptItemStock.cs|dsSStock; docSStock
+Stock/Reports/frmRptStockInInvoice.cs|dsStockInInvoice; docStockInInvoice
+Stock/Reports/frmRptStockInOut.cs|dsStockLedger; docStockLedger
+Stock/Reports/frmRptStockOutInvoice.cs|dsStockOutInvoice; docStockOutInvoice
+Stock/Reports/frmRptStockReverse.cs|dsStockReveseReport; docStockReverse`.split('\n').reduce((a,x)=>{const i=x.indexOf('|');a[x.slice(0,i)]=x.slice(i+1);return a},{});
+
+const reports=`docFirstReceipt.rpt|No direct launcher found|—|—
+rptLandscapeHeader.rpt|Shared landscape header artifact|—|—
+rptPortraitHeader.rpt|Shared portrait header artifact|—|—
+Accounts/Reports/docDailyBanking.rpt|frmRptDailyBanking|dsDailyBanking|—
+Accounts/Reports/docExpenseVoucher.rpt|frmRptExpenseVoucher|dsExpenseVoucher|—
+Inventory/docVendorBranchStockBalance.rpt|frmVendorBranchReport|dsVendorBranchStock|—
+Inventory/Reports/docCashBanking.rpt|No direct launcher found|dsCashBanking|—
+Inventory/Reports/docCashBankingPayment.rpt|frmRptBanking; frmRptCashReport; frmRptVendorDetailReport|dsCashBanking / dsCashReport|—
+Inventory/Reports/docClientSale.rpt|frmRptClientSale|dsClientSale|—
+Inventory/Reports/docDailyReport.rpt|frmDailyReport; frmDashboard|multiple daily datasets|BankWithdraw; CompanyCode; dailyDate; MyCompany; MyCompanyName; PreviousBalance; TotalExpense; TotalPR; TotalReceive
+Inventory/Reports/docDetailPurchase.rpt|frmRptPurchaseDetail|dsDetailPurchase|MyCompanyName
+Inventory/Reports/docHBCChallan.rpt|frmRptHBCChallan|dsHBCChallan|BranchName
+Inventory/Reports/docInvoice.rpt|frmInvoices|dsInvoice|Balance; TotalReceive
+Inventory/Reports/docItemDetailStock.rpt|frmItemDetailStock|dsItemDetialStock|—
+Inventory/Reports/docItemReport.rpt|frmItemStock|dsItemStock|—
+Inventory/Reports/docItemStockAlert.rpt|frmRptStockAlert|dsItemStockAlert|—
+Inventory/Reports/docOrderPaymentDetail.rpt|frmOrderPaymentDetail|dsOrderReceiveDetail|—
+Inventory/Reports/docSaleDelivered.rpt|frmSaleInvoice|dsSaleInvoice|TotalReceive
+Inventory/Reports/docSaleInvoice-bak2102.14.rpt|Historical backup report|dsSaleInvoice|—
+Inventory/Reports/docSaleInvoice.rpt|frmSaleInvoice|dsSaleInvoice|TotalReceive
+Inventory/Reports/docTrend.rpt|frmRptTrend; frmRptNegative; frmRptLogs|dsItemTrend / dsItemNegativeStock / dsUserLogs|—
+Inventory/Reports/docV10Report.rpt|frmItemDetailStock alternate layout|dsItemDetialStock|—
+Inventory/Reports/docVendorReport.rpt|frmRptVendorReport|dsVendorReport|—
+Manufacturing/Reports/docMFinishGoodOut.rpt|frmRptFinishGoodStock|dsMFinishGoodsOut|—
+Manufacturing/Reports/docMFinsihGoods.rpt|frmRptFinishGoodStock|dsMFinishGoods|—
+Manufacturing/Reports/docMItemsStock.rpt|frmRptItemsStock; frmRptBranchRowGoods|dsMItemsStock|—
+Manufacturing/Reports/docMStockInDetail.rpt|frmRptPrint|dsMStockInDetail|—
+Manufacturing/Reports/docRowBranchGoods.rpt|frmRptBranchRowGoods|dsRowBranchGoods|—
+Master/docEmployeeSalarySheet.rpt|frmRptEmployeeSalarySheet|dsEmployeeSalarySheet|BranchName
+Master/docFinalReport.rpt|frmRptFinalReport|dsFinalReport|FinishGoodGT; HBCGT; RowGT
+Master/docMonthlyFinalReport.rpt|frmRptMonthlyFinalReport|dsMonthlyFinalReportBranches / dsMonthlyParterDetail|AmountOne; AmountTwo; AmountThree; AmountFour; Date; TotalPartner; TotalSalary
+Master/docOfferItemList.rpt|frmRptOfferItems|dsOfferItemReport|—
+Master/docPartnerHistory.rpt|frmRptPartnerPay|dsPartnerHistory|—
+Master/docRRReport.rpt|frmRptBranchesPRReport|dsPRReport / dsPRReport2|—
+Master/docVendorBalance.rpt|frmRptVendorBalance|dsVendorBalance|—
+Master/docVendorDetail.rpt|frmRptVendorDetailReport; frmRptFinalReport|dsVendorDetialReport|—
+Master/docVendorLedger.rpt|frmRptVendorLedger|dsVendorLedger|—
+Stock/Reports/docSStock.rpt|frmRptItemStock|dsSStock|—
+Stock/Reports/docStockInInvoice.rpt|frmRptStockInInvoice|dsStockInInvoice|—
+Stock/Reports/docStockLedger.rpt|frmRptStockInOut|dsStockLedger|—
+Stock/Reports/docStockOutInvoice.rpt|frmRptStockOutInvoice|dsStockOutInvoice|—
+Stock/Reports/docStockReverse.rpt|frmRptStockReverse|dsStockReveseReport|—`.split('\n').map(x=>{const [path,launcher,datasets,params]=x.split('|');return{path,launcher,datasets,params,module:path.includes('/')?path.split('/')[0]:'Root'}});
+
+const datasets=`Accounts/dsExpense.xsd|Expense(Id, Expense)
+Accounts/dsExpenseVoucher.xsd|vExpense(Id, Expense_Id, Expense, Date, Description, Amount)
+Accounts/dsWithdraw.xsd|OwnerAccount(Id, PayBy, ReceiveBy, PaymentType, BankName, AccountNo, Date, Detail, Amount)
+Accounts/Reports/dsDailyBanking.xsd|OwnerAccount(Id, PayBy, ReceiveBy, PaymentType, BankName, AccountNo, Date, Detail, Amount)
+Accounts/Reports/dsExpenseVoucher.xsd|vExpense(Id, Expense_Id, Expense, Date, Description, Amount)
+Classes/dsCompanyName.xsd|tbl_CompanySettings(CompanyName, PhoneNo, Address, Email, CompanyId, CompanyLogo)
+Control/dsUser.xsd|vUser(UserId, UserLoginId, UserName, UserPassword, Active, DefaultEntry, Group_Id, GroupName)
+Control/dsUserGroup.xsd|UserGroups(Id, GroupName, DefaultEntry)
+Inventory/dsClient.xsd|Clients(ClientId, Name, PhoneNo, Email)
+Inventory/dsHBCChallanItems.xsd|HBCChallanDetail(Challan_Id, ItemId, Qty, ModelNo, Server_Id, Price, Total)
+Inventory/dsHBCChallanShow.xsd|HBCChallan(Id, Date, Description, Verified)
+Inventory/dsIntenalStock.xsd|vInternalStock(Id, CompanyName, Title, Code, StockDate, Qty, Type, Stock, ItemId, Verified, BranchType, Branch_Id, Server_Id)
+Inventory/dsItems.xsd|Items(ItemId, Title, Decription, Code, PurchasePrice, SalePrice, Vendro, Hide)
+Inventory/dsItemSearch.xsd|Items(ItemId, Title, Decription, Code, PurchasePrice, SalePrice)
+Inventory/dsOrder.xsd|OrdersDetail(Id, Order_Id, ItemId, Description, Qty, UnitPrice, TotalPrice, Cost, ItemReturn, Delivered, ItemCode, DQty)
+Inventory/dsOrderReceive.xsd|OrderReceive(Id, Order_Id, OrderDate, Description, Amount, OType)
+Inventory/dsOrderSearch.xsd|vOrder(Id, OrderNo, OrderDate, ClientId, Name, PhoneNo, Email, Description, ExtraDetail, ExtraAmount, FinalTotal, Delivered, Receive, Balance)
+Inventory/dsPRInvoice.xsd|PRInvoice(Id, InvoviceNo, Detail, Cost, ExtraDetail, Extra, Price, TotalPrice, InvoiceDate)
+Inventory/dsPurchase.xsd|PurchaseDetail(Id, Purchase_Id, ItemId, Description, Qty, UnitPrice, TotalPrice, ItemReturn, ItemCode)
+Inventory/dsPurchaseSearch.xsd|vPurchase(Id, PurchaseNo, PurchaseDate, VendorId, Name, PhoneNo, Email, Description, ExtraDetail, ExtraAmount, FinalTotal)
+Inventory/dsRLocalItems.xsd|Items(ItemId, Title, Decription, Code, PurchasePrice, SalePrice, VendorId, OStock, Server_Id, Old_Id, TryToChange)
+Inventory/dsRServerItems.xsd|ItemList(Id, Name, Code, PurchasePrice, Branch_Id, OPStock, Hide)
+Inventory/dsSale.xsd|SaleDetail(Id, Sale_Id, ItemId, Description, Qty, UnitPrice, TotalPrice, Cost)
+Inventory/dsSaleReceive.xsd|SaleReceive(Id, Sale_Id, SaleDate, Description, Amount)
+Inventory/dsSaleSearch.xsd|vSale(Id, SaleNo, SaleDate, ClientId, Name, PhoneNo, Email, Description, ExtraDetail, ExtraAmount, FinalTotal)
+Inventory/dsServerItemMatching.xsd|vServerItems(ItemId, Title, Decription, Code, PurchasePrice, SalePrice, VendorId, OStock, Server_Id, ServerName, ServerCode, ServerPurchasePrice)
+Inventory/dsStockRectify.xsd|vSStockRectify(Id, ItemId, Name, Code, PurchasePrice, Qty, QtyType, Description, Date)
+Inventory/dsVendor.xsd|Vendors(VendorId, Name, PhoneNo, Email)
+Inventory/dsVendorBranchStock.xsd|vItems(ItemId, Title, Decription, Code, PurchasePrice, SalePrice, Stock)
+Inventory/dsVendorPayment.xsd|VendorPayment(Id, Vendor_Id, PaymentDate, Amount, Description, AccountNo, BankName)
+Inventory/Reports/dsBranchesDailyCash.xsd|spRptBranceDailyCash(BranchName, TodayCash)
+Inventory/Reports/dsCashBanking.xsd|vCashBanking(Id, BranchName, PayBy, ReceiveBy, PaymentType, BankName, AccountNo, Date, Detail, Amount, Payment, Balance)
+Inventory/Reports/dsClientSale.xsd|vClientSale(ClientId, Name, PhoneNo, Email, Address, DefaultEntry, Id, OrderNo, OrderDate, Description, ExtraDetail, ExtraAmount, FinalTotal, Delivered, DeliveredDate, Sale_Id, Amount, OType, PaymentDate, PaymentDetail)
+Inventory/Reports/dsDailyExpense.xsd|vExpense(Id, Expense_Id, Expense, Date, Description, Amount)
+Inventory/Reports/dsDailyOrderReceive.xsd|vOrderReceive(Id, InvoiceNo, Date, ClientId, Name, PhoneNo, Email, Description, ExtraDetail, ExtraAmount, FinalTotal, Receive, Balance, ReceiveDate, Amount, OType, SalePerson, ReceiveToDate, BalanceToDate)
+Inventory/Reports/dsDailySale.xsd|vSale(Id, SaleNo, SaleDate, ClientId, Name, PhoneNo, Email, Description, ExtraDetail, ExtraAmount, FinalTotal, Receive, Balance, SalePrice, Cost); vOrder(Id, SaleNo, SaleDate, ClientId, Name, PhoneNo, Email, Description, ExtraDetail, ExtraAmount, FinalTotal, Receive, Balance, SalePrice, Cost, SalePerson)
+Inventory/Reports/dsDetailPurchase.xsd|vPurchaseDetail(Id, PurchaseNo, PurchaseDate, VendorId, Name, PhoneNo, Email, Description, ExtraDetail, ExtraAmount, FinalTotal, ItemId, ItemDescription, Qty, UnitPrice, TotalPrice, Title, Code)
+Inventory/Reports/dsHBCChallan.xsd|vHBCChallan(Id, Date, Description, Verified, ItemId, Qty, Title, Decription, Code, HBCId)
+Inventory/Reports/dsHBCChallanDetail.xsd|vHBCChallanDetail(Challan_Id, ItemId, ModelNo, Title, Qty, Price, Total, Server_Id, Date)
+Inventory/Reports/dsHBCReverse.xsd|vHBCReverse(Id, ItemId, Title, Code, Qty, Date)
+Inventory/Reports/dsInternalStock.xsd|vInternalStock(Id, CompanyName, Title, Code, StockDate, Qty, Type, Stock, ItemId)
+Inventory/Reports/dsInvoice.xsd|Invoice(Id, No, Date, Person, ItemName, Qty, Price, TotalPrice, ExtraDetail, ExtraAmount, Payment, Notes, ItemReturn)
+Inventory/Reports/dsItemDetialStock.xsd|vItemStock(Id, ItemId, Title, Decription, Code, PurchasePrice, SalePrice, InvoiceId, InvoiceType, Qty, Cost, StockDate, InvoiceNo, CompanyName)
+Inventory/Reports/dsItemNegativeStock.xsd|vItemStockForExcel(ItemId, Title, Code, PurchasePrice, Stock)
+Inventory/Reports/dsItemStock.xsd|vItems(ItemId, Title, Decription, Code, PurchasePrice, SalePrice, Stock)
+Inventory/Reports/dsItemStockAlert.xsd|vItems(ItemId, Title, Decription, Code, PurchasePrice, SalePrice, Stock, StockAlert, Hide)
+Inventory/Reports/dsItemTrend.xsd|spRptTrandingItem(ItemId, Title, Code, StockIn, StockOut)
+Inventory/Reports/dsManufacturingStock.xsd|vMenufacturingStock(ItemId, Code, Title, Qty, Cost, StockDate, InvoiceType)
+Inventory/Reports/dsOrderReceiveDetail.xsd|OrderReceive(Id, Order_Id, OrderDate, Description, Amount, OType, OrderNo)
+Inventory/Reports/dsPRInvoice.xsd|PRInvoice(Id, InvoviceNo, Detail, Cost, ExtraDetail, Extra, Price, TotalPrice, InvoiceDate)
+Inventory/Reports/dsSaleInvoice.xsd|vOrderDetail(Id, OrderNo, OrderDate, ClientId, Sale_Id, Name, PhoneNo, Email, Address, Description, ExtraDetail, ExtraAmount, FinalTotal, Delivered, DeliveredDate, ItemId, Title, Code, Qty, UnitPrice, TotalPrice, Cost, ItemReturn, ItemDelivered, SalePerson, Discount, DQty)
+Inventory/Reports/dsUserLogs.xsd|vUserLogs(Id, UserId, UserName, Name, FormName, Detail, Created_at)
+Inventory/Reports/dsVendorReport.xsd|vVendorReport(Vendor_Id, Name, PhoneNo, Email, TranDate, TranType, Branch_Id, Purchase, Payment, TranNo, BranchName, balance)
+Manufacturing/dsFinishGoodsItems.xsd|MFinishGoodsDetail(Id, FinishGoods_Id, Item_Id, Qty, Price, Total, ModelNo)
+Manufacturing/dsItemSearch.xsd|ItemList(Id, Name, Code, PurchasePrice, OverHead)
+Manufacturing/dsMFinishGoodsShow.xsd|MFinishGoods(Id, Detail, Qty, Price, Date, Branch_Id, ModelNo)
+Manufacturing/dsMItems.xsd|MItems(Id, Name, Code, PurchasePrice)
+Manufacturing/dsMStockOut.xsd|vMFinishGoodsStockOut(Id, ItemId, Detail, ModelNo, Branch_Id, BranchName, Qty, Price, Date, Description)
+Manufacturing/dsStockIN.xsd|vMStockIn(Id, StockDate, Description, VendorId, Name, PhoneNo, Email, Branch_Id, BranchName)
+Manufacturing/dsStockInItems.xsd|MStockInDetail(Id, StockIn_Id, Item_Id, Qty, Price, ModelNo, Total, OverHead)
+Manufacturing/Reports/dsMFinishGoods.xsd|vMFinishGoods(Id, Detail, Qty, Price, Date, Branch_Id, ModelNo, Stock)
+Manufacturing/Reports/dsMFinishGoodsOut.xsd|vMFinishGoodsStockOut(Id, ItemId, Detail, ModelNo, Branch_Id, BranchName, Qty, Price, Date, Description)
+Manufacturing/Reports/dsMItemsStock.xsd|vMItems(Id, Name, Code, PurchasePrice, Stock)
+Manufacturing/Reports/dsMStockInDetail.xsd|vMStockInDetail(Id, StockDate, StockIn_Id, Name, PhoneNo, Email, Item_Id, Title, ModelNo, Qty, Price, Total, VendorId)
+Manufacturing/Reports/dsRowBranchGoods.xsd|spRptRowBranchGoods(Item_Id, ModelNo, Title, Qty, Branch_Id, Stock, BranchName)
+Master/dsBankLedger.xsd|spReportBankLedger(SrNo, TranDate, SourceType, BranchName, DatabaseName, ReferenceId, Name, Detail, AccountNo, ReceiveAmount, PaymentAmount, Balance)
+Master/dsAdditionalAccount.xsd|AdditionalAccount(Id, AccountName, Notes)
+Master/dsAdditionalAccountTransaction.xsd|AdditionalAccountTransaction(Id, AdditionalAccountId, AccountName, BankId, BankTitle, AccountNo, TransactionDate, Description, Amount, IsPayment)
+Master/dsAdditionalAccountLedger.xsd|AdditionalAccountLedger(SrNo, TranDate, SourceType, ReferenceId, AccountName, BankId, BankTitle, AccountNo, Detail, ReceiveAmount, PaymentAmount, Balance)
+Master/dsBanks.xsd|Banks(Id, BankTitle, Address, AccountNo, CreatedDate)
+Master/dsCashReport.xsd|vCashReport(Id, BranchName, PayBy, ReceiveBy, PaymentType, BankName, AccountNo, Date, Detail, Amount, Payment, Balance, Bank)
+Master/dsEmployee.xsd|vEmployee(Id, Name, Branch_Id, BranchName, PhoneNo, Salary, Status, Photo, CNIC, CNICDetail)
+Master/dsEmployeeDocuments.xsd|EmployeeDocument(DocumentId, EmployeeId, DocumentName, DocumentImage, DocumentType)
+Master/dsEmployeeSalaryDetail.xsd|EmployeeSalaryDetail(Id, Employee_Id, Salary, Percentage, PercentAmount, GrowsAmount, AbsentDays, AbsentAmount, FinalAmount, Branch_Id, EmployeeSalary_Id, Bonus)
+Master/dsEmployeeSalaryHistory.xsd|EmployeeSalary(Id, SalaryMonth, MajorAmount, Expense, Remaining, GroupType, Description, TotalPay)
+Master/dsEmployeeSalarySheet.xsd|vEmployeeSalary(Id, SalaryMonth, MajorAmount, Expense, Remaining, GroupType, GroupName, Description, TotalPay, Employee_Id, Name, PhoneNo, Photo, Salary, Percentage, PercentAmount, GrowsAmount, AbsentDays, AbsentAmount, FinalAmount, Bonus)
+Master/dsExpenseList.xsd|ExpenseList(Id, PayTo)
+Master/dsExpenseOther.xsd|ExpenseOther(Id, PaymentDate, PayTo, Description, Amount, Payment)
+Master/dsExpensePayment.xsd|ExpensePayments(Id, Invoice_Id, PaymentType, PayDate, Description, Amount, Bank, AccountNo)
+Master/dsFinalReport.xsd|vFinalReport(Id, BranchName, GT, VendorBalance, BankBalance, AdvancesBalance, Detail, VendorPayments, VendorGPayments, VendorGBalance, ManafacturingVendorBalance, ExpensePayment)
+Master/dsMonthlyFinalReportBranches.xsd|BranchesGroup(Id, GroupName, Salaries)
+Master/dsMonthlyParterDetail.xsd|vPartnerProfitDetail(Id, ProfitDate, Amount, TotalPay, Description, Remaining, Partner_Id, Name, PhoneNo, Percentage, PercentAmount)
+Master/dsOfferItem.xsd|vOfferItems(Id, ItemId, Name, Code, PurchasePrice, Branch_Id, OPStock, Hide, OverHead, Price, ExtraAmount, Photo, created_at, update_at, Stock)
+Master/dsOfferItemReport.xsd|vOfferItems(Id, ItemId, Name, Code, PurchasePrice, Branch_Id, OPStock, Hide, OverHead, Price, ExtraAmount, Photo, created_at, update_at, Stock)
+Master/dsPartner.xsd|Partner(Id, Name, PhoneNo, Rank, Status, Photo)
+Master/dsPartnerHistory.xsd|vPartnerProfitDetail(Id, ProfitDate, Amount, TotalPay, Description, Remaining, Partner_Id, Name, PhoneNo, Percentage, PercentAmount)
+Master/dsPartnerProfitDetail.xsd|PartnerProfitDetail(Id, PartnerProfit_Id, Partner_Id, Percentage, PercentAmount)
+Master/dsPartnerProfitHistory.xsd|PartnerProfit(Id, ProfitDate, Amount, TotalPay, Description, Remaining)
+Master/dsProfitMargin.xsd|ProfitSharing(Id, AmountOne, AmountTwo, Date, AmountThree, AmountFour)
+Master/dsPRReport.xsd|vPRReport(Id, BranchName, Date, Detail, Amount, FinalAmount)
+Master/dsPRReport2.xsd|vPRReport(Id, BranchName, Date, Detail, Amount, FinalAmount)
+Master/dsVendorBalance.xsd|spVendorBalance(VendorId, Name, Balance, Payment, FinalBalance)
+Master/dsVendorDetialReport.xsd|vVendorDetail(BranchName, PurchaseNo, PurchaseDate, Name, PhoneNo, Description, ExtraDetail, ExtraAmount, FinalTotal, Code, Title, Qty, UnitPrice, Balance, Id, Payment, ForGroup, TrId, OverHead)
+Master/dsVendorG.xsd|VendorG(Id, Name, PhoneNo, Email)
+Master/dsVendorGPayment.xsd|VendorGPayment(Id, Vendor_Id, PaymentDate, Amount, AccountNo, BankName, Description)
+Master/dsVendorLedger.xsd|vVendorGLedger(Id, Vendor_Id, PaymentDate, Description, Credit, Debit, Balance, Name)
+Master/dsVendorLiability.xsd|VendorGLiability(Id, Vendor_Id, PaymentDate, Amount, Description)
+Stock/dsItemSearch.xsd|ItemList(Id, Name, Code, PurchasePrice)
+Stock/dsSItems.xsd|ItemList(Id, Name, Code, PurchasePrice, Branch_Id, Hide)
+Stock/dsSStockItems.xsd|SStockInDetail(Id, StockIn_Id, Item_Id, Qty, Price, ModelNo, Total)
+Stock/dsSStockOut.xsd|vSStockOut(Id, StockDate, BranchName, Description, Branch_Id, HBCChallan_Id)
+Stock/dsSStockOutItems.xsd|SStockOutDetail(Id, StockOut_Id, Item_Id, Qty, Price, ModelNo, Total)
+Stock/dsSStockShow.xsd|vSStockIn(Id, StockDate, Description, VendorId, Name, PhoneNo, Email, Total)
+Stock/dsStockRectify.xsd|vSStockRectify(Id, ItemId, Name, Code, PurchasePrice, Qty, QtyType, Description, Date)
+Stock/dsStockReverse.xsd|vHBCReverse(Id, ItemId, Title, Code, Qty, Date)
+Stock/Reports/dsSStock.xsd|vSStock(Id, Name, Code, PurchasePrice, Stock)
+Stock/Reports/dsStockInInvoice.xsd|vSStockInDetail(Id, StockDate, Description, InvoiceTotal, Item_Id, Name, Qty, Price, Total, Code)
+Stock/Reports/dsStockLedger.xsd|vStockLedger(ItemId, Name, ModelNo, Invoice_Id, StockDate, Qty, Price, StockType, ReferenceNo, InQty, OutQty, Remaning)
+Stock/Reports/dsStockOutInvoice.xsd|vSStockOutDetail(Id, StockDate, Branch_Id, BranchName, Description, InvoiceTotal, Item_Id, Name, Code, Qty, Price, Total)
+Stock/Reports/dsStockReveseReport.xsd|vHBCReverse(Id, ItemId, Title, Code, Qty, Date)`.split('\n').map(x=>{const i=x.indexOf('|'),path=x.slice(0,i);return{path,schema:x.slice(i+1),module:path.split('/')[0]}});
+
+const entities=`AISYS:AISY|Items:Item|Clients:Client|Vendors:Vendor|Orders:Order|OrdersDetails:OrdersDetail|sysdiagrams:sysdiagram|vOrders:vOrder|Purchases:Purchase|PurchaseDetails:PurchaseDetail|Sales:Sale|SaleDetails:SaleDetail|vPurchases:vPurchase|vSales:vSale|Expenses:Expense|ExpenseVouchers:ExpenseVoucher|vExpenses:vExpense|SaleReceives:SaleReceive|ItemStocks:ItemStock|OrderReceives:OrderReceive|vItems:vItem|OwnerAccounts:OwnerAccount|vOrderDetails:vOrderDetail|vOrderReceives:vOrderReceive|vPurchaseDetails:vPurchaseDetail|vSaleDetails:vSaleDetail|vItemStocks:vItemStock|UserGroups:UserGroup|vUserGroupRights:vUserGroupRight|UserForms:UserForm|UserGroupRights:UserGroupRight|vClientSales:vClientSale|vUsers:vUser|InternalStocks:InternalStock|vInternalStocks:vInternalStock|PRInvoices:PRInvoice`.split('|');
+const procs=`spCreateInternalStock|spCreateOrder|spCreateOrder__bak_2003_22|spCreatePurchase|spCreateSale|spDeleteInternalStock|spDeleteOrder|spDeletePurchase|spDeleteSale|spUpdateInternalStock|spUpdateOrder|spUpdateOrder__bak_2003_22|spUpdatePurchase|spUpdateSale`.split('|');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function modules(select,items){[...new Set(items.map(x=>x.module))].sort().forEach(m=>select.insertAdjacentHTML('beforeend',`<option>${esc(m)}</option>`))}
+function pills(s){return s.split(/;\s*/).filter(Boolean).map(x=>`<span class="pill ${/^doc|^rpt/.test(x)?'report':''}">${esc(x)}</span>`).join('')}
+modules(formModule,forms);modules(reportModule,reports);modules(datasetModule,datasets);
+function renderForms(){const q=formSearch.value.toLowerCase(),m=formModule.value;const rows=forms.filter(x=>(!m||x.module===m)&&(`${x.path} ${x.title} ${formLinks[x.path]||''}`.toLowerCase().includes(q)));formRows.innerHTML=rows.map(x=>`<tr><td>${esc(x.path)}</td><td>${esc(x.title)}</td><td>${esc(x.module)}</td><td>${formLinks[x.path]?pills(formLinks[x.path]):'<span class="muted">—</span>'}</td></tr>`).join('');formCount.textContent=`${rows.length} of ${forms.length}`}
+function renderReports(){const q=reportSearch.value.toLowerCase(),m=reportModule.value;const rows=reports.filter(x=>(!m||x.module===m)&&(Object.values(x).join(' ').toLowerCase().includes(q)));reportRows.innerHTML=rows.map(x=>`<tr><td>${esc(x.path)}</td><td>${esc(x.launcher)}</td><td>${esc(x.datasets)}</td><td>${esc(x.params)}</td></tr>`).join('');reportCount.textContent=`${rows.length} of ${reports.length}`}
+function renderDatasets(){const q=datasetSearch.value.toLowerCase(),m=datasetModule.value;const rows=datasets.filter(x=>(!m||x.module===m)&&(`${x.path} ${x.schema}`.toLowerCase().includes(q)));datasetRows.innerHTML=rows.map(x=>{const i=x.schema.indexOf('('),table=i<0?x.schema:x.schema.slice(0,i),cols=i<0?'':x.schema.slice(i+1,-1);return`<details ${q?'open':''}><summary><code>${esc(x.path)}</code> <span class="pill">${esc(table)}</span></summary><div class="cols">${esc(cols)}</div></details>`}).join('');datasetCount.textContent=`${rows.length} of ${datasets.length}`}
+[formSearch,formModule].forEach(x=>x.addEventListener('input',renderForms));[reportSearch,reportModule].forEach(x=>x.addEventListener('input',renderReports));[datasetSearch,datasetModule].forEach(x=>x.addEventListener('input',renderDatasets));
+entityPills.innerHTML=entities.map(x=>`<span class="pill">${esc(x)}</span>`).join(' ');procPills.innerHTML=procs.map(x=>`<span class="pill report">${esc(x)}</span>`).join(' ');renderForms();renderReports();renderDatasets();
+</script>
+</body>
+</html>
