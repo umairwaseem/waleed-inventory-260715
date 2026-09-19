@@ -24,22 +24,13 @@ namespace Ncsln.Master
 
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmRptBalanceDetailSummary));
             this.dtpFromDate = new System.Windows.Forms.DateTimePicker();
             this.dtpToDate = new System.Windows.Forms.DateTimePicker();
             this.btnShow = new System.Windows.Forms.Button();
             this.btnShowAll = new System.Windows.Forms.Button();
             this.lblFilter = new System.Windows.Forms.Label();
             this.dgv = new System.Windows.Forms.DataGridView();
-            this.colRowType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDisplayOrder = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTranDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAmount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBalance = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBalanceDetailId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAction = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dsBalanceDetailSummary1 = new Ncsln.Master.dsBalanceDetailSummary();
             this.lblFrom = new System.Windows.Forms.Label();
             this.lblTo = new System.Windows.Forms.Label();
@@ -55,34 +46,38 @@ namespace Ncsln.Master
             // 
             this.dtpFromDate.CustomFormat = "dd/MMM/yyyy";
             this.dtpFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFromDate.Location = new System.Drawing.Point(78, 25);
+            this.dtpFromDate.Location = new System.Drawing.Point(100, 31);
+            this.dtpFromDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpFromDate.Name = "dtpFromDate";
-            this.dtpFromDate.Size = new System.Drawing.Size(130, 25);
+            this.dtpFromDate.Size = new System.Drawing.Size(166, 29);
             this.dtpFromDate.TabIndex = 1;
             // 
             // dtpToDate
             // 
             this.dtpToDate.CustomFormat = "dd/MMM/yyyy";
             this.dtpToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpToDate.Location = new System.Drawing.Point(263, 25);
+            this.dtpToDate.Location = new System.Drawing.Point(338, 31);
+            this.dtpToDate.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dtpToDate.Name = "dtpToDate";
-            this.dtpToDate.Size = new System.Drawing.Size(130, 25);
+            this.dtpToDate.Size = new System.Drawing.Size(166, 29);
             this.dtpToDate.TabIndex = 3;
             // 
             // btnShow
             // 
-            this.btnShow.Location = new System.Drawing.Point(418, 21);
+            this.btnShow.Location = new System.Drawing.Point(537, 26);
+            this.btnShow.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnShow.Name = "btnShow";
-            this.btnShow.Size = new System.Drawing.Size(90, 32);
+            this.btnShow.Size = new System.Drawing.Size(116, 40);
             this.btnShow.TabIndex = 4;
             this.btnShow.Text = "Show";
             this.btnShow.Click += new System.EventHandler(this.btnShow_Click);
             // 
             // btnShowAll
             // 
-            this.btnShowAll.Location = new System.Drawing.Point(518, 21);
+            this.btnShowAll.Location = new System.Drawing.Point(666, 26);
+            this.btnShowAll.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnShowAll.Name = "btnShowAll";
-            this.btnShowAll.Size = new System.Drawing.Size(95, 32);
+            this.btnShowAll.Size = new System.Drawing.Size(122, 40);
             this.btnShowAll.TabIndex = 5;
             this.btnShowAll.Text = "Show All";
             this.btnShowAll.Click += new System.EventHandler(this.btnShowAll_Click);
@@ -90,9 +85,10 @@ namespace Ncsln.Master
             // lblFilter
             // 
             this.lblFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblFilter.Location = new System.Drawing.Point(665, 27);
+            this.lblFilter.Location = new System.Drawing.Point(855, 33);
+            this.lblFilter.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFilter.Name = "lblFilter";
-            this.lblFilter.Size = new System.Drawing.Size(320, 20);
+            this.lblFilter.Size = new System.Drawing.Size(411, 25);
             this.lblFilter.TabIndex = 6;
             this.lblFilter.Text = "Showing all rows";
             this.lblFilter.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -101,100 +97,20 @@ namespace Ncsln.Master
             // 
             this.dgv.AllowUserToAddRows = false;
             this.dgv.AllowUserToDeleteRows = false;
-            this.dgv.AutoGenerateColumns = false;
+            this.dgv.AutoGenerateColumns = true;
             this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colRowType,
-            this.colDisplayOrder,
-            this.colTranDate,
-            this.colTitle,
-            this.colDescription,
-            this.colAmount,
-            this.colBalance,
-            this.colBalanceDetailId,
-            this.colAction});
+            this.dgv.ColumnHeadersHeight = 35;
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.Location = new System.Drawing.Point(0, 0);
+            this.dgv.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.RowHeadersVisible = false;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(1010, 500);
+            this.dgv.Size = new System.Drawing.Size(1299, 617);
             this.dgv.TabIndex = 7;
             this.dgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentClick);
             this.dgv.RowPostPaint += new System.Windows.Forms.DataGridViewRowPostPaintEventHandler(this.dgv_RowPostPaint);
-            // 
-            // colRowType
-            // 
-            this.colRowType.DataPropertyName = "RowType";
-            this.colRowType.FillWeight = 55F;
-            this.colRowType.HeaderText = "Type";
-            this.colRowType.Name = "colRowType";
-            this.colRowType.ReadOnly = true;
-            // 
-            // colDisplayOrder
-            // 
-            this.colDisplayOrder.DataPropertyName = "DisplayOrder";
-            this.colDisplayOrder.Name = "colDisplayOrder";
-            this.colDisplayOrder.ReadOnly = true;
-            this.colDisplayOrder.Visible = false;
-            // 
-            // colTranDate
-            // 
-            this.colTranDate.DataPropertyName = "TranDate";
-            this.colTranDate.DefaultCellStyle.Format = "dd/MMM/yyyy";
-            this.colTranDate.FillWeight = 55F;
-            this.colTranDate.HeaderText = "Date";
-            this.colTranDate.Name = "colTranDate";
-            this.colTranDate.ReadOnly = true;
-            // 
-            // colTitle
-            // 
-            this.colTitle.DataPropertyName = "Title";
-            this.colTitle.HeaderText = "Title";
-            this.colTitle.Name = "colTitle";
-            this.colTitle.ReadOnly = true;
-            // 
-            // colDescription
-            // 
-            this.colDescription.DataPropertyName = "Description";
-            this.colDescription.HeaderText = "Description";
-            this.colDescription.Name = "colDescription";
-            this.colDescription.ReadOnly = true;
-            // 
-            // colAmount
-            // 
-            this.colAmount.DataPropertyName = "Amount";
-            this.colAmount.DefaultCellStyle.Format = "N2";
-            this.colAmount.FillWeight = 55F;
-            this.colAmount.HeaderText = "Amount";
-            this.colAmount.Name = "colAmount";
-            this.colAmount.ReadOnly = true;
-            // 
-            // colBalance
-            // 
-            this.colBalance.DataPropertyName = "Balance";
-            this.colBalance.DefaultCellStyle.Format = "N2";
-            this.colBalance.FillWeight = 55F;
-            this.colBalance.HeaderText = "Balance";
-            this.colBalance.Name = "colBalance";
-            this.colBalance.ReadOnly = true;
-            // 
-            // colBalanceDetailId
-            // 
-            this.colBalanceDetailId.DataPropertyName = "BalanceDetailId";
-            this.colBalanceDetailId.Name = "colBalanceDetailId";
-            this.colBalanceDetailId.ReadOnly = true;
-            this.colBalanceDetailId.Visible = false;
-            // 
-            // colAction
-            // 
-            this.colAction.DataPropertyName = "ActionText";
-            this.colAction.FillWeight = 40F;
-            this.colAction.HeaderText = "Option";
-            this.colAction.Name = "colAction";
-            this.colAction.ReadOnly = true;
-            this.colAction.Text = "Filter";
             // 
             // dsBalanceDetailSummary1
             // 
@@ -203,18 +119,20 @@ namespace Ncsln.Master
             // lblFrom
             // 
             this.lblFrom.AutoSize = true;
-            this.lblFrom.Location = new System.Drawing.Point(25, 29);
+            this.lblFrom.Location = new System.Drawing.Point(32, 36);
+            this.lblFrom.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblFrom.Name = "lblFrom";
-            this.lblFrom.Size = new System.Drawing.Size(39, 17);
+            this.lblFrom.Size = new System.Drawing.Size(47, 21);
             this.lblFrom.TabIndex = 0;
             this.lblFrom.Text = "From";
             // 
             // lblTo
             // 
             this.lblTo.AutoSize = true;
-            this.lblTo.Location = new System.Drawing.Point(228, 29);
+            this.lblTo.Location = new System.Drawing.Point(293, 36);
+            this.lblTo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTo.Name = "lblTo";
-            this.lblTo.Size = new System.Drawing.Size(21, 17);
+            this.lblTo.Size = new System.Drawing.Size(25, 21);
             this.lblTo.TabIndex = 2;
             this.lblTo.Text = "To";
             // 
@@ -229,28 +147,31 @@ namespace Ncsln.Master
             this.panel1.Controls.Add(this.lblFilter);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1010, 75);
+            this.panel1.Size = new System.Drawing.Size(1299, 93);
             this.panel1.TabIndex = 8;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dgv);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 75);
+            this.panel2.Location = new System.Drawing.Point(0, 93);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1010, 500);
+            this.panel2.Size = new System.Drawing.Size(1299, 617);
             this.panel2.TabIndex = 9;
             // 
             // frmRptBalanceDetailSummary
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1010, 575);
+            this.ClientSize = new System.Drawing.Size(1299, 710);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.MinimumSize = new System.Drawing.Size(900, 500);
+            this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(1153, 608);
             this.Name = "frmRptBalanceDetailSummary";
             this.Text = "Balance Detail Summary";
             this.Load += new System.EventHandler(this.frmRptBalanceDetailSummary_Load);

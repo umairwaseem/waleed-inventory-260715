@@ -24,6 +24,7 @@ namespace Ncsln.Control
         public bool CanUpdate { get; set; }
         public bool CanDelete { get; set; }
         public bool IsReport { get; set; }
+        public bool UseHbcDatabase { get; set; }
 
         private UserGroupRight UGR = new UserGroupRight();
 
@@ -80,7 +81,7 @@ namespace Ncsln.Control
 
         private void ChangeSave()
         {
-            using (InventoryEntities db = new InventoryEntities(this.ObjCore.getClientConnectionStringName()))
+            using (InventoryEntities db = new InventoryEntities(this.GetConnectionName()))
             {
                 
                 var CheckData = db.UserGroupRights.Where(x => x.Group_Id == this.Group_Id && x.Form_Id == this.Form_Id).FirstOrDefault();
@@ -109,6 +110,13 @@ namespace Ncsln.Control
                 }
                 //MessageBox.Show("Done!");
             }
+        }
+
+        private string GetConnectionName()
+        {
+            return this.UseHbcDatabase
+                ? this.ObjCore.getHBCConnectionStringName()
+                : this.ObjCore.getClientConnectionStringName();
         }
 
         private void chkView_CheckStateChanged(object sender, EventArgs e)

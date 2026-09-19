@@ -39,6 +39,57 @@ BEGIN
 END
 GO
 
+/* Add bank and payment direction to existing workshop transactions. */
+IF COL_LENGTH(N'dbo.WorkshopTransaction', N'BankId') IS NULL
+    ALTER TABLE dbo.WorkshopTransaction ADD BankId int NULL
+GO
+
+IF COL_LENGTH(N'dbo.WorkshopTransaction', N'IsPayment') IS NULL
+    ALTER TABLE dbo.WorkshopTransaction ADD IsPayment bit NULL
+GO
+
+/*
+   Existing rows are assigned the first available bank and Receive direction.
+   Replace the SELECT below with a fixed bank ID if required, for example:
+   SET @DefaultBankId = 1
+*/
+DECLARE @DefaultBankId int
+SELECT TOP 1 @DefaultBankId = Id
+FROM dbo.Banks
+ORDER BY Id
+
+IF EXISTS (SELECT 1 FROM dbo.WorkshopTransaction WHERE BankId IS NULL OR IsPayment IS NULL)
+BEGIN
+    IF @DefaultBankId IS NULL
+    BEGIN
+        THROW 50001, 'No bank exists in dbo.Banks. Create a bank before upgrading workshop transactions.', 1
+    END
+
+    UPDATE dbo.WorkshopTransaction
+    SET BankId = ISNULL(BankId, @DefaultBankId),
+        IsPayment = ISNULL(IsPayment, CONVERT(bit, 0))
+    WHERE BankId IS NULL OR IsPayment IS NULL
+END
+
+/* A nullable indexed column must have its index removed before changing nullability. */
+IF EXISTS (SELECT 1 FROM sys.columns WHERE object_id = OBJECT_ID(N'dbo.WorkshopTransaction') AND name = N'BankId' AND is_nullable = 1)
+   AND EXISTS (SELECT 1 FROM sys.indexes WHERE object_id = OBJECT_ID(N'dbo.WorkshopTransaction') AND name = N'IX_WorkshopTransaction_BankId')
+    DROP INDEX IX_WorkshopTransaction_BankId ON dbo.WorkshopTransaction
+
+IF EXISTS (SELECT 1 FROM sys.columns WHERE object_id = OBJECT_ID(N'dbo.WorkshopTransaction') AND name = N'BankId' AND is_nullable = 1)
+    ALTER TABLE dbo.WorkshopTransaction ALTER COLUMN BankId int NOT NULL
+
+IF EXISTS (SELECT 1 FROM sys.columns WHERE object_id = OBJECT_ID(N'dbo.WorkshopTransaction') AND name = N'IsPayment' AND is_nullable = 1)
+    ALTER TABLE dbo.WorkshopTransaction ALTER COLUMN IsPayment bit NOT NULL
+
+IF NOT EXISTS (SELECT 1 FROM sys.foreign_keys WHERE name = N'FK_WorkshopTransaction_Banks')
+    ALTER TABLE dbo.WorkshopTransaction ADD CONSTRAINT FK_WorkshopTransaction_Banks
+        FOREIGN KEY (BankId) REFERENCES dbo.Banks(Id)
+
+IF NOT EXISTS (SELECT 1 FROM sys.indexes WHERE object_id = OBJECT_ID(N'dbo.WorkshopTransaction') AND name = N'IX_WorkshopTransaction_BankId')
+    CREATE INDEX IX_WorkshopTransaction_BankId ON dbo.WorkshopTransaction(BankId)
+GO
+
 IF OBJECT_ID(N'dbo.spWorkshopAccountList', N'P') IS NULL
     EXEC(N'CREATE PROCEDURE dbo.spWorkshopAccountList AS SELECT 1')
 GO
@@ -179,10 +230,13 @@ ALTER PROCEDURE dbo.spWorkshopTransactionList
 AS
 BEGIN
     SET NOCOUNT ON
-    SELECT t.Id, t.WorkshopAccountId, a.AccountName, t.TransactionDate,
-           t.Description, t.Amount
+    SELECT t.Id, t.WorkshopAccountId, a.AccountName, t.BankId,
+           b.BankTitle, b.AccountNo, t.TransactionDate,
+           t.Description, t.Amount, t.IsPayment,
+           CASE WHEN t.IsPayment = 1 THEN N'Pay' ELSE N'Receive' END AS TransactionType
     FROM dbo.WorkshopTransaction t
     INNER JOIN dbo.WorkshopAccount a ON a.Id = t.WorkshopAccountId
+    INNER JOIN dbo.Banks b ON b.Id = t.BankId
     ORDER BY t.Id DESC
 END
 GO
@@ -192,9 +246,11 @@ IF OBJECT_ID(N'dbo.spCreateWorkshopTransaction', N'P') IS NULL
 GO
 ALTER PROCEDURE dbo.spCreateWorkshopTransaction
     @WorkshopAccountId int,
+    @BankId int,
     @TransactionDate datetime,
     @Description nvarchar(500) = NULL,
     @Amount decimal(18,2),
+    @IsPayment bit,
     @Id int OUTPUT,
     @Success bit OUTPUT,
     @Message nvarchar(200) OUTPUT
@@ -209,6 +265,11 @@ BEGIN
         SET @Message = N'Please select a valid workshop account.'
         RETURN
     END
+    IF NOT EXISTS (SELECT 1 FROM dbo.Banks WHERE Id = @BankId)
+    BEGIN
+        SET @Message = N'Please select a valid bank.'
+        RETURN
+    END
     IF @Amount <= 0
     BEGIN
         SET @Message = N'Amount must be greater than zero.'
@@ -216,8 +277,8 @@ BEGIN
     END
 
     BEGIN TRY
-        INSERT dbo.WorkshopTransaction(WorkshopAccountId, TransactionDate, Description, Amount)
-        VALUES (@WorkshopAccountId, @TransactionDate, NULLIF(LTRIM(RTRIM(@Description)), N''), @Amount)
+        INSERT dbo.WorkshopTransaction(WorkshopAccountId, BankId, TransactionDate, Description, Amount, IsPayment)
+        VALUES (@WorkshopAccountId, @BankId, @TransactionDate, NULLIF(LTRIM(RTRIM(@Description)), N''), @Amount, @IsPayment)
         SET @Id = SCOPE_IDENTITY()
         SET @Success = 1
         SET @Message = N'Transaction saved successfully.'
@@ -234,9 +295,11 @@ GO
 ALTER PROCEDURE dbo.spUpdateWorkshopTransaction
     @Id int,
     @WorkshopAccountId int,
+    @BankId int,
     @TransactionDate datetime,
     @Description nvarchar(500) = NULL,
     @Amount decimal(18,2),
+    @IsPayment bit,
     @Success bit OUTPUT,
     @Message nvarchar(200) OUTPUT
 AS
@@ -249,6 +312,11 @@ BEGIN
         SET @Message = N'Please select a valid workshop account.'
         RETURN
     END
+    IF NOT EXISTS (SELECT 1 FROM dbo.Banks WHERE Id = @BankId)
+    BEGIN
+        SET @Message = N'Please select a valid bank.'
+        RETURN
+    END
     IF @Amount <= 0
     BEGIN
         SET @Message = N'Amount must be greater than zero.'
@@ -258,9 +326,11 @@ BEGIN
     BEGIN TRY
         UPDATE dbo.WorkshopTransaction
         SET WorkshopAccountId = @WorkshopAccountId,
+            BankId = @BankId,
             TransactionDate = @TransactionDate,
             Description = NULLIF(LTRIM(RTRIM(@Description)), N''),
-            Amount = @Amount
+            Amount = @Amount,
+            IsPayment = @IsPayment
         WHERE Id = @Id
 
         IF @@ROWCOUNT = 0
@@ -332,23 +402,33 @@ BEGIN
         RowType nvarchar(20) NOT NULL,
         ReferenceId int NULL,
         AccountName nvarchar(150) NULL,
+        BankId int NULL,
+        BankTitle nvarchar(150) NULL,
+        AccountNo nvarchar(50) NULL,
         Detail nvarchar(500) NULL,
-        Amount decimal(18,2) NOT NULL
+        ReceiveAmount decimal(18,2) NOT NULL,
+        PaymentAmount decimal(18,2) NOT NULL
     )
 
-    INSERT #Ledger(SrNo, TranDate, RowType, ReferenceId, AccountName, Detail, Amount)
+    INSERT #Ledger(SrNo, TranDate, RowType, ReferenceId, AccountName, BankId, BankTitle, AccountNo, Detail, ReceiveAmount, PaymentAmount)
     SELECT ROW_NUMBER() OVER (ORDER BY t.TransactionDate, t.Id),
-           t.TransactionDate, N'Transaction', t.Id, a.AccountName, t.Description, t.Amount
+           t.TransactionDate, N'Transaction', t.Id, a.AccountName, t.BankId, b.BankTitle, b.AccountNo,
+           t.Description,
+           CASE WHEN t.IsPayment = 0 THEN t.Amount ELSE 0 END,
+           CASE WHEN t.IsPayment = 1 THEN t.Amount ELSE 0 END
     FROM dbo.WorkshopTransaction t
     INNER JOIN dbo.WorkshopAccount a ON a.Id = t.WorkshopAccountId
+    INNER JOIN dbo.Banks b ON b.Id = t.BankId
     WHERE t.TransactionDate >= @StartDate
       AND t.TransactionDate < @EndExclusive
 
-    INSERT #Ledger(SrNo, TranDate, RowType, ReferenceId, AccountName, Detail, Amount)
-    SELECT ISNULL(MAX(SrNo), 0) + 1, NULL, N'Total', NULL, N'Total', N'Total', ISNULL(SUM(Amount), 0)
+    INSERT #Ledger(SrNo, TranDate, RowType, ReferenceId, AccountName, BankId, BankTitle, AccountNo, Detail, ReceiveAmount, PaymentAmount)
+    SELECT ISNULL(MAX(SrNo), 0) + 1, NULL, N'Total', NULL, N'Total', NULL, NULL, NULL, N'Total',
+           ISNULL(SUM(ReceiveAmount), 0), ISNULL(SUM(PaymentAmount), 0)
     FROM #Ledger
 
-    SELECT SrNo, TranDate, RowType, ReferenceId, AccountName, Detail, Amount
+    SELECT SrNo, TranDate, RowType, ReferenceId, AccountName, BankId, BankTitle, AccountNo,
+           Detail, ReceiveAmount, PaymentAmount
     FROM #Ledger
     ORDER BY SrNo
 END

@@ -6,9 +6,14 @@
         <xs:element name="Id" type="xs:int" />
         <xs:element name="WorkshopAccountId" type="xs:int" />
         <xs:element name="AccountName" type="xs:string" />
+        <xs:element name="BankId" type="xs:int" />
+        <xs:element name="BankTitle" type="xs:string" minOccurs="0" />
+        <xs:element name="AccountNo" type="xs:string" minOccurs="0" />
         <xs:element name="TransactionDate" type="xs:dateTime" />
         <xs:element name="Description" type="xs:string" minOccurs="0" />
         <xs:element name="Amount" type="xs:decimal" />
+        <xs:element name="IsPayment" type="xs:boolean" />
+        <xs:element name="TransactionType" type="xs:string" />
       </xs:sequence></xs:complexType></xs:element>
     </xs:choice></xs:complexType>
   </xs:element>

@@ -31,9 +31,6 @@ namespace Ncsln.Master
             this.btnSave = new System.Windows.Forms.Button();
             this.btnClear = new System.Windows.Forms.Button();
             this.dgv = new System.Windows.Forms.DataGridView();
-            this.colId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAccountName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNotes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEdit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colDelete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.dsAdditionalAccount1 = new Ncsln.Master.dsAdditionalAccount();
@@ -51,36 +48,40 @@ namespace Ncsln.Master
             // txtAccountName
             // 
             this.txtAccountName.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtAccountName.Location = new System.Drawing.Point(243, 49);
+            this.txtAccountName.Location = new System.Drawing.Point(312, 61);
+            this.txtAccountName.Margin = new System.Windows.Forms.Padding(4);
             this.txtAccountName.MaxLength = 150;
             this.txtAccountName.Name = "txtAccountName";
-            this.txtAccountName.Size = new System.Drawing.Size(420, 25);
+            this.txtAccountName.Size = new System.Drawing.Size(539, 29);
             this.txtAccountName.TabIndex = 1;
             // 
             // txtNotes
             // 
             this.txtNotes.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.txtNotes.Location = new System.Drawing.Point(243, 87);
+            this.txtNotes.Location = new System.Drawing.Point(312, 107);
+            this.txtNotes.Margin = new System.Windows.Forms.Padding(4);
             this.txtNotes.MaxLength = 500;
             this.txtNotes.Name = "txtNotes";
-            this.txtNotes.Size = new System.Drawing.Size(420, 58);
+            this.txtNotes.Size = new System.Drawing.Size(539, 71);
             this.txtNotes.TabIndex = 3;
             this.txtNotes.Text = "";
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(133, 218);
+            this.txtSearch.Location = new System.Drawing.Point(171, 269);
+            this.txtSearch.Margin = new System.Windows.Forms.Padding(4);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(420, 25);
+            this.txtSearch.Size = new System.Drawing.Size(539, 29);
             this.txtSearch.TabIndex = 7;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
             // btnSave
             // 
             this.btnSave.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnSave.Location = new System.Drawing.Point(359, 161);
+            this.btnSave.Location = new System.Drawing.Point(462, 199);
+            this.btnSave.Margin = new System.Windows.Forms.Padding(4);
             this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(100, 34);
+            this.btnSave.Size = new System.Drawing.Size(129, 42);
             this.btnSave.TabIndex = 4;
             this.btnSave.Text = "Save";
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
@@ -88,9 +89,10 @@ namespace Ncsln.Master
             // btnClear
             // 
             this.btnClear.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnClear.Location = new System.Drawing.Point(465, 161);
+            this.btnClear.Location = new System.Drawing.Point(598, 199);
+            this.btnClear.Margin = new System.Windows.Forms.Padding(4);
             this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(100, 34);
+            this.btnClear.Size = new System.Drawing.Size(129, 42);
             this.btnClear.TabIndex = 5;
             this.btnClear.Text = "Clear";
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
@@ -99,45 +101,21 @@ namespace Ncsln.Master
             // 
             this.dgv.AllowUserToAddRows = false;
             this.dgv.AllowUserToDeleteRows = false;
-            this.dgv.AutoGenerateColumns = false;
             this.dgv.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgv.ColumnHeadersHeight = 35;
             this.dgv.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colId,
-            this.colAccountName,
-            this.colNotes,
             this.colEdit,
             this.colDelete});
             this.dgv.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgv.Location = new System.Drawing.Point(0, 0);
+            this.dgv.Margin = new System.Windows.Forms.Padding(4);
             this.dgv.Name = "dgv";
             this.dgv.ReadOnly = true;
             this.dgv.RowHeadersVisible = false;
             this.dgv.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgv.Size = new System.Drawing.Size(880, 318);
+            this.dgv.Size = new System.Drawing.Size(1131, 392);
             this.dgv.TabIndex = 8;
             this.dgv.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentClick);
-            // 
-            // colId
-            // 
-            this.colId.DataPropertyName = "Id";
-            this.colId.HeaderText = "Id";
-            this.colId.Name = "colId";
-            this.colId.ReadOnly = true;
-            this.colId.Visible = false;
-            // 
-            // colAccountName
-            // 
-            this.colAccountName.DataPropertyName = "AccountName";
-            this.colAccountName.HeaderText = "Account Name";
-            this.colAccountName.Name = "colAccountName";
-            this.colAccountName.ReadOnly = true;
-            // 
-            // colNotes
-            // 
-            this.colNotes.DataPropertyName = "Notes";
-            this.colNotes.HeaderText = "Notes";
-            this.colNotes.Name = "colNotes";
-            this.colNotes.ReadOnly = true;
             // 
             // colEdit
             // 
@@ -165,9 +143,10 @@ namespace Ncsln.Master
             // 
             this.lblName.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(126, 53);
+            this.lblName.Location = new System.Drawing.Point(162, 65);
+            this.lblName.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(93, 17);
+            this.lblName.Size = new System.Drawing.Size(112, 21);
             this.lblName.TabIndex = 0;
             this.lblName.Text = "Account Name";
             // 
@@ -175,18 +154,20 @@ namespace Ncsln.Master
             // 
             this.lblNotes.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.lblNotes.AutoSize = true;
-            this.lblNotes.Location = new System.Drawing.Point(126, 91);
+            this.lblNotes.Location = new System.Drawing.Point(162, 112);
+            this.lblNotes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNotes.Name = "lblNotes";
-            this.lblNotes.Size = new System.Drawing.Size(43, 17);
+            this.lblNotes.Size = new System.Drawing.Size(51, 21);
             this.lblNotes.TabIndex = 2;
             this.lblNotes.Text = "Notes";
             // 
             // lblSearch
             // 
             this.lblSearch.AutoSize = true;
-            this.lblSearch.Location = new System.Drawing.Point(16, 222);
+            this.lblSearch.Location = new System.Drawing.Point(21, 274);
+            this.lblSearch.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSearch.Name = "lblSearch";
-            this.lblSearch.Size = new System.Drawing.Size(47, 17);
+            this.lblSearch.Size = new System.Drawing.Size(57, 21);
             this.lblSearch.TabIndex = 6;
             this.lblSearch.Text = "Search";
             // 
@@ -202,28 +183,31 @@ namespace Ncsln.Master
             this.panel1.Controls.Add(this.btnSave);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(880, 262);
+            this.panel1.Size = new System.Drawing.Size(1131, 324);
             this.panel1.TabIndex = 9;
             // 
             // panel2
             // 
             this.panel2.Controls.Add(this.dgv);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 262);
+            this.panel2.Location = new System.Drawing.Point(0, 324);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(880, 318);
+            this.panel2.Size = new System.Drawing.Size(1131, 392);
             this.panel2.TabIndex = 10;
             // 
             // frmAdditionalAccount
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 21F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(880, 580);
+            this.ClientSize = new System.Drawing.Size(1131, 716);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Font = new System.Drawing.Font("Segoe UI", 9.75F);
-            this.MinimumSize = new System.Drawing.Size(760, 480);
+            this.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MinimumSize = new System.Drawing.Size(973, 584);
             this.Name = "frmAdditionalAccount";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Additional Account List";

@@ -54,7 +54,21 @@ namespace Ncsln.Master
 
         private void dgv_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            object rowType = this.dgv.Rows[e.RowIndex].Cells["colRowType"].Value;
+            if (e.RowIndex < 0 || e.RowIndex >= this.dgv.Rows.Count) return;
+
+            DataGridViewColumn rowTypeColumn = null;
+            foreach (DataGridViewColumn column in this.dgv.Columns)
+            {
+                if (string.Equals(column.DataPropertyName, "RowType", StringComparison.OrdinalIgnoreCase))
+                {
+                    rowTypeColumn = column;
+                    break;
+                }
+            }
+
+            if (rowTypeColumn == null) return;
+
+            object rowType = this.dgv.Rows[e.RowIndex].Cells[rowTypeColumn.Index].Value;
             if (!string.Equals(Convert.ToString(rowType), "Total", StringComparison.OrdinalIgnoreCase)) return;
             this.dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.SeaGreen;
             this.dgv.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;

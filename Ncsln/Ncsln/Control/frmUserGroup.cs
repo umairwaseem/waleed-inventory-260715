@@ -17,6 +17,7 @@ namespace Ncsln.Control
         DBModel.UserGroup model;
         Classes.CoreClass objCore;
         public bool quickCall = false;
+        public bool UseHbcDatabase { get; set; }
 
         public frmUserGroup()
         {
@@ -30,7 +31,9 @@ namespace Ncsln.Control
         {
             this.LoadDg();
             this.model.Id = -1;
-            this.dg.Columns["Rights"].Visible = this.objCore.getUserRight(16, "CanView");
+            this.dg.Columns["Rights"].Visible = this.UseHbcDatabase
+                ? this.objCore.getUserRight("User Group", "CanView", this.objCore.getHBCConnectionString())
+                : this.objCore.getUserRight(16, "CanView");
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -41,7 +44,9 @@ namespace Ncsln.Control
         private void btnSave_Click(object sender, EventArgs e)
         {
 
-            if (!this.objCore.CheckRight(17, this.model.Id))
+            if (!(this.UseHbcDatabase
+                ? this.objCore.CheckRightServer("User Group", this.model.Id)
+                : this.objCore.CheckRight(17, this.model.Id)))
             {
                 return;
             }
@@ -60,7 +65,7 @@ namespace Ncsln.Control
         {
             if(!CommonTask.Question(this.model.Id)) return;
 
-            using (this.DB = new DBModel.InventoryEntities(this.objCore.getClientConnectionStringName()))
+            using (this.DB = new DBModel.InventoryEntities(this.GetConnectionName()))
             {
 
                 this.model.GroupName = this.txtTitle.Text.Trim();
@@ -90,7 +95,9 @@ namespace Ncsln.Control
         private void LoadDg()
         {
             this.dsUserGroup1.Clear();
-            this.daUserGroup.SelectCommand.Connection.ConnectionString = this.objCore.getClientConnectionString();
+            this.daUserGroup.SelectCommand.Connection.ConnectionString = this.UseHbcDatabase
+                ? this.objCore.getHBCConnectionString()
+                : this.objCore.getClientConnectionString();
             this.daUserGroup.Fill(this.dsUserGroup1);
         }
 
@@ -99,7 +106,7 @@ namespace Ncsln.Control
             if (this.dg.CurrentRow.Index != -1)
             {
                 this.model.Id = Convert.ToInt32(this.dg.CurrentRow.Cells["id"].Value);
-                using (this.DB = new DBModel.InventoryEntities(this.objCore.getClientConnectionStringName()))
+                using (this.DB = new DBModel.InventoryEntities(this.GetConnectionName()))
                 {
                     this.model = this.DB.UserGroups.Where(x => x.Id == this.model.Id).FirstOrDefault();
                     this.txtTitle.Text = this.model.GroupName;
@@ -120,7 +127,9 @@ namespace Ncsln.Control
                         return;
                     }
 
-                    if (!this.objCore.CheckRight(17, this.model.Id, true))
+                    if (!(this.UseHbcDatabase
+                        ? this.objCore.CheckRightServer("User Group", this.model.Id, true)
+                        : this.objCore.CheckRight(17, this.model.Id, true)))
                     {
                         return;
                     }
@@ -128,7 +137,7 @@ namespace Ncsln.Control
 
                     if (!CommonTask.Question(this.model.Id, true)) return;
 
-                    using (this.DB = new DBModel.InventoryEntities(this.objCore.getClientConnectionStringName()))
+                    using (this.DB = new DBModel.InventoryEntities(this.GetConnectionName()))
                     {
                         int value = Convert.ToInt32(this.dg.CurrentRow.Cells["id"].Value.ToString());
                         this.model.Id = value;
@@ -143,9 +152,17 @@ namespace Ncsln.Control
                 {
                     frmUserGroupRights obj = new frmUserGroupRights();
                     obj.GroupId = Convert.ToInt32(this.dg.CurrentRow.Cells["id"].Value.ToString());
+                    obj.UseHbcDatabase = this.UseHbcDatabase;
                     obj.ShowDialog();
                 }
             }
+        }
+
+        private string GetConnectionName()
+        {
+            return this.UseHbcDatabase
+                ? this.objCore.getHBCConnectionStringName()
+                : this.objCore.getClientConnectionStringName();
         }
     }
 }

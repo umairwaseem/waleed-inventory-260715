@@ -8,8 +8,12 @@
         <xs:element name="RowType" type="xs:string" />
         <xs:element name="ReferenceId" type="xs:int" minOccurs="0" />
         <xs:element name="AccountName" type="xs:string" minOccurs="0" />
+        <xs:element name="BankId" type="xs:int" minOccurs="0" />
+        <xs:element name="BankTitle" type="xs:string" minOccurs="0" />
+        <xs:element name="AccountNo" type="xs:string" minOccurs="0" />
         <xs:element name="Detail" type="xs:string" minOccurs="0" />
-        <xs:element name="Amount" type="xs:decimal" />
+        <xs:element name="ReceiveAmount" type="xs:decimal" />
+        <xs:element name="PaymentAmount" type="xs:decimal" />
       </xs:sequence></xs:complexType></xs:element>
     </xs:choice></xs:complexType>
   </xs:element>

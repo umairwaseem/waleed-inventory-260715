@@ -320,9 +320,9 @@ BEGIN
     DECLARE @BankPreviousBalance decimal(18,2)
     DECLARE @BankPeriodReceive decimal(18,2)
     DECLARE @BankPeriodPayment decimal(18,2)
+    DECLARE @BankBeforeVendorPayments decimal(18,2)
     DECLARE @BankCurrentBalance decimal(18,2)
     DECLARE @ClosingBalance decimal(18,2)
-    DECLARE @BalanceDetailTotal decimal(18,2)
     DECLARE @WorkshopTotal decimal(18,2)
     DECLARE @BranchId int
     DECLARE @BranchName nvarchar(100)
@@ -409,6 +409,15 @@ BEGIN
     CLOSE branch_cursor
     DEALLOCATE branch_cursor
 
+    CREATE TABLE #OwnerReceiptDetails
+    (
+        TranDate datetime NOT NULL,
+        Title nvarchar(150) NULL,
+        Description nvarchar(500) NULL,
+        Amount decimal(18,2) NOT NULL,
+        AccountNo nvarchar(50) NULL
+    )
+
     DECLARE bank_branch_cursor CURSOR LOCAL FAST_FORWARD FOR
     SELECT BranchId, BranchName, ConnectionString, DatabaseName
     FROM @BranchDatabases
@@ -428,16 +437,29 @@ BEGIN
                 FROM ' + QUOTENAME(@DatabaseName) + N'.dbo.OwnerAccount OA
                 WHERE OA.[Date] < @EndExclusive
                   AND LTRIM(RTRIM(ISNULL(OA.AccountNo, N''''))) <> N'''';
+
+                INSERT #OwnerReceiptDetails(TranDate, Title, Description, Amount, AccountNo)
+                SELECT OA.[Date],
+                       @BranchName,
+                       CAST(OA.Detail AS nvarchar(500)),
+                       CAST(ISNULL(OA.Amount, 0) AS decimal(18,2)),
+                       OA.AccountNo
+                FROM ' + QUOTENAME(@DatabaseName) + N'.dbo.OwnerAccount OA
+                WHERE OA.[Date] >= @StartDate
+                  AND OA.[Date] < @EndExclusive
+                  AND LTRIM(RTRIM(ISNULL(OA.AccountNo, N''''))) <> N'''';
             '
 
             EXEC sp_executesql
                 @SQL,
                 N'@StartDate datetime,
                   @EndExclusive datetime,
+                  @BranchName nvarchar(100),
                   @Previous decimal(18,2) OUTPUT,
                   @PeriodReceive decimal(18,2) OUTPUT',
                 @StartDate = @StartDate,
                 @EndExclusive = @EndExclusive,
+                @BranchName = @BranchName,
                 @Previous = @BankPreviousBalance OUTPUT,
                 @PeriodReceive = @BankPeriodReceive OUTPUT
         END
@@ -475,18 +497,16 @@ BEGIN
     WHERE TransactionDate >= @StartDate
       AND TransactionDate < @EndExclusive
 
-    SELECT @BalanceDetailTotal = ISNULL(SUM(Amount), 0)
-    FROM dbo.BalanceDetailTransaction
-    WHERE TransactionDate >= @StartDate
-      AND TransactionDate < @EndExclusive
-
-    SELECT @WorkshopTotal = ISNULL(SUM(Amount), 0)
+    SELECT @WorkshopTotal = ISNULL(SUM(CASE WHEN IsPayment = 1 THEN -Amount ELSE Amount END), 0)
     FROM dbo.WorkshopTransaction
     WHERE TransactionDate >= @StartDate
       AND TransactionDate < @EndExclusive
 
-    SET @BankCurrentBalance = @BankPreviousBalance + @BankPeriodReceive - @BankPeriodPayment
-    SET @ClosingBalance = @BankCurrentBalance - @AdditionalInPeriod
+    SET @BankBeforeVendorPayments = @BankPreviousBalance + @BankPeriodReceive
+    SET @BankCurrentBalance = @BankBeforeVendorPayments - @BankPeriodPayment
+    SET @ClosingBalance = @BankCurrentBalance
+        + @AdditionalInPeriod
+        + @WorkshopTotal
 
     CREATE TABLE #Summary
     (
@@ -504,44 +524,103 @@ BEGIN
     INSERT #Summary(RowType, DisplayOrder, TranDate, Title, Description, Amount, Balance, BalanceDetailId, ActionText)
     VALUES
         (N'Summary', 10, @StartDate, N'Previous Bank Balance', N'Bank receives before From Date minus bank payments before From Date', NULL, @BankPreviousBalance, NULL, N'Filter'),
-        (N'Summary', 20, DATEADD(ms, -3, @EndExclusive), N'Current Bank Balance', N'Previous Bank Balance plus selected-date bank receives minus selected-date bank payments', NULL, @BankCurrentBalance, NULL, N'Filter'),
-        (N'Summary', 30, @StartDate, N'Additional Balance', N'Additional Account signed balance within selected dates', @AdditionalInPeriod, NULL, NULL, N'Filter'),
-        (N'Summary', 40, DATEADD(ms, -3, @EndExclusive), N'Closing Balance', N'Current Bank Balance - Additional Balance', NULL, @ClosingBalance, NULL, N'Filter'),
+        (N'Summary', 15, @StartDate, N'Owner Receipts', N'Total owner receipts during the selected period', @BankPeriodReceive, NULL, NULL, N'Filter'),
+        (N'Summary', 20, DATEADD(ms, -3, @EndExclusive), N'Current Bank Balance', N'Previous Bank Balance plus selected-date bank receives, before vendor payments', NULL, @BankBeforeVendorPayments, NULL, N'Filter'),
+        (N'Summary', 30, @StartDate, N'Vendor Payments', N'Vendor payments during the selected period', @BankPeriodPayment, NULL, NULL, N'Filter'),
+        (N'Summary', 35, @StartDate, N'Additional Total', N'Additional account signed total for the selected period', @AdditionalInPeriod, NULL, NULL, N'Filter'),
+        (N'Summary', 37, @StartDate, N'Workshop Total', N'Workshop signed total for the selected period', @WorkshopTotal, NULL, NULL, N'Filter'),
+        (N'Summary', 40, DATEADD(ms, -3, @EndExclusive), N'Closing Balance', N'Current Bank Balance minus vendor payments plus additional and workshop totals', NULL, @ClosingBalance, NULL, N'Filter'),
         (N'Blank', 50, NULL, NULL, NULL, NULL, NULL, NULL, NULL)
+
+    /* Owner receipt section heading */
+    INSERT #Summary(RowType, DisplayOrder, TranDate, Title, Description, Amount, Balance, BalanceDetailId, ActionText)
+    SELECT N'Heading', ISNULL(MAX(DisplayOrder), 50) + 1, NULL,
+           N'Owner Receipts', N'Owner receipt details for the selected period',
+           NULL, NULL, NULL, N''
+    FROM #Summary
 
     INSERT #Summary(RowType, DisplayOrder, TranDate, Title, Description, Amount, Balance, BalanceDetailId, ActionText)
     SELECT N'Detail',
-           100 + ROW_NUMBER() OVER (ORDER BY TransactionDate, SourceId, Title),
-           TransactionDate,
+           ISNULL((SELECT MAX(DisplayOrder) FROM #Summary), 50) +
+               ROW_NUMBER() OVER (ORDER BY TranDate, Title, AccountNo),
+           TranDate,
            Title,
-           Description,
+           CASE WHEN ISNULL(AccountNo, N'') = N'' THEN Description
+                ELSE N'Account: ' + AccountNo +
+                     CASE WHEN ISNULL(Description, N'') = N'' THEN N''
+                          ELSE N' - ' + Description END
+           END,
            Amount,
            NULL,
-           BalanceDetailId,
-           ActionText
-    FROM
-    (
-        SELECT t.TransactionDate, t.Id AS SourceId, d.Title, t.Description, t.Amount,
-               t.BalanceDetailId, N'Filter' AS ActionText
-        FROM dbo.BalanceDetailTransaction t
-        INNER JOIN dbo.BalanceDetail d ON d.Id = t.BalanceDetailId
-        WHERE t.TransactionDate >= @StartDate
-          AND t.TransactionDate < @EndExclusive
-    ) BalanceRows
-
-    INSERT #Summary(RowType, DisplayOrder, TranDate, Title, Description, Amount, Balance, BalanceDetailId, ActionText)
-    SELECT N'Summary',
-           ISNULL(MAX(DisplayOrder), 50) + 1,
-           @EndExclusive,
-           N'Balance Detail Total',
-           N'Total balance detail transactions within selected dates',
-           NULL,
-           @BalanceDetailTotal,
            NULL,
            N''
-    FROM #Summary
-    WHERE RowType = N'Detail'
+    FROM #OwnerReceiptDetails
 
+    INSERT #Summary(RowType, DisplayOrder, TranDate, Title, Description, Amount, Balance, BalanceDetailId, ActionText)
+    SELECT N'Summary', ISNULL(MAX(DisplayOrder), 50) + 1, @EndExclusive,
+           N'Owner Receipt Total', N'Total owner receipts during selected dates',
+           NULL, @BankPeriodReceive, NULL, N''
+    FROM #Summary
+
+    /* Vendor section heading */
+    INSERT #Summary(RowType, DisplayOrder, TranDate, Title, Description, Amount, Balance, BalanceDetailId, ActionText)
+    SELECT N'Heading', ISNULL(MAX(DisplayOrder), 50) + 1, NULL,
+           N'Vendor Payments', N'Vendor payment details for the selected period',
+           NULL, NULL, NULL, N''
+    FROM #Summary
+
+    /* Vendor payment details */
+    INSERT #Summary(RowType, DisplayOrder, TranDate, Title, Description, Amount, Balance, BalanceDetailId, ActionText)
+    SELECT N'Detail',
+           ISNULL((SELECT MAX(DisplayOrder) FROM #Summary), 50) +
+               ROW_NUMBER() OVER (ORDER BY PaymentDate, SourceId, Title),
+           PaymentDate,
+           Title,
+           Description,
+           -Amount,
+           NULL,
+           NULL,
+           N''
+    FROM
+    (
+        SELECT VP.PaymentDate,
+               VP.Id AS SourceId,
+               VP.Name AS Title,
+               CAST(VP.Description AS nvarchar(500)) AS Description,
+               CAST(ISNULL(VP.Amount, 0) AS decimal(18,2)) AS Amount
+        FROM dbo.vVendorPayment VP
+        WHERE VP.PaymentDate >= @StartDate
+          AND VP.PaymentDate < @EndExclusive
+          AND LTRIM(RTRIM(ISNULL(VP.AccountNo, N''))) <> N''
+
+        UNION ALL
+
+        SELECT VGP.PaymentDate,
+               VGP.Id AS SourceId,
+               VGP.Name AS Title,
+               CAST(VGP.Description AS nvarchar(500)) AS Description,
+               CAST(ISNULL(VGP.Amount, 0) AS decimal(18,2)) AS Amount
+        FROM dbo.vVendorGPayment VGP
+        WHERE VGP.PaymentDate >= @StartDate
+          AND VGP.PaymentDate < @EndExclusive
+          AND LTRIM(RTRIM(ISNULL(VGP.AccountNo, N''))) <> N''
+    ) VendorRows
+
+    /* Vendor total */
+    INSERT #Summary(RowType, DisplayOrder, TranDate, Title, Description, Amount, Balance, BalanceDetailId, ActionText)
+    SELECT N'Summary', ISNULL(MAX(DisplayOrder), 50) + 1, @EndExclusive,
+           N'Vendor Total', N'Total vendor payments during selected dates',
+           NULL, @BankPeriodPayment, NULL, N''
+    FROM #Summary
+
+    /* Additional account section heading */
+    INSERT #Summary(RowType, DisplayOrder, TranDate, Title, Description, Amount, Balance, BalanceDetailId, ActionText)
+    SELECT N'Heading', ISNULL(MAX(DisplayOrder), 50) + 1, NULL,
+           N'Additional Accounts', N'Additional account details for the selected period',
+           NULL, NULL, NULL, N''
+    FROM #Summary
+
+    /* Additional account transactions */
     INSERT #Summary(RowType, DisplayOrder, TranDate, Title, Description, Amount, Balance, BalanceDetailId, ActionText)
     SELECT N'Detail',
            ISNULL((SELECT MAX(DisplayOrder) FROM #Summary), 50) +
@@ -551,30 +630,73 @@ BEGIN
            Description,
            Amount,
            NULL,
-           BalanceDetailId,
-           ActionText
+           NULL,
+           N''
     FROM
     (
-        SELECT t.TransactionDate, t.Id AS SourceId, a.AccountName AS Title,
-               t.Description, t.Amount, NULL AS BalanceDetailId, N'' AS ActionText
+        SELECT t.TransactionDate,
+               t.Id AS SourceId,
+               a.AccountName AS Title,
+               t.Description,
+               CASE WHEN t.IsPayment = 1 THEN -t.Amount ELSE t.Amount END AS Amount
+        FROM dbo.AdditionalAccountTransaction t
+        INNER JOIN dbo.AdditionalAccount a ON a.Id = t.AdditionalAccountId
+        WHERE t.TransactionDate >= @StartDate
+          AND t.TransactionDate < @EndExclusive
+    ) AdditionalRows
+
+    /* Additional total */
+    INSERT #Summary(RowType, DisplayOrder, TranDate, Title, Description, Amount, Balance, BalanceDetailId, ActionText)
+    SELECT N'Summary',
+           ISNULL(MAX(DisplayOrder), 50) + 1,
+           @EndExclusive,
+           N'Additional Total',
+           N'Total additional account transactions within selected dates',
+           NULL,
+           @AdditionalInPeriod,
+           NULL,
+           N''
+    FROM #Summary
+    WHERE RowType IN (N'Detail', N'Heading')
+
+    /* Workshop section heading */
+    INSERT #Summary(RowType, DisplayOrder, TranDate, Title, Description, Amount, Balance, BalanceDetailId, ActionText)
+    SELECT N'Heading', ISNULL(MAX(DisplayOrder), 50) + 1, NULL,
+           N'Workshop', N'Workshop transaction details for the selected period',
+           NULL, NULL, NULL, N''
+    FROM #Summary
+
+    /* Workshop transactions */
+    INSERT #Summary(RowType, DisplayOrder, TranDate, Title, Description, Amount, Balance, BalanceDetailId, ActionText)
+    SELECT N'Detail',
+           ISNULL((SELECT MAX(DisplayOrder) FROM #Summary), 50) +
+               ROW_NUMBER() OVER (ORDER BY TransactionDate, SourceId, Title),
+           TransactionDate,
+           Title,
+           Description,
+           Amount,
+           NULL,
+           NULL,
+           N''
+    FROM
+    (
+        SELECT t.TransactionDate,
+               t.Id AS SourceId,
+               a.AccountName AS Title,
+               t.Description,
+               CASE WHEN t.IsPayment = 1 THEN -t.Amount ELSE t.Amount END AS Amount
         FROM dbo.WorkshopTransaction t
         INNER JOIN dbo.WorkshopAccount a ON a.Id = t.WorkshopAccountId
         WHERE t.TransactionDate >= @StartDate
           AND t.TransactionDate < @EndExclusive
     ) WorkshopRows
 
+    /* Workshop total */
     INSERT #Summary(RowType, DisplayOrder, TranDate, Title, Description, Amount, Balance, BalanceDetailId, ActionText)
-    SELECT N'Summary',
-           ISNULL(MAX(DisplayOrder), 50) + 1,
-           @EndExclusive,
-           N'Workshop Total',
-           N'Total workshop transactions within selected dates',
-           NULL,
-           @WorkshopTotal,
-           NULL,
-           N''
+    SELECT N'Summary', ISNULL(MAX(DisplayOrder), 50) + 1, @EndExclusive,
+           N'Workshop Total', N'Total workshop transactions during selected dates',
+           NULL, @WorkshopTotal, NULL, N''
     FROM #Summary
-    WHERE RowType = N'Detail'
 
     SELECT RowType, DisplayOrder, TranDate, Title, Description, Amount, Balance, BalanceDetailId, ActionText
     FROM #Summary

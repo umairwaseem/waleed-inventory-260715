@@ -280,7 +280,24 @@ namespace Ncsln.Master
 
         private void dgv_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            object value = this.dgv.Rows[e.RowIndex].Cells["colIsPayment"].Value;
+            if (e.RowIndex < 0 || e.RowIndex >= this.dgv.Rows.Count) return;
+
+            // IsPayment is auto-generated from the bound DataTable. It is not a
+            // designer column named "colIsPayment", so look it up by its bound
+            // property instead of assuming a specific DataGridView column name.
+            DataGridViewColumn paymentColumn = null;
+            foreach (DataGridViewColumn column in this.dgv.Columns)
+            {
+                if (string.Equals(column.DataPropertyName, "IsPayment", StringComparison.OrdinalIgnoreCase))
+                {
+                    paymentColumn = column;
+                    break;
+                }
+            }
+
+            if (paymentColumn == null) return;
+
+            object value = this.dgv.Rows[e.RowIndex].Cells[paymentColumn.Index].Value;
             if (value == null || value == DBNull.Value) return;
             this.dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = Convert.ToBoolean(value) ? Color.MistyRose : Color.Honeydew;
         }

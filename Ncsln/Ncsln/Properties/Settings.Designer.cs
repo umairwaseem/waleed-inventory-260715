@@ -141,5 +141,29 @@ namespace Ncsln.Properties {
                 this["UserName"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string DefaultEntry {
+            get {
+                return ((string)(this["DefaultEntry"]));
+            }
+            set {
+                this["DefaultEntry"] = value;
+            }
+        }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string Group_Id {
+            get {
+                return ((string)(this["Group_Id"]));
+            }
+            set {
+                this["Group_Id"] = value;
+            }
+        }
     }
 }

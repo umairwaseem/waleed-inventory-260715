@@ -2711,6 +2711,9 @@
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>dsWorkshopAccount.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Master\dsWorkshopTransaction.xsc">
+      <DependentUpon>dsWorkshopTransaction.xsd</DependentUpon>
+    </None>
     <None Include="Master\dsWorkshopTransaction.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -2866,6 +2869,9 @@
     </None>
     <None Include="Master\dsVendorBalance.xss">
       <DependentUpon>dsVendorBalance.xsd</DependentUpon>
+    </None>
+    <None Include="Master\dsWorkshopTransaction.xss">
+      <DependentUpon>dsWorkshopTransaction.xsd</DependentUpon>
     </None>
     <None Include="Stock\dsItemSearch.xsc">
       <DependentUpon>dsItemSearch.xsd</DependentUpon>

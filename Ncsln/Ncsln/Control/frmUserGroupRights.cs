@@ -18,6 +18,7 @@ namespace Ncsln.Control
         private int ControlStartPosition = 0;
         private int ControlStartPositionV = 10;
         public int GroupId { get; set; }
+        public bool UseHbcDatabase { get; set; }
 
         private struct AllRights
         {
@@ -35,7 +36,7 @@ namespace Ncsln.Control
         private void frmtest_Load(object sender, EventArgs e)
         {
 
-            using (InventoryEntities db = new InventoryEntities(this.objCore.getClientConnectionStringName()))
+            using (InventoryEntities db = new InventoryEntities(this.GetConnectionName()))
             {
                 var UserRight = db.UserForms.ToList();
                 foreach (var item in UserRight)
@@ -54,12 +55,20 @@ namespace Ncsln.Control
                     NewControl.CanDelete = (Boolean)this.VerifyRight(RightData).CanDelete;
                     NewControl.Group_Id = GroupId;
                     NewControl.Form_Id = item.Id;
-                    NewControl.IsReport = (Boolean)item.Report;
+                    NewControl.IsReport = item.Report ?? false;
+                    NewControl.UseHbcDatabase = this.UseHbcDatabase;
 
                     plControl.Controls.Add(NewControl);
                     ControlStartPositionV += 90;
                 }
             }
+        }
+
+        private string GetConnectionName()
+        {
+            return this.UseHbcDatabase
+                ? this.objCore.getHBCConnectionStringName()
+                : this.objCore.getClientConnectionStringName();
         }
 
         private vUserGroupRight VerifyRight(vUserGroupRight value)

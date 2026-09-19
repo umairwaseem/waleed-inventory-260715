@@ -94,7 +94,21 @@ namespace Ncsln.Master
 
         private void dgv_RowPostPaint(object sender, DataGridViewRowPostPaintEventArgs e)
         {
-            object sourceType = this.dgv.Rows[e.RowIndex].Cells["colSourceType"].Value;
+            if (e.RowIndex < 0 || e.RowIndex >= this.dgv.Rows.Count) return;
+
+            DataGridViewColumn sourceTypeColumn = null;
+            foreach (DataGridViewColumn column in this.dgv.Columns)
+            {
+                if (string.Equals(column.DataPropertyName, "SourceType", StringComparison.OrdinalIgnoreCase))
+                {
+                    sourceTypeColumn = column;
+                    break;
+                }
+            }
+
+            if (sourceTypeColumn == null) return;
+
+            object sourceType = this.dgv.Rows[e.RowIndex].Cells[sourceTypeColumn.Index].Value;
             bool opening = string.Equals(Convert.ToString(sourceType), "Opening Balance", StringComparison.OrdinalIgnoreCase);
             this.dgv.Rows[e.RowIndex].DefaultCellStyle.BackColor = opening ? Color.SeaGreen : Color.SlateGray;
             this.dgv.Rows[e.RowIndex].DefaultCellStyle.ForeColor = Color.White;

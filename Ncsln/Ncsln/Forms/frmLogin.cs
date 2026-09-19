@@ -94,6 +94,8 @@ namespace Ncsln.Forms
 
                 string userId = string.Empty;
                 string UserName = string.Empty;
+                bool defaultEntry = false;
+                int groupId = 0;
                 string ConString = string.Empty;
                 if (SetupType.SoftType == SoftwareType.Master)
                 {
@@ -129,6 +131,8 @@ namespace Ncsln.Forms
 
                     userId = dr["UserId"].ToString();
                     UserName = dr["UserName"].ToString();
+                    defaultEntry = Convert.ToBoolean(dr["DefaultEntry"]);
+                    groupId = Convert.ToInt32(dr["Group_Id"]);
                 }
                 else
                 {
@@ -138,9 +142,10 @@ namespace Ncsln.Forms
                     return;
                 }
 
-                Ncsln.Properties.Settings.Default.user = userId;
-                Ncsln.Properties.Settings.Default.UserName = UserName;
-                Ncsln.Properties.Settings.Default.Save();
+                dr.Close();
+                objCore.closeConnection();
+                objCore.SaveUserSession(userId, UserName, defaultEntry, groupId);
+                objCore.RefreshUserRightsCache();
 
                 objCore.RecoardLogs("Login User", "Login");
 

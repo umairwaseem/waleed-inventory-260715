@@ -7,12 +7,17 @@ using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Xml;
 using System.Text.RegularExpressions;
+using System.Security.Cryptography;
 
 
 namespace Ncsln.Classes
 {
     public class CoreClass
     {
+        private static readonly object RightsCacheLock = new object();
+        private static readonly Dictionary<string, DataTable> RightsCache = new Dictionary<string, DataTable>(StringComparer.OrdinalIgnoreCase);
+        private static readonly Dictionary<string, int> FormIdCache = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+
         public SqlConnection con;
         public SqlCommand com;
         public CoreClass()
@@ -80,6 +85,11 @@ namespace Ncsln.Classes
                     return "InventoryEntities-ws";
                 }
             }
+        }
+
+        public string getHBCConnectionStringName()
+        {
+            return "InventoryEntities-hbc";
         }
 
         public string getServerName()
@@ -232,91 +242,128 @@ namespace Ncsln.Classes
 
         public string getUserId()
         {
-            return Ncsln.Properties.Settings.Default.user;
+            return DecryptSetting(Ncsln.Properties.Settings.Default.user);
+        }
+
+        public string getUserName()
+        {
+            return DecryptSetting(Ncsln.Properties.Settings.Default.UserName);
+        }
+
+        public bool getDefaultEntry()
+        {
+            bool value;
+            return Boolean.TryParse(DecryptSetting(Ncsln.Properties.Settings.Default.DefaultEntry), out value) && value;
+        }
+
+        public int getGroupId()
+        {
+            int value;
+            return Int32.TryParse(DecryptSetting(Ncsln.Properties.Settings.Default.Group_Id), out value) ? value : 0;
+        }
+
+        public void SaveUserSession(string userId, string userName, bool defaultEntry, int groupId)
+        {
+            Ncsln.Properties.Settings.Default.user = EncryptSetting(userId);
+            Ncsln.Properties.Settings.Default.UserName = EncryptSetting(userName);
+            Ncsln.Properties.Settings.Default.DefaultEntry = EncryptSetting(defaultEntry.ToString());
+            Ncsln.Properties.Settings.Default.Group_Id = EncryptSetting(groupId.ToString());
+            Ncsln.Properties.Settings.Default.Save();
+            ClearUserRightsCache();
+        }
+
+        private static string EncryptSetting(string value)
+        {
+            if (value == null) return String.Empty;
+            byte[] protectedValue = ProtectedData.Protect(Encoding.UTF8.GetBytes(value), null, DataProtectionScope.CurrentUser);
+            return Convert.ToBase64String(protectedValue);
+        }
+
+        private static string DecryptSetting(string value)
+        {
+            if (String.IsNullOrWhiteSpace(value)) return String.Empty;
+            try
+            {
+                byte[] encryptedValue = Convert.FromBase64String(value);
+                byte[] plainValue = ProtectedData.Unprotect(encryptedValue, null, DataProtectionScope.CurrentUser);
+                return Encoding.UTF8.GetString(plainValue);
+            }
+            catch (Exception)
+            {
+                return String.Empty;
+            }
+        }
+
+        public void ClearUserRightsCache()
+        {
+            lock (RightsCacheLock)
+            {
+                RightsCache.Clear();
+                FormIdCache.Clear();
+            }
+        }
+
+        public void RefreshUserRightsCache()
+        {
+            ClearUserRightsCache();
+            EnsureRightsLoaded(this.getClientConnectionString());
+            EnsureRightsLoaded(this.getHBCConnectionString());
+        }
+
+        private DataTable EnsureRightsLoaded(string conString)
+        {
+            if (String.IsNullOrWhiteSpace(conString)) return null;
+            lock (RightsCacheLock)
+            {
+                DataTable cached;
+                if (RightsCache.TryGetValue(conString, out cached)) return cached;
+                try
+                {
+                    DataSet rights = this.getDataSet("Select * from UserGroupRight", conString);
+                    cached = rights.Tables.Count == 0 ? new DataTable() : rights.Tables[0];
+                }
+                catch (Exception)
+                {
+                    // A null value is intentionally cached as the failed-load marker.
+                    // TryGetValue will prevent another database attempt for this connection.
+                    cached = null;
+                }
+                RightsCache[conString] = cached;
+                return cached;
+            }
+        }
+
+        private bool GetCachedRight(int formId, string rightName, string conString)
+        {
+            if (formId <= 0 || String.IsNullOrWhiteSpace(rightName)) return false;
+            if (this.getDefaultEntry()) return true;
+            DataTable rights = EnsureRightsLoaded(conString);
+            if (rights == null || !rights.Columns.Contains("Form_Id") || !rights.Columns.Contains("Group_Id") || !rights.Columns.Contains(rightName))
+                return false;
+            DataRow[] rows = rights.Select("Form_Id = " + formId + " AND Group_Id = " + this.getGroupId());
+            return rows.Length > 0 && rows[0][rightName] != DBNull.Value && Convert.ToBoolean(rows[0][rightName]);
         }
 
         public bool getUserRight(int formId, string rightName)
         {
-            bool right = false;
-            bool defaultEntry = false;
-            int Group_Id = 0;
-            try
-            {
-                SqlDataReader dr = this.getDataReader("Select DefaultEntry, Group_Id from AISYS Where UserId = " + this.getUserId(), this.getClientConnectionString());
-                if (dr.HasRows)
-                {
-                    dr.Read();
-                    if (Convert.ToBoolean(dr.GetValue(0)))
-                        defaultEntry = true;
-                    Group_Id = Convert.ToInt32(dr.GetValue(1));
-                }
-                dr.Close();
-                this.closeConnection();
-                if (defaultEntry)
-                {
-                    right = true;
-                }
-                else
-                {
-                    string con = this.getClientConnectionString();
-                    dr = this.getDataReader("Select IsNull((Select " + rightName + " from UserGroupRight Where Form_Id = " + formId + " And Group_Id = " + Group_Id + "), '0')", this.getClientConnectionString());
-                    if (dr.HasRows)
-                    {
-                        dr.Read();
-                        right = Convert.ToBoolean(dr.GetValue(0));
-                    }
-                    dr.Close();
-                    this.closeConnection();
-                }
-            }
-            catch (Exception ex)
-            {
-            }
-            return right;
+            return GetCachedRight(formId, rightName, this.getClientConnectionString());
         }
 
         public bool getUserRight(int formId, string rightName, string conString)
         {
-            bool right = false;
-            bool defaultEntry = false;
-            int Group_Id = 0;
-            try
-            {
-                SqlDataReader dr = this.getDataReader("Select DefaultEntry, Group_Id from AISYS Where UserId = " + this.getUserId(), conString);
-                if (dr.HasRows)
-                {
-                    dr.Read();
-                    if (Convert.ToBoolean(dr.GetValue(0)))
-                        defaultEntry = true;
-                    Group_Id = Convert.ToInt32(dr.GetValue(1));
-                }
-                dr.Close();
-                this.closeConnection();
-                if (defaultEntry)
-                {
-                    right = true;
-                }
-                else
-                {
-                    dr = this.getDataReader("Select IsNull((Select " + rightName + " from UserGroupRight Where Form_Id = " + formId + " And Group_Id = " + Group_Id + "), '0')", conString);
-                    if (dr.HasRows)
-                    {
-                        dr.Read();
-                        right = Convert.ToBoolean(dr.GetValue(0));
-                    }
-                    dr.Close();
-                    this.closeConnection();
-                }
-            }
-            catch (Exception ex)
-            {
-            }
-            return right;
+            return GetCachedRight(formId, rightName, conString);
         }
 
         public int getFormId(string formName, string conString)
         {
             if (string.IsNullOrWhiteSpace(formName)) return -1;
+
+            string cacheKey = conString + "\n" + formName.Trim();
+            lock (RightsCacheLock)
+            {
+                int cachedFormId;
+                if (FormIdCache.TryGetValue(cacheKey, out cachedFormId)) return cachedFormId;
+            }
 
             try
             {
@@ -326,7 +373,12 @@ namespace Ncsln.Classes
                     command.Parameters.Add("@FromName", SqlDbType.NVarChar, 200).Value = formName.Trim();
                     connection.Open();
                     object value = command.ExecuteScalar();
-                    return value == null || value == DBNull.Value ? -1 : Convert.ToInt32(value);
+                    int formId = value == null || value == DBNull.Value ? -1 : Convert.ToInt32(value);
+                    lock (RightsCacheLock)
+                    {
+                        FormIdCache[cacheKey] = formId;
+                    }
+                    return formId;
                 }
             }
             catch (Exception)
@@ -664,8 +716,8 @@ namespace Ncsln.Classes
         {
             try
             {
-                string userId = Ncsln.Properties.Settings.Default.user;
-                string userName = Ncsln.Properties.Settings.Default.UserName;
+                string userId = this.getUserId();
+                string userName = this.getUserName();
                 string command = "Insert into UserLogs (UserId, UserName, FormName, Detail, Created_at) Values ('" + userId + "','" + userName + "','" + FormName + "','" + Detail + "', GetDate())";
                 this.executeQuery(command, this.getConnectionString());
             }

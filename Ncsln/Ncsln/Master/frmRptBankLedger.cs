@@ -55,13 +55,20 @@ namespace Ncsln.Master
         {
             try
             {
-                this.dataGridView1.Rows[0].DefaultCellStyle.BackColor = Color.Green;
-                this.dataGridView1.Rows[0].DefaultCellStyle.ForeColor = Color.White;
-
-                for (int i = 1; i < this.dataGridView1.Rows.Count; i++)
+                for (int i = 0; i < this.dataGridView1.Rows.Count; i++)
                 {
-                    this.dataGridView1.Rows[i].DefaultCellStyle.BackColor = Color.SlateGray;
-                    this.dataGridView1.Rows[i].DefaultCellStyle.ForeColor = Color.White;
+                    DataGridViewRow row = this.dataGridView1.Rows[i];
+                    decimal receiveAmount = Convert.ToDecimal(row.Cells[this.receiveAmountDataGridViewTextBoxColumn.Index].Value ?? 0);
+                    decimal paymentAmount = Convert.ToDecimal(row.Cells[this.paymentAmountDataGridViewTextBoxColumn.Index].Value ?? 0);
+
+                    if (receiveAmount > 0)
+                        row.DefaultCellStyle.BackColor = Color.Green;
+                    else if (paymentAmount > 0)
+                        row.DefaultCellStyle.BackColor = Color.Red;
+                    else
+                        row.DefaultCellStyle.BackColor = Color.SlateGray;
+
+                    row.DefaultCellStyle.ForeColor = Color.White;
                 }
             }
             catch (Exception)

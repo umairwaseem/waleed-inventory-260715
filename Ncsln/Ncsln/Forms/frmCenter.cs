@@ -90,6 +90,7 @@ namespace Ncsln.Forms
 
         private void GetViewRights()
         {
+            
             this.itemToolStripMenuItem.Visible = this.objCore.getUserRight(1, "Canview");
             this.vendorToolStripMenuItem.Visible = this.objCore.getUserRight(2, "Canview");
             this.clientToolStripMenuItem.Visible = this.objCore.getUserRight(3, "Canview");
@@ -106,7 +107,9 @@ namespace Ncsln.Forms
             this.expenseVoucherToolStripMenuItem.Visible = this.objCore.getUserRight(11, "Canview");
 
             this.userToolStripMenuItem.Visible = this.objCore.getUserRight(15, "Canview");
-            this.userGroupToolStripMenuItem.Visible = this.objCore.getUserRight(17, "Canview");
+            this.userGroupToolStripMenuItem.Visible = this.IsHbcUserGroupMode()
+                ? this.objCore.getUserRight("User Group", "CanView", this.objCore.getHBCConnectionString())
+                : this.objCore.getUserRight(17, "Canview");
             this.purchaseDetailToolStripMenuItem.Visible = this.objCore.getUserRight(19, "CanView");
             this.internalStockToolStripMenuItem.Visible = this.objCore.getUserRight(20, "CanView");
             this.pRInvoiceToolStripMenuItem.Visible = this.objCore.getUserRight(21, "CanView");
@@ -118,6 +121,7 @@ namespace Ncsln.Forms
             this.branchRectifyStockToolStripMenuItem.Visible = this.objCore.getUserRight(55, "CanView");
 
             // HBC User Rights
+            this.reportsToolStripMenuItem2.Visible = this.objCore.getUserRight(68, "CanView", this.objCore.getHBCConnectionString());
             this.stockInToolStripMenuItem1.Visible = this.objCore.getUserRight(23, "CanView", this.objCore.getHBCConnectionString());
             this.stockOutToolStripMenuItem1.Visible = this.objCore.getUserRight(24, "CanView", this.objCore.getHBCConnectionString());
             this.stockReportToolStripMenuItem2.Visible = this.objCore.getUserRight(25, "CanView", this.objCore.getHBCConnectionString());
@@ -165,6 +169,60 @@ namespace Ncsln.Forms
 
             this.promotionalItemToolStripMenuItem2.Visible = this.objCore.getUserRight(1000, "CanView");
 
+            // Additional client/local menu rights
+            this.saleToolStripMenuItem.Visible = this.objCore.getUserRight("Sale", "CanView", this.objCore.getClientConnectionString());
+            this.ownerWithdrawToolStripMenuItem.Visible = this.objCore.getUserRight("Owner Withdraw", "CanView", this.objCore.getClientConnectionString());
+            this.backUpToolStripMenuItem.Visible = this.objCore.getUserRight("Back up", "CanView", this.objCore.getClientConnectionString());
+            this.rectifyItemsToolStripMenuItem.Visible = this.objCore.getUserRight("Rectify Items", "CanView", this.objCore.getClientConnectionString());
+            this.itemTrendToolStripMenuItem.Visible = this.objCore.getUserRight("Item Trend", "CanView", this.objCore.getClientConnectionString());
+            this.stockAlertToolStripMenuItem.Visible = this.objCore.getUserRight("Stock Alert", "CanView", this.objCore.getClientConnectionString());
+            this.branchesStockToolStripMenuItem.Visible = this.objCore.getUserRight("Overall Stock", "CanView", this.objCore.getHBCConnectionString());
+
+            // Additional HBC/center menu rights
+            string hbcConnectionString = this.objCore.getHBCConnectionString();
+            this.addItemsToolStripMenuItem.Visible = this.objCore.getUserRight("Add Items", "CanView", hbcConnectionString);
+            this.hBCItemToolStripMenuItem.Visible = this.objCore.getUserRight("HBC Item", "CanView", hbcConnectionString);
+            this.localItemToolStripMenuItem.Visible = this.objCore.getUserRight("Local Item", "CanView", hbcConnectionString);
+            this.hBCStockReportToolStripMenuItem.Visible = this.objCore.getUserRight("HBC Stock Report", "CanView", hbcConnectionString);
+            this.stockHideItemsToolStripMenuItem.Visible = this.objCore.getUserRight("Stock Hide Items", "CanView", hbcConnectionString);
+            this.stockHideLedgerToolStripMenuItem.Visible = this.objCore.getUserRight("Stock Hide Ledger", "CanView", hbcConnectionString);
+            this.branchesStockToolStripMenuItem1.Visible = this.objCore.getUserRight("Branches Stock", "CanView", hbcConnectionString);
+            this.branchesStockToolStripMenuItem2.Visible = this.objCore.getUserRight("Branches Stock", "CanView", hbcConnectionString);
+            this.employeeToolStripMenuItem1.Visible = this.objCore.getUserRight("Add Employee", "CanView", hbcConnectionString);
+            this.employeeSalaryToolStripMenuItem.Visible = this.objCore.getUserRight("Salary (Office Master)", "CanView", hbcConnectionString);
+            this.employeeSalaryOfficeEmpireToolStripMenuItem.Visible = this.objCore.getUserRight("Salary (World Style)", "CanView", hbcConnectionString);
+            this.employeeSalaryHistroyToolStripMenuItem.Visible = this.objCore.getUserRight("Salary Histroy", "CanView", hbcConnectionString);
+            this.salaryOfficeNOfficeToolStripMenuItem.Visible = this.objCore.getUserRight("Salary (Two)", "CanView", hbcConnectionString);
+            this.salaryOfficeEmpireToolStripMenuItem.Visible = this.objCore.getUserRight("Salary (One)", "CanView", hbcConnectionString);
+            this.salaryHBCToolStripMenuItem.Visible = this.objCore.getUserRight("Salary (HBC)", "CanView", hbcConnectionString);
+            this.salaryALLToolStripMenuItem.Visible = this.objCore.getUserRight("Salary ALL", "CanView", hbcConnectionString);
+            this.addPartnerToolStripMenuItem.Visible = this.objCore.getUserRight("Add Partner", "CanView", hbcConnectionString);
+            this.partnerProfitToolStripMenuItem.Visible = this.objCore.getUserRight("Partner Profit", "CanView", hbcConnectionString);
+            this.partnerProfitHistoryToolStripMenuItem.Visible = this.objCore.getUserRight("Partner Profit History", "CanView", hbcConnectionString);
+            this.majorAmountsToolStripMenuItem.Visible = this.objCore.getUserRight("Major Amounts", "CanView", hbcConnectionString);
+            this.monthlyFinalReportToolStripMenuItem.Visible = this.objCore.getUserRight("Monthly Final Report", "CanView", hbcConnectionString);
+            this.monthlyFinalReportToolStripMenuItem1.Visible = this.objCore.getUserRight("Monthly Final Report", "CanView", hbcConnectionString);
+            this.partnerPaymentReportToolStripMenuItem.Visible = this.objCore.getUserRight("Partner Payment Report", "CanView", hbcConnectionString);
+            this.vendorStockBalanceToolStripMenuItem.Visible = this.objCore.getUserRight("Vendor Stock Balance", "CanView", hbcConnectionString);
+            this.stockBranchToolStripMenuItem.Visible = this.objCore.getUserRight("Stock Branch", "CanView", hbcConnectionString);
+            this.v10ReportToolStripMenuItem.Visible = this.objCore.getUserRight("V10 Report", "CanView", hbcConnectionString);
+            this.generalVendorInvoiceToolStripMenuItem.Visible = this.objCore.getUserRight("General Vendor Invoice", "CanView", hbcConnectionString);
+            this.expenseListToolStripMenuItem.Visible = this.objCore.getUserRight("Person List", "CanView", hbcConnectionString);
+            this.additionalAccountLedgerToolStripMenuItem.Visible = this.objCore.getUserRight("Additional Account Ledger", "CanView", hbcConnectionString);
+            this.workshopAccountListToolStripMenuItem.Visible = this.objCore.getUserRight("Workshop Account List", "CanView", hbcConnectionString);
+            this.workshopTransactionToolStripMenuItem.Visible = this.objCore.getUserRight("Workshop Transaction", "CanView", hbcConnectionString);
+            this.workshopLedgerToolStripMenuItem.Visible = this.objCore.getUserRight("Workshop Ledger", "CanView", hbcConnectionString);
+            this.branchesDailyCashToolStripMenuItem.Visible = this.objCore.getUserRight("Branches Daily Cash", "CanView", hbcConnectionString);
+            this.negativeStockToolStripMenuItem.Visible = this.objCore.getUserRight("Negative Stock", "CanView", hbcConnectionString);
+            this.banksToolStripMenuItem.Visible = this.objCore.getUserRight("Banks", "CanView", hbcConnectionString);
+            this.userLogsToolStripMenuItem.Visible = this.objCore.getUserRight("User Logs", "CanView", hbcConnectionString);
+            this.promotionalItemToolStripMenuItem.Visible = this.objCore.getUserRight("Promotional Item", "CanView", hbcConnectionString);
+            this.promotionalItemToolStripMenuItem1.Visible = this.objCore.getUserRight("Promotional Item", "CanView", hbcConnectionString);
+            this.vendorDetailReportToolStripMenuItem1.Visible = this.objCore.getUserRight("Vendor Report", "CanView", hbcConnectionString);
+            this.vendorWiseReportToolStripMenuItem.Visible = this.objCore.getUserRight("Vendor Wise Report", "CanView", hbcConnectionString);
+            this.vendorLedgerToolStripMenuItem.Visible = this.objCore.getUserRight("Vendor Ledger", "CanView", hbcConnectionString);
+            this.bankLedgerToolStripMenuItem.Visible = this.objCore.getUserRight("Bank Ledger", "CanView", hbcConnectionString);
+
             // Version check
             if (SetupType.SoftType == SoftwareType.Master)
             {
@@ -178,7 +236,6 @@ namespace Ncsln.Forms
                 this.masterToolStripMenuItem.Visible = true;
                 this.manufacturingToolStripMenuItem.Visible = true;
                 this.stockToolStripMenuItem.Visible = false;
-                this.branchesDailyCashToolStripMenuItem.Visible = true;
 
                 // Manufacturing
                 if (SetupVersion.version == SetupVersions.Manufacturing)
@@ -243,8 +300,12 @@ namespace Ncsln.Forms
 
             // No more need of these from client end 
             this.userToolStripMenuItem.Visible = false;
-            this.userGroupToolStripMenuItem.Visible = false;   
-            this.monthlyFinalReportToolStripMenuItem.Visible = false;
+            //this.userGroupToolStripMenuItem.Visible = false;   
+            if (SetupType.SoftType != SoftwareType.Master)
+            {
+                this.monthlyFinalReportToolStripMenuItem.Visible = false;
+                this.monthlyFinalReportToolStripMenuItem1.Visible = false;
+            }
 
         }
 
@@ -404,9 +465,15 @@ namespace Ncsln.Forms
         private void userGroupToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Control.frmUserGroup obj = new Control.frmUserGroup();
+            obj.UseHbcDatabase = this.IsHbcUserGroupMode();
             obj.WindowState = FormWindowState.Maximized;
             obj.MdiParent = this;
             obj.Show();
+        }
+
+        private bool IsHbcUserGroupMode()
+        {
+            return SetupType.SoftType == SoftwareType.Master;
         }
 
         private void testToolStripMenuItem_Click(object sender, EventArgs e)
